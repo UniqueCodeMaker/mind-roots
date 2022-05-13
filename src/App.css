@@ -24,13 +24,18 @@
        background-image: linear-gradient(315deg, #0059ff 0%, #7ee8fa 74%);
       top:0;
 }
+.Test
+{
+  width:max-content;
+  height:50px;
+  margin-top: 10px;
+}
 .form-control
 {
     background-color: transparent;
     border-color:white;
     color:blue;
-    
-        
+   
 }
 .form-control::placeholder
 {

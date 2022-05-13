@@ -6,7 +6,8 @@ const NavBar = () => {
     const Title = <span className='HeaderLink'>Admin </span>;
     const Title2 = <span className='HeaderLink'>Client </span>;
 
-
+    const Role = localStorage.getItem('Role')
+  console.log(Role)
     
     const [SearchValue , setSearchValue] = useState();
  
@@ -36,14 +37,15 @@ return (
         navbarScroll
       >
         <Nav.Link href="Home" ><span className="HeaderLink">Home</span></Nav.Link>
-       
+       {  (Role==2)? 
         <NavDropdown  title={Title2} id="navbarScrollingDropdown" >
           <NavDropdown.Item href="ViewProfile" >View Profile</NavDropdown.Item>
           <NavDropdown.Item href="ViewEvents">View Events</NavDropdown.Item>
           <NavDropdown.Item href="ClientPanel">Client Panel</NavDropdown.Item>
           
-        </NavDropdown>  
-       
+        </NavDropdown>
+        :  
+       (Role==1)?
         <NavDropdown  title={Title} id="navbarScrollingDropdown" >
           <NavDropdown.Item href="AddMember" >Add Member</NavDropdown.Item>
           <NavDropdown.Item href="ViewMember">View Member</NavDropdown.Item>
@@ -51,7 +53,10 @@ return (
           <NavDropdown.Item href="ViewEvents">View Event</NavDropdown.Item>
           <NavDropdown.Item href="AdminPanel">Admin Panel</NavDropdown.Item>
         </NavDropdown>
-        <Nav.Link href="/"  >
+      :
+      <></> 
+      }
+       <Nav.Link href="/"  >
         <span className="HeaderLink" >SignOut</span>
         </Nav.Link>
       </Nav>

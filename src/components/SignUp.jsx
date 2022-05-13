@@ -66,12 +66,16 @@ const Role = localStorage.getItem('Role');
 	
 		const test3 = async ()=>
 		{
+			
 		await fetch(`http://localhost:5000/SignCheck/${Username}/${Password}`)
 		.then((response) => response.json())
-		.then((actualData) => actualData ? setCheck(true):setCheck(false))
+		.then((actualData) => {actualData ? setCheck(true):setCheck(false)
+			
+		})
+
 	}
 	
-	
+	console.log(Check , Role)
     return(
  
         <div className="HomeLogin">
@@ -88,7 +92,7 @@ const Role = localStorage.getItem('Role');
 						<span className="fa fa-user"></span>
 					</span>                    
 				</div>
-				<input type="text" className="form-control" name="username" placeholder="Username" required="required" onChange={handleChangeN}/>
+				<input type="text" className="form-control Test" name="username" placeholder="Username" required="required" onChange={handleChangeN}/>
 			</div>
         </div>
         
@@ -99,7 +103,7 @@ const Role = localStorage.getItem('Role');
 						<i className="fa fa-lock"></i>
 					</span>                    
 				</div>
-				<input type="password" className="form-control" name="password" placeholder="Password" required="required"  onChange={handleChangeP}/>
+				<input type="password" className="form-control Test" name="password" placeholder="Password" required="required"  onChange={handleChangeP}/>
 			</div>
         </div>
 		
