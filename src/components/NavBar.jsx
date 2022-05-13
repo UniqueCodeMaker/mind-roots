@@ -33,7 +33,9 @@ const NavBar = () => {
 
 
 return (
-<Navbar  expand="md" className="Navbar" sticky="top" >
+  <>
+  <div className="navBar">
+      <Navbar  expand="md" className="m-auto" sticky="top" >
   <Container fluid >
     <Navbar.Brand href="#"><img src={Logo} className="LogoUp" /></Navbar.Brand>
     <Navbar.Toggle aria-controls="navbarScroll"  />
@@ -48,26 +50,26 @@ return (
         <NavDropdown  title={Title2} id="navbarScrollingDropdown" >
           <NavDropdown.Item href={(Clogin==0)?"":"ViewProfile"} >View Profile</NavDropdown.Item>
           <NavDropdown.Item href={(Clogin==0)?"":"ViewEvents"}>View Events</NavDropdown.Item>
-          {/* <NavDropdown.Item href="ClientPanel">Client Panel</NavDropdown.Item> */}
+          <NavDropdown.Item href={ (Clogin==0)? "":"ClientPanel"}>Client Panel</NavDropdown.Item>
           
         </NavDropdown>
         :  
        (Role==1)?
         <NavDropdown  title={Title} id="navbarScrollingDropdown" >
-          <NavDropdown.Item href={ (Alogin==0)? "":"AddMember"} >Add Member</NavDropdown.Item>
+          <NavDropdown.Item href={ (Alogin==0)? "":"AddMember"} >Edit Members</NavDropdown.Item>
           <NavDropdown.Item href={ (Alogin==0) ? "":"ViewMember"}>View Member</NavDropdown.Item>
           <NavDropdown.Item href={ (Alogin==0)? "":"AddEvent"}>Add Event</NavDropdown.Item>
           <NavDropdown.Item href={ (Alogin==0)? "":"ViewEvents"}>View Event</NavDropdown.Item>
-          {/* <NavDropdown.Item href="AdminPanel">Admin Panel</NavDropdown.Item> */}
+          <NavDropdown.Item href={ (Alogin==0)? "":"AdminPanel"}>Admin Panel</NavDropdown.Item>
         </NavDropdown>
       :
       <></> 
       }
-    {  ((Clogin || Alogin))? <></> :  
+    {  (Clogin==1 || Alogin==1 )?   
       <Nav.Link href="/"  >
         <span className="HeaderLink" >SignOut</span>
         </Nav.Link>
-    
+    :<></> 
      } </Nav>
       <Form className="d-flex">
         <FormControl
@@ -90,6 +92,10 @@ return (
     </Navbar.Collapse>
   </Container>
 </Navbar>
+</div>
+
+  </>
+
         
     )
 

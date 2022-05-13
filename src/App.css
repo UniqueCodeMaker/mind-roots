@@ -279,7 +279,7 @@
 
 .Apply:hover
 { 
-    font-size: 30px;
+    /* font-size: 30px; */
     color:rgb(3, 3, 255);
 
 }
@@ -541,15 +541,11 @@ a:hover{color:white}
 }
 
 
-.Navbar
+.navBar
 {
-  display: flex;
-  flex-direction: row;
-  background-color: transparent;
-  margin-left: 15%;
-  width:max-content;
-  background-image: linear-gradient(215deg, #0687ff 20%, #0026a334 50%);
-  
+  display : flex;
+  flex-direction: column;
+
 }
 
 

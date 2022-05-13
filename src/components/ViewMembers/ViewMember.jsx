@@ -11,13 +11,10 @@ const ViewMember = () => {
 
       var HandleEdit = async  function(i) {
        
-        console.log(i);
       
-        await fetch(`http://localhost:5000/`)
-        .then((response) => response.json())
-        .then((actualData) => setEvents(actualData))
-      
-      
+      localStorage.setItem("userSelect" , i);
+      window.open("http://localhost:3000/AddMember","_self",false);
+
       }
 
       var HandleDelete = async function(i) {
@@ -57,7 +54,7 @@ const ViewMember = () => {
           <Table striped bordered hover>
           <thead>
             <tr>
-              <th>#</th>
+              <th>Id</th>
               <th>Name</th>
               <th>Email</th>
               <th>Mobile</th>
@@ -84,6 +81,7 @@ const ViewMember = () => {
                               {/* <button  type="button" className="rights"  >Delete</button> */}
                               {/* <button type="button" className="rights"  >Edit</button> */}
                               <div onClick={HandleDelete.bind(this, Member.id)} key={Member.id} className="rights">Delete</div>
+                              <div onClick={HandleEdit.bind(this, Member.id)} key={Member.id} className="rights">Edit</div>
                               {/* <div onClick={HandleEdit.bind(this, i)} key={i} className="rights">Edit</div> */}
                             </td>
                             

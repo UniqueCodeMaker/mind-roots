@@ -60,11 +60,12 @@ const AddMember = () => {
     const [Generate, setGenerate] = useState("Generate Transaction Id")
 
     const registerUser = yup.object().shape({
-        first_name: yup.string().min(3).required(),
-        password: yup.string().min(4).max(16).required(),
-        email: yup.string().email().required(),
-        dob: yup.date().required(),
-        Mobile: yup.number().max(16).min(10).required(),
+        // name: yup.string().min(3).required(),
+        // password: yup.string().min(4).max(16).required(),
+        // email: yup.string().email().required(),
+        // dob: yup.date().required(),
+        // mobile: yup.number().max(16).min(10).required(),
+        // gender: yup.string().required(),
     })
     const { register, formState: { errors }, handleSubmit, watch, reset } = useForm({ mode: 'onChange', resolver: yupResolver(registerUser) })
 
@@ -99,7 +100,7 @@ const AddMember = () => {
     }
 
     const userSelected = watch('User')
-
+    console.log(userSelected)
     return (
         <>
         <NavBar/>
@@ -111,7 +112,7 @@ const AddMember = () => {
                 </span> */}
 
                 <form className=" form-control mb-3 row " ref={form} onSubmit={handleSubmit(onSubmit, onError)}>
-                    <h3 className="titleForm">Update Record</h3>
+                    <h3 className="titleForm">Edit Record</h3>
                     <div className="form-infor-profile">
                         <div className="info-account">
                             
@@ -135,7 +136,7 @@ const AddMember = () => {
                                         className="SelectUser form-control"
 
                                     >
-                                        <option value="Select Users" hidden selected>Select Users</option>
+                                        {/* <option value="Select Users" hidden selected>Select Users</option> */}
                                         {Check.map((checks) => <option value={checks.name}  >{checks.name}</option>)
                                         }
                                     </select>
@@ -188,11 +189,11 @@ const AddMember = () => {
                                 <Col sm={12}>
                                     <label className="label label-primary">Mobile</label>
                                     <input
-                                        id="Mobile"
+                                        id="mobile"
                                         {...register('mobile', { required: true })}
                                         type="test"
                                         placeholder="Enter Mobile No."
-                                        className={classnames('input  form-control', { 'is-invalid': errors && errors?.number })}
+                                        className={classnames('input  form-control', { 'is-invalid': errors && errors?.mobile })}
                                         defaultValue={details.mobile}
                                     />
                                     {errors && errors?.mobile && <FormFeedback>Please type Mobile No.</FormFeedback>}
@@ -222,14 +223,14 @@ const AddMember = () => {
                                         id="gender"
                                         {...register('gender', { required: true })}
                                         defaultValue={details.gender}
-                                        className="form-control  "
+                                        className={classnames('form-control', { 'is-invalid': errors && errors?.gender})}
                                     >
                                         <option value="null" disabled selected>Select Gender</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                         <option value="Other">Other</option>
                                     </select>
-                                    {errors && errors?.dob && <FormFeedback>Please select Gender</FormFeedback>}
+                                    {errors && errors?.gender && <FormFeedback>Please select Gender</FormFeedback>}
 
                                 </Col>
 
