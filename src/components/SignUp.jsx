@@ -75,7 +75,7 @@ const Role = localStorage.getItem('Role');
 
 	}
 	
-	console.log(Check , Role)
+	// console.log(Check , Role)	
     return(
  
         <div className="HomeLogin">

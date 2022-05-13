@@ -1,4 +1,4 @@
-import React , { useState } from "react";
+import React , { useState , useEffect } from "react";
 import { Navbar,Nav,NavDropdown,Form,FormControl,Button,Container } from 'react-bootstrap';
 import Logo from "../components/HomeScreen/images/Logo2.png";
 const NavBar = () => {
@@ -7,7 +7,9 @@ const NavBar = () => {
     const Title2 = <span className='HeaderLink'>Client </span>;
 
     const Role = localStorage.getItem('Role')
-  console.log(Role)
+    const Clogin = localStorage.getItem('Clogin')
+    const Alogin = localStorage.getItem('Alogin')
+    console.log(Clogin , Alogin)
     
     const [SearchValue , setSearchValue] = useState();
  
@@ -20,6 +22,10 @@ const NavBar = () => {
           window.open("ViewEvents","_self")
         }
   
+        useEffect(() => {
+        
+          }, []);
+          
 
 
         // console.table(Check);
@@ -41,25 +47,27 @@ return (
         <NavDropdown  title={Title2} id="navbarScrollingDropdown" >
           <NavDropdown.Item href="ViewProfile" >View Profile</NavDropdown.Item>
           <NavDropdown.Item href="ViewEvents">View Events</NavDropdown.Item>
-          <NavDropdown.Item href="ClientPanel">Client Panel</NavDropdown.Item>
+          {/* <NavDropdown.Item href="ClientPanel">Client Panel</NavDropdown.Item> */}
           
         </NavDropdown>
         :  
        (Role==1)?
         <NavDropdown  title={Title} id="navbarScrollingDropdown" >
-          <NavDropdown.Item href="AddMember" >Add Member</NavDropdown.Item>
-          <NavDropdown.Item href="ViewMember">View Member</NavDropdown.Item>
-          <NavDropdown.Item href="AddEvent">Add Event</NavDropdown.Item>
-          <NavDropdown.Item href="ViewEvents">View Event</NavDropdown.Item>
-          <NavDropdown.Item href="AdminPanel">Admin Panel</NavDropdown.Item>
+          <NavDropdown.Item href={ (Alogin==0)? "":"AddMember"} >Add Member</NavDropdown.Item>
+          <NavDropdown.Item href={ (Alogin==0) ? "":"ViewMember"}>View Member</NavDropdown.Item>
+          <NavDropdown.Item href={ (Alogin==0)? "":"AddEvent"}>Add Event</NavDropdown.Item>
+          <NavDropdown.Item href={ (Alogin==0)? "":"ViewEvents"}>View Event</NavDropdown.Item>
+          {/* <NavDropdown.Item href="AdminPanel">Admin Panel</NavDropdown.Item> */}
         </NavDropdown>
       :
       <></> 
       }
-       <Nav.Link href="/"  >
+    {  (Role==0 && (Clogin || Alogin))? 
+      <Nav.Link href="/"  >
         <span className="HeaderLink" >SignOut</span>
         </Nav.Link>
-      </Nav>
+    : <></> 
+     } </Nav>
       <Form className="d-flex">
         <FormControl
           type="search"

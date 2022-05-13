@@ -4,6 +4,8 @@ import "../../App.css";
 const AdminPanel =()=>{
     // const [PeriodLeft,setPeriodLeft] = useState("View Members");
 
+    localStorage.setItem("Alogin" , 1)
+
     return(
    <div className="HomeLogin">
        <div className="FormPanel2">

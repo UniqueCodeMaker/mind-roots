@@ -3,6 +3,8 @@ import "../../App.css";
 
 import DaysLeft from "./DaysLeft.jsx"
 const ClientPanel =()=>{
+
+    localStorage.setItem("Clogin" , 1)
     const [PeriodLeft,setPeriodLeft] = useState("Membership Period");
     const [classBtn,setclassBtn] = useState("button-56");
     const Timer = <DaysLeft/>

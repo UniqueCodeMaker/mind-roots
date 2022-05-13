@@ -69,7 +69,7 @@ const ViewMember = () => {
             {  Members.map((Member,i) => (
                               
                               <tr> 
-                              <td>{i}</td>
+                              <td>{Member.id}</td>
                               <td>{Member.name}</td>
                               <td>{Member.email}</td>
                               <td>{Member.mobile}</td>
@@ -80,7 +80,7 @@ const ViewMember = () => {
                                
                                 {/* <button  type="button" className="rights"  >Delete</button> */}
                                 {/* <button type="button" className="rights"  >Edit</button> */}
-                                <div onClick={HandleDelete.bind(this, i)} key={i} className="rights">Delete</div>
+                                <div onClick={HandleDelete.bind(this, Member.id)} key={Member.id} className="rights">Delete</div>
                                 {/* <div onClick={HandleEdit.bind(this, i)} key={i} className="rights">Edit</div> */}
                               </td>
                               

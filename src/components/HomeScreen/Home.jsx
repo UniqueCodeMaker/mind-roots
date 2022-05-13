@@ -10,7 +10,8 @@ const Home = (props) => {
 
     localStorage.setItem('Role', Role)
     localStorage.setItem('Role', Role)
-
+    localStorage.setItem('Clogin' , 0)
+    localStorage.setItem('Alogin' , 0)
 
     return (
         <div className="HomeLogin">
