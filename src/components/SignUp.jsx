@@ -3,6 +3,7 @@ import "../App.css";
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
   import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
+  import NavBar from "./NavBar"
 const SignUp = () => {
 	
 const Role = localStorage.getItem('Role');
@@ -77,7 +78,8 @@ const Role = localStorage.getItem('Role');
 	
 	// console.log(Check , Role)	
     return(
- 
+ <>
+ <NavBar/>
         <div className="HomeLogin">
 			<ToastContainer />
             <div className="signup-form">
@@ -117,6 +119,8 @@ const Role = localStorage.getItem('Role');
 	<div className="text-center">Dont Have Account? <a href="Applyform"> Register </a>  </div>
 </div>
         </div>
+ </>
+ 
     )
 
 }

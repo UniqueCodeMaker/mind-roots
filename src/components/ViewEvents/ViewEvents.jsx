@@ -1,7 +1,7 @@
 import react , {useState , useEffect} from "react";
 import EventPanel from "./EventsPanel.jsx";
 import "../../App.css";
-
+import NavBar from "../NavBar";
 const ViewEvents = () => {
     const [Events, setEvents] = useState([
       
@@ -49,28 +49,32 @@ await fetch(`http://localhost:5000/search/${searchv}`)
 
 
     return(
-       <div className="HomeLogin2">
+     
+     <>
+     <NavBar/>
+     <div className="HomeLogin2">
 
-            {Events?.length > 0 ? (
-        <div className="EventPanelView">
-          {Events.map((event) => (
-            <EventPanel event={event} />
-            
-          ))}
-          
-        </div>
-      ) : (
-        <div className="empty">
-          <h2>No event found</h2>
-        </div>
-      )}    
+{Events?.length > 0 ? (
+<div className="EventPanelView">
+{Events.map((event) => (
+<EventPanel event={event} />
+
+))}
+
+</div>
+) : (
+<div className="empty">
+<h2>No event found</h2>
+</div>
+)}    
 
 
 
 
 
-            </div>
+</div>
 
+     </>
       
         
     )

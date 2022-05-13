@@ -22,7 +22,6 @@ import {
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <BrowserRouter>
-  <NavBar/>  
     <Routes>
       
       <Route path="/" element={< Home/>} />

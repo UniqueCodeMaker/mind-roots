@@ -9,10 +9,11 @@ const NavBar = () => {
     const Role = localStorage.getItem('Role')
     const Clogin = localStorage.getItem('Clogin')
     const Alogin = localStorage.getItem('Alogin')
-    console.log(Clogin , Alogin)
+    console.log("C" , Clogin ,"A" ,  Alogin , "R", Role)
     
     const [SearchValue , setSearchValue] = useState();
  
+
 
         const test2 =  ()=>
         {
@@ -22,9 +23,9 @@ const NavBar = () => {
           window.open("ViewEvents","_self")
         }
   
-        useEffect(() => {
-        
-          }, []);
+        // useEffect(() => {
+        //   Navbar();
+        //   }, []);
           
 
 
@@ -45,8 +46,8 @@ return (
         <Nav.Link href="Home" ><span className="HeaderLink">Home</span></Nav.Link>
        {  (Role==2)? 
         <NavDropdown  title={Title2} id="navbarScrollingDropdown" >
-          <NavDropdown.Item href="ViewProfile" >View Profile</NavDropdown.Item>
-          <NavDropdown.Item href="ViewEvents">View Events</NavDropdown.Item>
+          <NavDropdown.Item href={(Clogin==0)?"":"ViewProfile"} >View Profile</NavDropdown.Item>
+          <NavDropdown.Item href={(Clogin==0)?"":"ViewEvents"}>View Events</NavDropdown.Item>
           {/* <NavDropdown.Item href="ClientPanel">Client Panel</NavDropdown.Item> */}
           
         </NavDropdown>
@@ -62,11 +63,11 @@ return (
       :
       <></> 
       }
-    {  (Role==0 && (Clogin || Alogin))? 
+    {  ((Clogin || Alogin))? <></> :  
       <Nav.Link href="/"  >
         <span className="HeaderLink" >SignOut</span>
         </Nav.Link>
-    : <></> 
+    
      } </Nav>
       <Form className="d-flex">
         <FormControl

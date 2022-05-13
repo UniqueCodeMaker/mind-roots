@@ -1,7 +1,7 @@
 import React, { useState , useEffect} from "react"
 import "../../App.css";
 import Logo from "./images/Logo2.png"
-
+import NavBar from ".././NavBar"
 const Home = (props) => {
   
     const [Role, setRole] = useState(0);
@@ -14,8 +14,9 @@ const Home = (props) => {
     localStorage.setItem('Alogin' , 0)
 
     return (
+        <> <NavBar/>  
         <div className="HomeLogin">
-
+             
             <div className="midPanel">
                 {/* <span className="Logo">
                         <img src={Logo} alt="Logo"/>
@@ -41,6 +42,7 @@ const Home = (props) => {
 
 
         </div>
+        </>
     )
 
 }

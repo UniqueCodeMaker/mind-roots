@@ -9,6 +9,7 @@ import ImageUploading from "react-images-uploading";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
+import NavBar from "../NavBar"
 const AddEvent =()=> {
   const notify = () => toast("Event Added Successfully", 
 	{
@@ -76,190 +77,195 @@ const AddEvent =()=> {
 
 
     return(
+<>
+      <NavBar/>
+<div className="HomeLogin">
+                  
+                  <ToastContainer />
+                   <div className="box">
+      <div className="header">
+          <p>Add Event</p>
+      </div>
 
-                <div className="HomeLogin">
-                  	<ToastContainer />
-                     <div className="box">
-        <div className="header">
-            <p>Add Event</p>
-        </div>
-
-        <form className="AddEventF"  ref={form} onSubmit={handleSubmit(onSubmit , onError)}>
-        <div className="ImageUpload">
-      <ImageUploading
-        multiple
-        value={images}
-        onChange={onChange}
-        maxNumber={maxNumber}
-        dataURLKey="data_url"
-      >
-        {({
-          imageList,
-          onImageUpload,
-          onImageRemoveAll,
-          onImageUpdate,
-          onImageRemove,
-          isDragging,
-          dragProps
-        }) => (
-          // write your building UI
-          <div className="upload__image-wrapper">
-            <button
-              style={isDragging ? { color: "red" } : null}
-              onClick={onImageUpload}
-             type="button"
-              {...dragProps}
-            >
-             <div className={ViewBtn}>
-  <label htmlFor="file-input">
-    <img src="https://icons.iconarchive.com/icons/dtafalonso/android-lollipop/128/Downloads-icon.png"
-    onClick={HideBtn}
-    onDrop={HideBtn}
-    alt="upload"
-    />
-            <h5>Upload Event Cover</h5>
-  </label>
-                </div>
-            </button>
-            &nbsp;
-          {imageList.map((image, index) => (
-              <div key={index} className="image-item">
-                <img src={image.data_url} alt="" width="100" />
-                
+      <form className="AddEventF"  ref={form} onSubmit={handleSubmit(onSubmit , onError)}>
+      <div className="ImageUpload">
+    <ImageUploading
+      multiple
+      value={images}
+      onChange={onChange}
+      maxNumber={maxNumber}
+      dataURLKey="data_url"
+    >
+      {({
+        imageList,
+        onImageUpload,
+        onImageRemoveAll,
+        onImageUpdate,
+        onImageRemove,
+        isDragging,
+        dragProps
+      }) => (
+        // write your building UI
+        <div className="upload__image-wrapper">
+          <button
+            style={isDragging ? { color: "red" } : null}
+            onClick={onImageUpload}
+           type="button"
+            {...dragProps}
+          >
+           <div className={ViewBtn}>
+<label htmlFor="file-input">
+  <img src="https://icons.iconarchive.com/icons/dtafalonso/android-lollipop/128/Downloads-icon.png"
+  onClick={HideBtn}
+  onDrop={HideBtn}
+  alt="upload"
+  />
+          <h5>Upload Event Cover</h5>
+</label>
               </div>
-            ))}
-          </div>
-        )}
-      </ImageUploading>
-    </div>
-            <div className="row ">
-                <div className="col-2">
-                    <p>Event Leader</p>
-                </div>
-                <div className="col-4 ">
-                    <input type="text" 
-                      id="lead"
-                      defaultValue={user?.lead}
-                      {...register('lead', { required: true })}
-                      placeholder="Enter Leader Name"
-                      className={classnames('input form-control', { 'is-invalid': errors && errors?.lead })}
-                    />
-                    {errors && errors?.lead && <FormFeedback>Please type Leader's name</FormFeedback>}
-                </div>
-                
+          </button>
+          &nbsp;
+        {imageList.map((image, index) => (
+            <div key={index} className="image-item">
+              <img src={image.data_url} alt="" width="100" />
+              
             </div>
-
-            <div className="row">
-                <div className="col-2">
-                    <p>Event Name</p>
-                </div>
-                <div className="col-8">
-                    <input type="text"
-                     id="event"
-                     defaultValue={user?.event}
-                     {...register('event', { required: true })}
-                     placeholder="Enter event Name"
-                     className={classnames('input form-control', { 'is-invalid': errors && errors?.event })}
-                   />
-                   {errors && errors?.event && <FormFeedback>Please type event name</FormFeedback>}
-                </div>
-            </div>
-
-            <div className="row">
-                <div className="col-2">
-                    <p>Event Date</p>
-                </div>
-                <div className="col-8">
-                    <input type="date" 
-                       id="edate"
-                       defaultValue={user?.edate}
-                       {...register('edate', { required: true })}
-                       placeholder="Enter event date"
-                       className={classnames('input form-control', { 'is-invalid': errors && errors?.edate })}
-                     />
-                     {errors && errors?.edate && <FormFeedback>Please type event date</FormFeedback>}
-                </div>
-            </div>
-
-            <div className="row">
-                <div className="col-2">
-                    <p>Event Location</p>
-                </div>
-                <div className="col-8">
-                    <input type="text"
-                       id="location"
-                       defaultValue={user?.location}
-                       {...register('location', { required: true })}
-                       placeholder="Enter event location"
-                       className={classnames('input form-control', { 'is-invalid': errors && errors?.location })}
-                     />
-                     {errors && errors?.location && <FormFeedback>Please type event location</FormFeedback>}
-                </div>
-            </div>  
-
-           
-
-            <div className="row">
-                <div className="col-2">
-                    <p>Event Timing</p>
-                </div>
-                <div className="col-8">
-                    <input type="time"
-                      id="etime"
-                      defaultVaqlue={user?.etime}
-                      {...register('etime', { required: true })}
-                      placeholder="Enter event time"
-                      className={classnames('input form-control', { 'is-invalid': errors && errors?.etime })}
-                    />
-                    {errors && errors?.etime && <FormFeedback>Please type event Time</FormFeedback>}
-                </div>
-            </div>
-
-            <div className="row">
-                <div className="col-2">
-                    <p>Event Budget</p>
-                </div>
-                <div className="col-8">
-                    <input type="text"
-                    id="budget"
-                    defaultValue={user?.budget}
-                    {...register('budget', { required: true })}
-                    placeholder="Enter event budget"
-                    className={classnames('input form-control', { 'is-invalid': errors && errors?.budget })}
+          ))}
+        </div>
+      )}
+    </ImageUploading>
+  </div>
+          <div className="row ">
+              <div className="col-2">
+                  <p>Event Leader</p>
+              </div>
+              <div className="col-4 ">
+                  <input type="text" 
+                    id="lead"
+                    defaultValue={user?.lead}
+                    {...register('lead', { required: true })}
+                    placeholder="Enter Leader Name"
+                    className={classnames('input form-control', { 'is-invalid': errors && errors?.lead })}
                   />
-                  {errors && errors?.budget && <FormFeedback>Please type event budget</FormFeedback>}
-                </div>
-            </div>
+                  {errors && errors?.lead && <FormFeedback>Please type Leader's name</FormFeedback>}
+              </div>
+              
+          </div>
 
-            <div className="row">
-                <div className="col-2">
-                    <p>Fees Amount</p>
-                </div>
-                <div className="col-8">
-                    <input type="text"
-                       id="fees"
-                       defaultValue={user?.fees}
-                       {...register('fees', { required: true })}
-                       placeholder="Enter event fees"
-                       className={classnames('input form-control', { 'is-invalid': errors && errors?.budget })}
-                     />
-                     {errors && errors?.fees && <FormFeedback>Please type event fees</FormFeedback>}
-                </div>
-            </div>
+          <div className="row">
+              <div className="col-2">
+                  <p>Event Name</p>
+              </div>
+              <div className="col-8">
+                  <input type="text"
+                   id="event"
+                   defaultValue={user?.event}
+                   {...register('event', { required: true })}
+                   placeholder="Enter event Name"
+                   className={classnames('input form-control', { 'is-invalid': errors && errors?.event })}
+                 />
+                 {errors && errors?.event && <FormFeedback>Please type event name</FormFeedback>}
+              </div>
+          </div>
+
+          <div className="row">
+              <div className="col-2">
+                  <p>Event Date</p>
+              </div>
+              <div className="col-8">
+                  <input type="date" 
+                     id="edate"
+                     defaultValue={user?.edate}
+                     {...register('edate', { required: true })}
+                     placeholder="Enter event date"
+                     className={classnames('input form-control', { 'is-invalid': errors && errors?.edate })}
+                   />
+                   {errors && errors?.edate && <FormFeedback>Please type event date</FormFeedback>}
+              </div>
+          </div>
+
+          <div className="row">
+              <div className="col-2">
+                  <p>Event Location</p>
+              </div>
+              <div className="col-8">
+                  <input type="text"
+                     id="location"
+                     defaultValue={user?.location}
+                     {...register('location', { required: true })}
+                     placeholder="Enter event location"
+                     className={classnames('input form-control', { 'is-invalid': errors && errors?.location })}
+                   />
+                   {errors && errors?.location && <FormFeedback>Please type event location</FormFeedback>}
+              </div>
+          </div>  
 
          
 
-            <div className="row">
-                <div className="col-6">
-                    <button className="btn btn-primary" type = "submit">Add</button>
-                    
-                </div>
-            </div>
+          <div className="row">
+              <div className="col-2">
+                  <p>Event Timing</p>
+              </div>
+              <div className="col-8">
+                  <input type="time"
+                    id="etime"
+                    defaultVaqlue={user?.etime}
+                    {...register('etime', { required: true })}
+                    placeholder="Enter event time"
+                    className={classnames('input form-control', { 'is-invalid': errors && errors?.etime })}
+                  />
+                  {errors && errors?.etime && <FormFeedback>Please type event Time</FormFeedback>}
+              </div>
+          </div>
 
-        </form>
+          <div className="row">
+              <div className="col-2">
+                  <p>Event Budget</p>
+              </div>
+              <div className="col-8">
+                  <input type="text"
+                  id="budget"
+                  defaultValue={user?.budget}
+                  {...register('budget', { required: true })}
+                  placeholder="Enter event budget"
+                  className={classnames('input form-control', { 'is-invalid': errors && errors?.budget })}
+                />
+                {errors && errors?.budget && <FormFeedback>Please type event budget</FormFeedback>}
+              </div>
+          </div>
 
-    </div>
-                </div>
+          <div className="row">
+              <div className="col-2">
+                  <p>Fees Amount</p>
+              </div>
+              <div className="col-8">
+                  <input type="text"
+                     id="fees"
+                     defaultValue={user?.fees}
+                     {...register('fees', { required: true })}
+                     placeholder="Enter event fees"
+                     className={classnames('input form-control', { 'is-invalid': errors && errors?.budget })}
+                   />
+                   {errors && errors?.fees && <FormFeedback>Please type event fees</FormFeedback>}
+              </div>
+          </div>
+
+       
+
+          <div className="row">
+              <div className="col-6">
+                  <button className="btn btn-primary" type = "submit">Add</button>
+                  
+              </div>
+          </div>
+
+      </form>
+
+  </div>
+              </div>
+</>
+
+
     );
 }
 export default AddEvent;

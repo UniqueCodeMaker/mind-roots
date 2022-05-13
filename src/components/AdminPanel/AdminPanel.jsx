@@ -1,13 +1,16 @@
 import React,{useState} from "react"
 import "../../App.css";
-
+import NavBar from "../NavBar"
 const AdminPanel =()=>{
     // const [PeriodLeft,setPeriodLeft] = useState("View Members");
 
     localStorage.setItem("Alogin" , 1)
 
     return(
-   <div className="HomeLogin">
+<>
+<NavBar/>
+
+<div className="HomeLogin">
        <div className="FormPanel2">
        {/* <span className="Logo2">
                     <img src={Logo} alt="Logo" />
@@ -30,6 +33,10 @@ const AdminPanel =()=>{
     
     
     </div>
+
+</>
+
+
 )
 
 }

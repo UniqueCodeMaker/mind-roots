@@ -8,6 +8,7 @@ import classnames from 'classnames'
 import { Col, Row, FormFeedback } from 'reactstrap'
 import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import NavBar from '../NavBar'
 const intialVal = {
     "id": "",
     "name": "",
@@ -100,7 +101,9 @@ const AddMember = () => {
     const userSelected = watch('User')
 
     return (
-        <div className="ApplyForm">
+        <>
+        <NavBar/>
+      <div className="ApplyForm">
 
             <div className="FormPanel d-flex justify-content-center BackTrans">
                 {/* <span className="Logo">
@@ -260,7 +263,10 @@ const AddMember = () => {
 
 
         </div>
-    )
+
+        </>
+
+        )
 
 }
 

@@ -1,6 +1,6 @@
 import React,{useState} from "react"
 import "../../App.css";
-
+import NavBar from "../NavBar"
 import DaysLeft from "./DaysLeft.jsx"
 const ClientPanel =()=>{
 
@@ -19,7 +19,10 @@ const ClientPanel =()=>{
     }
 
     return(
+   <>
+   <NavBar/>
    <div className="HomeLogin">
+   
        <div className="FormPanel2">
        {/* <span className="Logo2">
                     <img src={Logo} alt="Logo" />
@@ -29,19 +32,9 @@ const ClientPanel =()=>{
   <button className={classBtn} role="button" onClick={HandleTime}>{PeriodLeft}</button>
    <a href="AddEvent"> <button className="button-56" role="button">View Events</button></a>
    <a href="ViewEvents"> <button className="button-56" role="button">Upcoming Events</button></a>
-
-
-
-       </div>
-        
-       
-    
-    
-    
-    
-    
-    
-    </div>
+ </div>
+      </div>
+   </>
 )
 
 }

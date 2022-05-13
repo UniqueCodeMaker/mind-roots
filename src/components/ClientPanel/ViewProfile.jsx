@@ -8,6 +8,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { BsCalendarDate } from "react-icons/bs";
 import { BsGenderAmbiguous   } from "react-icons/bs";
 import { MdOutlinePassword } from "react-icons/md";
+import NavBar from "../NavBar";
 // import Moment from 'react-moment';
 // import 'moment-timezone';
 const ViewProfile = () => {
@@ -37,6 +38,8 @@ const ViewProfile = () => {
               
     // console.log(Check)
     return( 
+       <>
+        <NavBar/>
         <div className="HomeLogin">
        <div className="DesignPanel">
                 <div className="CProfileView">
@@ -114,14 +117,9 @@ const ViewProfile = () => {
                    </div>
                 </div>
            </div> 
-       
-    
-    
-    
-    
-    
-    
     </div>
+       </>
+      
         )
 }
 

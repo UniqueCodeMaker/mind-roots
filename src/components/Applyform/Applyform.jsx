@@ -13,6 +13,7 @@ import ImageUpload from "../ImageUpload.jsx"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
+import NavBar from "../NavBar"
 const Applyform = () => {
     const START =123;
     const END = 456;
@@ -79,6 +80,7 @@ const Applyform = () => {
         // console.log(response);
         notify();
         reset();
+        window.open("http://localhost:3000/ClientPanel","_self",false);
     }
 
     const onError = (errors, e) => console.log(errors, e);
@@ -86,6 +88,9 @@ const Applyform = () => {
 
 
     return (
+        <>
+<NavBar/>
+
         <div className="ApplyForm"> 
         <ToastContainer />
 <div className="FormPanel d-flex justify-content-center BackTrans">
@@ -215,6 +220,7 @@ const Applyform = () => {
 
 
         </div>
+        </>
     )
 
 }
