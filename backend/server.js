@@ -109,19 +109,21 @@ app.get('/Delete/:id', (req, res) => {
 
 
 // Update a record / beer
-app.put('/Edit', (req, res) => {
+app.post('/Edit', (req, res) => {
 
     pool.getConnection((err, connection) => {
         if(err) throw err
         console.log(`connected as id ${connection.threadId}`)
 
-        const { id ,  ImageUrl , 	name ,	email ,	mobile	 , dob	 , gender	, password , transaction } = req.body
-
-        connection.query('UPDATE UserProfiles SET ImageUrl = ? , 	name = ?  ,	email = ?  ,	mobile = ? 	 , dob = ? 	 , gender = ? 	, password = ?  , transaction = ?  WHERE id = ?', [ id ,  ImageUrl , 	name ,	email ,	mobile	 , dob	 , gender	, password , transaction] , (err, rows) => {
+        const { id ,  	name ,	email ,	mobile	 , dob	 , gender	, password , transaction } = req.body
+        // dob = 2022-02-02
+        console.log(req.body)
+        connection.query('UPDATE `UserProfiles` SET `id`= "123" ,`name`= ?,`email`= ?,`mobile`=? ,`dob`=? ,`gender`=? ,`password`=? ,`transaction`=? WHERE id= 123', [    name ,	email ,	mobile	 , dob	 , gender	, password , transaction] , (err, rows) => {
             connection.release() // return the connection to pool
 
             if(!err) {
-                res.send(`User with the name: ${name} has Updated added.`)
+                console.log("hello")
+                res.send(`User with the name: ${name} has Updated .`)
             } else {
                 console.log(err)
             }

@@ -60,28 +60,30 @@ const AddMember = () => {
     const [Generate, setGenerate] = useState("Generate Transaction Id")
 
     const registerUser = yup.object().shape({
-        // name: yup.string().min(3).required(),
-        // password: yup.string().min(4).max(16).required(),
-        // email: yup.string().email().required(),
-        // dob: yup.date().required(),
-        // mobile: yup.number().max(16).min(10).required(),
-        // gender: yup.string().required(),
+        name: yup.string().min(3),
+        password: yup.string().min(4).max(16),
+        email: yup.string().email(),
+        dob: yup.date(),
+        mobile: yup.number(),
+        gender: yup.string(),
     })
     const { register, formState: { errors }, handleSubmit, watch, reset } = useForm({ mode: 'onChange', resolver: yupResolver(registerUser) })
 
     const onSubmit = async (data) => {
-
+        console.log(data);
+        
+        data.dob = "2022-05-09";
         const requestOptions = {
-            method: 'POST',
+            method: 'post',
             headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                token: localStorage.getItem('token')
+                'Content-Type':  "application/json",
+                'Accept':  'application/json'
             },
             body: JSON.stringify(data),
         };
-        const res = await fetch('http://localhost:5000', requestOptions)
-        const response = res.json();
+        const res = await fetch('http://localhost:5000/Edit', requestOptions)
+        
+        console.log(res);
 
     }
 
@@ -90,13 +92,17 @@ const AddMember = () => {
     const onError = (errors, e) => console.log(errors, e);
 
     const [Check, setCheck] = useState([{}]);
+    // const [loading, setloading] = useState(false);
+
 
 
 
     const test2 = async () => {
         await fetch(`http://localhost:5000/`)
             .then((response) => response.json())
-            .then((actualData) => setCheck(actualData))
+            .then((actualData) => setCheck(actualData)
+            
+            )
     }
 
     const userSelected = watch('User')

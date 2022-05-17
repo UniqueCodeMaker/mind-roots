@@ -928,3 +928,35 @@ body{
     color:blue;
     font-weight:bold;
 }
+
+.DeletePop
+{
+  background-color:rgb(119, 228, 255);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top:50%;
+  /* margin: 10px; */
+  padding: 20px;
+}
+
+.DeleteBtn
+{
+  width: 50%;
+  padding:5px;
+  background-color: transparent;
+  outline:none;
+  border: none;  
+}
+.DeleteBtn:hover
+{
+  background-color: rgba(0, 0, 255, 0.801);
+  color: white;
+
+}
+
+.DeletePopB
+{
+  display:flex;
+  flex-direction: row;
+}

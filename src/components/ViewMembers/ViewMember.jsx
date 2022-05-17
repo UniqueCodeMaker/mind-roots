@@ -4,11 +4,10 @@ import axios from "axios"
 import "../../App.css";
 import NavBar from "../NavBar"
 const ViewMember = () => {
-    const [Members, setEvents] = useState([
-   
-    ]);
+    const [Members, setEvents] = useState([]);
+    const [hiddens, sethiddens] = useState("hidden");
 
-
+    
       var HandleEdit = async  function(i) {
        
       
@@ -19,12 +18,15 @@ const ViewMember = () => {
 
       var HandleDelete = async function(i) {
         
-
+        sethiddens("DeletePop")
         console.log(i);
-        await fetch(`http://localhost:5000/Delete/${i}` , {mode: 'cors'})
-        .then((response) => console.log(response))
+       
+       
+       
+        // await fetch(`http://localhost:5000/Delete/${i}` , {mode: 'cors'})
+        // .then((response) => console.log(response))
         
-        // test();
+        test();
   
       }
 
@@ -81,6 +83,7 @@ const ViewMember = () => {
                               {/* <button  type="button" className="rights"  >Delete</button> */}
                               {/* <button type="button" className="rights"  >Edit</button> */}
                               <div onClick={HandleDelete.bind(this, Member.id)} key={Member.id} className="rights">Delete</div>
+                              {/* <div onClick={() => } key={Member.id} className="rights">Delete</div> */}
                               <div onClick={HandleEdit.bind(this, Member.id)} key={Member.id} className="rights">Edit</div>
                               {/* <div onClick={HandleEdit.bind(this, i)} key={i} className="rights">Edit</div> */}
                             </td>
@@ -101,6 +104,15 @@ const ViewMember = () => {
     
      }
      
+     {/* DeletePop */}
+     <div className={hiddens}>
+       <p>Do you Really Want to Delete this User </p>
+       <div className="DeletePopB">
+       
+       <button type="button" className="DeleteBtn" >Yes</button>
+       <button type="button" className="DeleteBtn" onClick={() => sethiddens("hidden")}>Cancel</button>
+     </div>
+     </div>
       
 
     </div>
