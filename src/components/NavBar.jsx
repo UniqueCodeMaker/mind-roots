@@ -56,7 +56,7 @@ return (
         :  
        (Role==1)?
         <NavDropdown  title={Title} id="navbarScrollingDropdown" >
-          <NavDropdown.Item href={ (Alogin==0)? "":"AddMember"} >Edit Member</NavDropdown.Item>
+          {/* <NavDropdown.Item href={ (Alogin==0)? "":"AddMember"} >Edit Member</NavDropdown.Item> */}
           <NavDropdown.Item href={ (Alogin==0) ? "":"ViewMember"}>View Member</NavDropdown.Item>
           <NavDropdown.Item href={ (Alogin==0)? "":"AddEvent"}>Add Event</NavDropdown.Item>
           <NavDropdown.Item href={ (Alogin==0)? "":"ViewEvents"}>View Event</NavDropdown.Item>

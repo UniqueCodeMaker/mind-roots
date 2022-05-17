@@ -30,7 +30,7 @@ const ClientPanel =()=>{
    
    <a href="ViewProfile"><button className="button-56" role="button">View Profile</button></a>
   <button className={classBtn} role="button" onClick={HandleTime}>{PeriodLeft}</button>
-   <a href="AddEvent"> <button className="button-56" role="button">View Events</button></a>
+   <a href="ViewEvents"> <button className="button-56" role="button">View Events</button></a>
    <a href="ViewEvents"> <button className="button-56" role="button">Upcoming Events</button></a>
  </div>
       </div>

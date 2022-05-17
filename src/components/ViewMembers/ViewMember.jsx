@@ -3,12 +3,18 @@ import Table from 'react-bootstrap/Table';
 import axios from "axios"
 import "../../App.css";
 import NavBar from "../NavBar"
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+  import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
 const ViewMember = () => {
     const [Members, setEvents] = useState([]);
     const [hiddens, sethiddens] = useState("hidden");
     const [DoneD , setDoneD] = useState("");
   
-    
+    const notify = () => toast("User Deleted successfully", 
+	{
+	  transition: Zoom
+	});
       var HandleEdit = async  function(i) {
        
       
@@ -31,8 +37,9 @@ const ViewMember = () => {
        fetch(`http://localhost:5000/Delete/${DoneD}` , {mode: 'cors'})
         .then((response) => console.log(response))
     
-
-     }
+        notify();
+        sethiddens("hidden")
+      }
 
 
  useEffect(() => {
@@ -112,7 +119,7 @@ const ViewMember = () => {
        <button type="button" className="DeleteBtn" onClick={() => sethiddens("hidden")}>Cancel</button>
      </div>
      </div>
-      
+      <ToastContainer/>
 
     </div>
 

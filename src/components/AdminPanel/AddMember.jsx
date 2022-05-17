@@ -158,7 +158,7 @@ const AddMember = () => {
                                         placeholder="Enter Name"
                                         className={classnames('input form-control', { 'is-invalid': errors && errors?.name })}
                                     />
-                                    {errors && errors?.name && <FormFeedback>Please type First Name</FormFeedback>}
+                                    {errors && errors?.name && <FormFeedback>Please type  Name</FormFeedback>}
                                 </Col>
                                 <Col sm={12}>
                                     <label className="label label-primary">Email</label>
