@@ -70,7 +70,7 @@ const AddMember = () => {
     const { register, formState: { errors }, handleSubmit, watch, reset } = useForm({ mode: 'onChange', resolver: yupResolver(registerUser) })
 
     const onSubmit = async (data) => {
-        console.log(data);
+        console.log({data});
         
         data.dob = "2022-05-09";
         const requestOptions = {
@@ -153,7 +153,6 @@ const AddMember = () => {
                                     <input
                                         id="name"
                                         defaultValue={details.name}
-
                                         {...register('name', { required: true })}
                                         type="text"
                                         placeholder="Enter Name"

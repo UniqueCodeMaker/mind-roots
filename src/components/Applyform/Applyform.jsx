@@ -15,41 +15,40 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
 import NavBar from "../NavBar"
 const Applyform = () => {
-    const START =123;
+    const START = 123;
     const END = 456;
-    const form = useRef();          
+    const form = useRef();
     const num = Math.floor(Math.random() * (START - END + 1)) + END;
-  
-    function GenerateId(e)
-    {
-           e.preventDefault();
-            setGenerate(num);
+
+    function GenerateId(e) {
+        e.preventDefault();
+        setGenerate(num);
 
     }
 
     const sendEmail = (e) => {
         e.preventDefault();
-    
+
         emailjs.sendForm('Mygmail1304', 'Mytemp1304', e.target, 'qY4WZ3P78KAZ_aTap')
-          .then((result) => {
-              console.log(result.text);
-          }, (error) => {
-              console.log(error.text);
-          });
-      };
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
+    };
 
-      const notify = () => toast("User Added Successfully", 
-      {
-        transition: Zoom
-      });
+    const notify = () => toast("User Added Successfully",
+        {
+            transition: Zoom
+        });
 
 
-        const [user, setUser] = useState()
+    const [user, setUser] = useState()
 
     const [Generate, setGenerate] = useState("Generate Transaction Id")
-          
- 
-    
+
+
+
 
 
     const registerUser = yup.object().shape({
@@ -59,28 +58,28 @@ const Applyform = () => {
         dob: yup.date().required(),
         mobile: yup.number().required(),
         gender: yup.string().required(),
-       
+
     })
-    const { register, formState: { errors }, handleSubmit , reset } = useForm({ mode: 'onChange', resolver: yupResolver(registerUser) })
-    const onSubmit = async (data) =>  {
+    const { register, formState: { errors }, handleSubmit, reset } = useForm({ mode: 'onChange', resolver: yupResolver(registerUser) })
+    const onSubmit = async (data) => {
         data.ImageUrl = localStorage.getItem('ImageUrl');
-     
-                
+
+
         const requestOptions = {
-        method: 'POST',
-        headers: { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            token: localStorage.getItem('token')
-        },
-        body: JSON.stringify(data),
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                token: localStorage.getItem('token')
+            },
+            body: JSON.stringify(data),
         };
         const res = await fetch('http://localhost:5000/apply', requestOptions)
         const response = res.json();
         // console.log(response);
         notify();
         reset();
-        window.open("http://localhost:3000/ClientPanel","_self",false);
+        window.open("http://localhost:3000/ClientPanel", "_self", false);
     }
 
     const onError = (errors, e) => console.log(errors, e);
@@ -89,24 +88,24 @@ const Applyform = () => {
 
     return (
         <>
-<NavBar/>
+            <NavBar />
 
-        <div className="ApplyForm"> 
-        <ToastContainer />
-<div className="FormPanel d-flex justify-content-center BackTrans">
-                {/* <span className="Logo">
+            <div className="ApplyForm">
+                <ToastContainer />
+                <div className="FormPanel d-flex justify-content-center BackTrans">
+                    {/* <span className="Logo">
                     <img src={Logo} alt="Logo" />
                 </span> */}
-                {/* //sendEmail */}
-                <form className=" form-control mb-3 row " ref={form} onSubmit={handleSubmit(onSubmit , onError)}>
-                    <h3 className="titleForm">Join MRT Club</h3>
-                    <div className="form-infor-profile">
-                        <div className="info-account">
-                            
-                                <ImageUpload/>
+                    {/* //sendEmail */}
+                    <form className=" form-control mb-3 row " ref={form} onSubmit={handleSubmit(onSubmit, onError)}>
+                        <h3 className="titleForm">Join MRT Club</h3>
+                        <div className="form-infor-profile">
+                            <div className="info-account">
+
+                                <ImageUpload />
                                 <Col sm={12}>
                                     <label className="label label-primary ">Name</label>
-                                    <input
+                                    <inputs
                                         id="name"
                                         defaultValue={user?.name}
                                         {...register('name', { required: true })}
@@ -129,10 +128,10 @@ const Applyform = () => {
                                     />
                                     {errors && errors?.email && <FormFeedback>Please type Email</FormFeedback>}
                                 </Col>
-                            
-                        </div>
-                        <div className="info-social">
-                           
+
+                            </div>
+                            <div className="info-social">
+
                                 <Col sm={12}>
                                     <label className="label label-primary">Password</label>
                                     <input
@@ -153,30 +152,30 @@ const Applyform = () => {
                                         type="number"
                                         placeholder="Enter Mobile No."
                                         className={classnames('input  form-control', { 'is-invalid': errors && errors?.mobile })}
-                                       
+
                                     />
                                     {errors && errors?.mobile && <FormFeedback>Please type Mobile No.</FormFeedback>}
                                 </Col>
-<row>
-                                <Col sm={12}>
-                                    <div className="form-group  md-form ">
-                                        <label className="label label-primary ">Date Of Birth</label>
-                                        <input
-                                            id="dob datetimepicker1"
-                                            defaultValue={user?.dob}
-                                            name="dob"
-                                            type="date"
-                                            
-                                            placeholder="Date of Birth"
-                                            {...register('dob', { required: true })}
-                                            className={classnames('input-group date form-group form-control', { 'is-invalid': errors && errors?.dob })}
-                                        />
-                                        
-                                    </div>
-                                    {errors && errors?.dob && <FormFeedback>Please enter date of birth</FormFeedback>}
-                                </Col>
+                                <row>
+                                    <Col sm={12}>
+                                        <div className="form-group  md-form ">
+                                            <label className="label label-primary ">Date Of Birth</label>
+                                            <input
+                                                id="dob datetimepicker1"
+                                                defaultValue={user?.dob}
+                                                name="dob"
+                                                type="date"
+
+                                                placeholder="Date of Birth"
+                                                {...register('dob', { required: true })}
+                                                className={classnames('input-group date form-group form-control', { 'is-invalid': errors && errors?.dob })}
+                                            />
+
+                                        </div>
+                                        {errors && errors?.dob && <FormFeedback>Please enter date of birth</FormFeedback>}
+                                    </Col>
                                 </row>
-     
+
                                 <Col sm={12}>  <label className="label label-primary ">Gender</label>
                                     <select
                                         name="gender"
@@ -191,35 +190,35 @@ const Applyform = () => {
                                         <option value="Other">Other</option>
                                     </select>
                                     {errors && errors?.gender && <FormFeedback>Please select Gender</FormFeedback>}
-                                    
-                                </Col>
-                            <br/>
 
+                                </Col>
+                                <br />
+
+                            </div>
                         </div>
-                    </div>
-                    <input className="form-control" 
-                    type="text"
-                    onClick={GenerateId}
-                    name="transaction"
-                    id="transaction"
-                    {...register('transaction', { required: true })}
-                    value={Generate}
-                    />
-                       <br />
-                    <button className=" font-weight-bold tn btn-outline-primary form-control" type="submit">
-                        <b>Join</b>
-                    </button>
-                </form>
+                        <input className="form-control"
+                            type="text"
+                            onClick={GenerateId}
+                            name="transaction"
+                            id="transaction"
+                            {...register('transaction', { required: true })}
+                            value={Generate}
+                        />
+                        <br />
+                        <button className=" font-weight-bold tn btn-outline-primary form-control" type="submit">
+                            <b>Join</b>
+                        </button>
+                    </form>
+
+                </div>
+
+
+
+
+
+
 
             </div>
-
-
-
-
-
-
-
-        </div>
         </>
     )
 

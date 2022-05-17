@@ -6,7 +6,8 @@ import NavBar from "../NavBar"
 const ViewMember = () => {
     const [Members, setEvents] = useState([]);
     const [hiddens, sethiddens] = useState("hidden");
-
+    const [DoneD , setDoneD] = useState("");
+  
     
       var HandleEdit = async  function(i) {
        
@@ -19,18 +20,19 @@ const ViewMember = () => {
       var HandleDelete = async function(i) {
         
         sethiddens("DeletePop")
-        console.log(i);
-       
-       
-       
-        // await fetch(`http://localhost:5000/Delete/${i}` , {mode: 'cors'})
-        // .then((response) => console.log(response))
+        setDoneD(i)
         
         test();
   
       }
 
+     const  DeletedUsers  =  () => {
 
+       fetch(`http://localhost:5000/Delete/${DoneD}` , {mode: 'cors'})
+        .then((response) => console.log(response))
+    
+
+     }
 
 
  useEffect(() => {
@@ -80,12 +82,9 @@ const ViewMember = () => {
                             <td>{Member.transaction}</td>
                             <td>
                              
-                              {/* <button  type="button" className="rights"  >Delete</button> */}
-                              {/* <button type="button" className="rights"  >Edit</button> */}
                               <div onClick={HandleDelete.bind(this, Member.id)} key={Member.id} className="rights">Delete</div>
-                              {/* <div onClick={() => } key={Member.id} className="rights">Delete</div> */}
                               <div onClick={HandleEdit.bind(this, Member.id)} key={Member.id} className="rights">Edit</div>
-                              {/* <div onClick={HandleEdit.bind(this, i)} key={i} className="rights">Edit</div> */}
+                              
                             </td>
                             
                           </tr>
@@ -109,7 +108,7 @@ const ViewMember = () => {
        <p>Do you Really Want to Delete this User </p>
        <div className="DeletePopB">
        
-       <button type="button" className="DeleteBtn" >Yes</button>
+       <button type="button" className="DeleteBtn"  onClick={DeletedUsers}>Yes</button>
        <button type="button" className="DeleteBtn" onClick={() => sethiddens("hidden")}>Cancel</button>
      </div>
      </div>
