@@ -18,9 +18,7 @@ const Home = (props) => {
         <div className="HomeLogin">
              
             <div className="midPanel">
-                {/* <span className="Logo">
-                        <img src={Logo} alt="Logo"/>
-                    </span> */}
+           
                 <h3 className="Row1">Login As</h3>
                 <span className="Row2">
                 <a href="SignUp"><button className="button-73" role="button" onClick={() => setRole(1)}>Admin</button></a>

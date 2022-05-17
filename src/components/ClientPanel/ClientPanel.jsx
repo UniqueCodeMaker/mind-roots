@@ -24,9 +24,7 @@ const ClientPanel =()=>{
    <div className="HomeLogin">
    
        <div className="FormPanel2">
-       {/* <span className="Logo2">
-                    <img src={Logo} alt="Logo" />
-                </span> */}
+
    
    <a href="ViewProfile"><button className="button-56" role="button">View Profile</button></a>
   <button className={classBtn} role="button" onClick={HandleTime}>{PeriodLeft}</button>
