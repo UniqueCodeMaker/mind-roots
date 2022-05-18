@@ -10,6 +10,9 @@ import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import NavBar from '../NavBar';
 import Flatpickr from 'react-flatpickr'
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+  import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
 const intialVal = {
     "EImageUrl": "",
     "lead": "",
@@ -22,6 +25,11 @@ const intialVal = {
     "id": ""
 };
 
+
+const notify = () => toast("Event Updated successfully", 
+{
+  transition: Zoom
+});
 
 const AddMember = () => {
 
@@ -72,20 +80,22 @@ const AddMember = () => {
     const { register, formState: { errors }, handleSubmit, watch, reset } = useForm({ mode: 'onChange', resolver: yupResolver(registerUser) })
 
     const onSubmit = async (data) => {
-        console.log({data});
+        // console.log(details);
         
-        data.dob = "2022-05-09";
+        details.dob = moment().format('YYYY-MM-DD')
         const requestOptions = {
             method: 'post',
             headers: {
                 'Content-Type':  "application/json",
                 'Accept':  'application/json'
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(details),
         };
-        const res = await fetch('http://localhost:5000/Edit', requestOptions)
-        
-        console.log(res);
+        const res = await fetch('http://localhost:5000/Editevent', requestOptions)
+     
+        notify();
+
+        // console.log(res);
 
     }
 
@@ -96,7 +106,7 @@ const AddMember = () => {
     const [Check, setCheck] = useState([{}]);
     const [ChangeD, setChangeD] = useState("date");
     const [ChangeT, setChangeT] = useState("time");
-    const [PropertyV, setPropertyV] = useState("value");
+    
     // const [loading, setloading] = useState(false);
 
 
@@ -109,18 +119,14 @@ const AddMember = () => {
          
             )
     }
-// const TestDate = 
-    // console.log(TestDate);  
+
     return (
         <>
         <NavBar/>
       <div className="ApplyForm">
-
+      <ToastContainer />
             <div className="FormPanel d-flex justify-content-center BackTrans">
-                {/* <span className="Logo">
-                    <img src={Logo} alt="Logo" />
-                </span> */}
-
+         
                 <form className=" form-control mb-3 row " ref={form} onSubmit={handleSubmit(onSubmit, onError)}>
                     <h3 className="titleForm">Edit Events</h3>
                     <div className="form-infor-profile">
@@ -162,6 +168,7 @@ const AddMember = () => {
                                         type="text"
                                         placeholder="Enter leader Name"
                                         className={classnames('input form-control', { 'is-invalid': errors && errors?.lead })}
+                                        
                                     />
                                     {errors && errors?.lead && <FormFeedback>Please type leader's  Name</FormFeedback>}
                                 </Col>

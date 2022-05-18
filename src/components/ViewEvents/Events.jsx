@@ -36,7 +36,14 @@ const ViewMember = () => {
      const  DeletedUsers  =  () => {
 
        fetch(`http://localhost:5000/DeletEvents/${DoneD}` , {mode: 'cors'})
-        .then((response) => console.log(response))
+       .then((response) => {
+        console.log(response)
+        let arr = Members.filter(curr=>{
+          return curr.id!==DoneD
+        })
+    
+        setEvents(arr);
+      });
     
         notify();
         sethiddens("hidden")

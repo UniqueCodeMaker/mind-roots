@@ -9,6 +9,10 @@ import { Col, Row, FormFeedback } from 'reactstrap'
 import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import NavBar from '../NavBar'
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+  import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
+// import moment from "moment"
 const intialVal = {
     "id": "",
     "name": "",
@@ -53,37 +57,40 @@ const AddMember = () => {
     //   };
 
 
-
+    const notify = () => toast("User Updated successfully", 
+	{
+	  transition: Zoom
+	});
 
     const [user, setUser] = useState([])
     console.log(user)
     const [Generate, setGenerate] = useState("Generate Transaction Id")
 
     const registerUser = yup.object().shape({
-        name: yup.string().min(3),
-        password: yup.string().min(4).max(16),
-        email: yup.string().email(),
-        dob: yup.date(),
-        mobile: yup.number(),
-        gender: yup.string(),
+        // name: yup.string().min(3),
+        // password: yup.string().min(4).max(16),
+        // email: yup.string().email(),
+        // dob: yup.date(),
+        // mobile: yup.number(),
+        // gender: yup.string(),
     })
-    const { register, formState: { errors }, handleSubmit, watch, reset } = useForm({ mode: 'onChange', resolver: yupResolver(registerUser) })
+    const { register,getValues ,formState: { errors }, handleSubmit, watch, reset } = useForm({ mode: 'onChange', resolver: yupResolver(registerUser) })
 
     const onSubmit = async (data) => {
-        console.log({data});
-        
-        data.dob = "2022-05-09";
+        console.log(details)
+        details.dob = moment().format('YYYY-MM-DD')
         const requestOptions = {
             method: 'post',
             headers: {
                 'Content-Type':  "application/json",
                 'Accept':  'application/json'
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(details),
         };
         const res = await fetch('http://localhost:5000/Edit', requestOptions)
         
-        console.log(res);
+        // console.log(res);
+        notify();
 
     }
 
@@ -92,7 +99,7 @@ const AddMember = () => {
     const onError = (errors, e) => console.log(errors, e);
 
     const [Check, setCheck] = useState([{}]);
-    // const [loading, setloading] = useState(false);
+    // const [loading, setloading] = useState("");
 
 
 
@@ -104,19 +111,27 @@ const AddMember = () => {
             
             )
     }
+    const [ChangeD, setChangeD] = useState("date");
+    // const [ChangeT, setChangeT] = useState("time");
 
+    const handleChange = (e) => {
+        console.log(e.target.name, e.target.value)
+        // console.log(getValues());
+        setDetails({
+        ...details,
+        [e.target.name] : e.target.value
+        })
+    }
+    
     const userSelected = watch('User')
     console.log(userSelected)
     return (
         <>
         <NavBar/>
       <div className="ApplyForm">
-
+      <ToastContainer />
             <div className="FormPanel d-flex justify-content-center BackTrans">
-                {/* <span className="Logo">
-                    <img src={Logo} alt="Logo" />
-                </span> */}
-
+             
                 <form className=" form-control mb-3 row " ref={form} onSubmit={handleSubmit(onSubmit, onError)}>
                     <h3 className="titleForm">Edit Record</h3>
                     <div className="form-infor-profile">
@@ -132,7 +147,8 @@ const AddMember = () => {
                                                     .then((res) => res.json())
                                                     .then((Data) => {
                                                         setDetails(...Data);
-
+                                                       
+                                                        setChangeD("text")
                                                         setUser(Data)
                                                     }
                                                     )
@@ -156,7 +172,10 @@ const AddMember = () => {
                                         {...register('name', { required: true })}
                                         type="text"
                                         placeholder="Enter Name"
+                                       value={details.name}
+                                       onChange={handleChange}
                                         className={classnames('input form-control', { 'is-invalid': errors && errors?.name })}
+                                        
                                     />
                                     {errors && errors?.name && <FormFeedback>Please type  Name</FormFeedback>}
                                 </Col>
@@ -167,6 +186,7 @@ const AddMember = () => {
                                         defaultValue={details.email}
                                         {...register('email', { required: true })}
                                         type="email"
+                                        onChange={handleChange}
 
                                         placeholder="Enter Email"
                                         className={classnames('input form-control', { 'is-invalid': errors && errors?.email })}
@@ -209,10 +229,10 @@ const AddMember = () => {
                                         <label className="label label-primary ">Date Of Birth</label>
                                         <input
                                             id="dob"
-                                            defaultValue={moment(details.dob).format('YYYY-MM-DD')}               
+                                            value={moment(details.dob).format('YYYY-MM-DD')}               
                                             
                                             name="dob"
-                                            type="date"
+                                            type={ChangeD}
                                             // id='datetimepicker1'
                                             placeholder="Date of Birth"
                                             {...register('dob', { required: true })}

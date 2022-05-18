@@ -3,13 +3,14 @@ const bodyParser = require('body-parser')
 const mysql = require('mysql')
 var cors = require('cors')
 const moment = require('moment')
-
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
 const app = express()
 const port = process.env.PORT || 5000;
 app.use(cors()) 
 
 app.use(bodyParser.urlencoded({ extended: true }))
-
+dotenv.config();
 app.use(bodyParser.json())
 
 // MySQL
@@ -128,6 +129,23 @@ app.get('/DeletEvents/:id', (req, res) => {
     
 })
 
+  
+app.post("/user/generateToken", (req, res) => {
+    
+  
+    let jwtSecretKey ="abcsssawreyrtyfdvdwter53vtwtdc";
+    let data = {
+        time: Date(),
+        userId: 12,
+    }
+  
+    const token = jwt.sign(data, jwtSecretKey);
+  
+    res.send(token);
+});
+
+
+
 
 // Update a record / beer
 app.post('/Edit', (req, res) => {
@@ -139,12 +157,40 @@ app.post('/Edit', (req, res) => {
         const { id ,  	name ,	email ,	mobile	 , dob	 , gender	, password , transaction } = req.body
         // dob = 2022-02-02
         console.log(req.body)
-        connection.query('UPDATE `UserProfiles` SET `id`= "123" ,`name`= ?,`email`= ?,`mobile`=? ,`dob`=? ,`gender`=? ,`password`=? ,`transaction`=? WHERE id= 123', [    name ,	email ,	mobile	 , dob	 , gender	, password , transaction] , (err, rows) => {
+        connection.query('UPDATE `UserProfiles` SET `id`= ? ,`name`= ?,`email`= ?,`mobile`=? ,`dob`=? ,`gender`=? ,`password`=? ,`transaction`=? WHERE id= ?', [  id ,   name ,	email ,	mobile	 , dob	 , gender	, password , transaction , id] , (err, rows) => {
             connection.release() // return the connection to pool
 
             if(!err) {
                 console.log("hello")
                 res.send(`User with the name: ${name} has Updated .`)
+            } else {
+                console.log(err)
+            }
+
+        })
+
+        console.log(req.body)
+    })
+})
+
+
+
+// Update a record / beer
+app.post('/Editevent', (req, res) => {
+
+    pool.getConnection((err, connection) => {
+        if(err) throw err
+        console.log(`connected as id ${connection.threadId}`)
+
+        const { id ,  lead , event , edate , location , etime , budget , fees } = req.body
+        // dob = 2022-02-02
+        console.log(req.body)
+        connection.query('UPDATE `Addevent` SET `id`= ? ,`lead`= ?,`event`= ?,`location`=? ,`etime`=? ,`budget`=? ,`fees`=?  WHERE id= ?', [  id ,   lead , event , edate , location , etime , budget , fees ,  id] , (err, rows) => {
+            connection.release() // return the connection to pool
+
+            if(!err) {
+                console.log("hello")
+                res.send(`event with the name: ${lead} has Updated .`)
             } else {
                 console.log(err)
             }
