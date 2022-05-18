@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "../../App.css";
-
+import moment from "moment";
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -196,7 +196,7 @@ const AddMember = () => {
                                     <input
                                         id="mobile"
                                         {...register('mobile', { required: true })}
-                                        type="test"
+                                        type="text"
                                         placeholder="Enter Mobile No."
                                         className={classnames('input  form-control', { 'is-invalid': errors && errors?.mobile })}
                                         defaultValue={details.mobile}
@@ -209,7 +209,7 @@ const AddMember = () => {
                                         <label className="label label-primary ">Date Of Birth</label>
                                         <input
                                             id="dob"
-                                            defaultValue={details.dob}               
+                                            defaultValue={moment(details.dob).format('YYYY-MM-DD')}               
                                             
                                             name="dob"
                                             type="date"

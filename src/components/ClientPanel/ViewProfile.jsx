@@ -9,7 +9,7 @@ import { BsCalendarDate } from "react-icons/bs";
 import { BsGenderAmbiguous   } from "react-icons/bs";
 import { MdOutlinePassword } from "react-icons/md";
 import NavBar from "../NavBar";
-// import Moment from 'react-moment';
+import moment from 'moment';
 // import 'moment-timezone';
 const ViewProfile = () => {
     const [Check,setCheck ] = useState([{}]); 
@@ -84,7 +84,7 @@ const ViewProfile = () => {
                        <span className="tooltiptext">Date of Birth</span>
                        </div>
                        <div className="DetailView">
-                     {Check[0]?.dob}
+                     {moment(Check[0]?.dob).format('YYYY-MM-DD')}
                        </div>
                        </div>
                        <div className="CoverAll">

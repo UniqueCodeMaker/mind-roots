@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mysql = require('mysql')
 var cors = require('cors')
-
+const moment = require('moment')
 
 const app = express()
 const port = process.env.PORT || 5000;
@@ -107,6 +107,27 @@ app.get('/Delete/:id', (req, res) => {
     
 })
 
+app.get('/DeletEvents/:id', (req, res) => {
+    // console.log("Hello")
+    pool.getConnection((err, connection) => {
+        if(err) throw err
+        console.log(`connected as id ${connection.threadId}`)
+
+        connection.query('DELETE FROM Addevent WHERE id = ?', req.params.id  , (err, rows) => {
+            connection.release() // return the connection to pool
+            console.log("Hello conn")   
+            if(!err) {  
+                res.send("User deleted")
+            } else {
+                console.log(err)
+            }
+
+        })
+    })
+    res.status(200)
+    
+})
+
 
 // Update a record / beer
 app.post('/Edit', (req, res) => {
@@ -179,6 +200,24 @@ app.get('/test/:name', (req, res) => {
     })
 })
 
+app.get('/events/:event', (req, res) => {
+
+    pool.getConnection((err, connection) => {
+        if(err) throw err
+        console.log(`connected as id ${connection.threadId}`)
+
+        connection.query('SELECT * from Addevent WHERE event = ?', [req.params.event], (err, rows) => {
+            connection.release() // return the connection to pool
+          
+            if(!err) {  
+                res.send(rows)
+            } else {
+                console.log(err)
+            }
+
+        })
+    })
+})
 
 app.get('/SignCheck/:name/:password', (req, res) => {
 
@@ -219,7 +258,7 @@ app.post('/apply', (req, res) => {
         console.log(`connected as id ${connection.threadId}`)
         res.status(200)
         const params = req.body
-        params.dob = '2022-05-11'
+        params.dob = moment().format('YYYY-MM-DD')
         connection.query('INSERT INTO UserProfiles SET ?' , params , (err, rows) => {
             connection.release() // return the connection to pool
 
@@ -243,7 +282,7 @@ app.post('/eventlog', (req, res) => {
         console.log(`connected as id ${connection.threadId}`)
         res.status(200)
         const params = req.body
-       params.edate = '2022-09-11'
+       params.edate = moment().format('YYYY-MM-DD')
         connection.query('INSERT INTO  Addevent SET ?' , params , (err, rows) => {
             connection.release() // return the connection to pool
 

@@ -60,6 +60,7 @@ return (
           <NavDropdown.Item href={ (Alogin==0) ? "":"ViewMember"}>View Member</NavDropdown.Item>
           <NavDropdown.Item href={ (Alogin==0)? "":"AddEvent"}>Add Event</NavDropdown.Item>
           <NavDropdown.Item href={ (Alogin==0)? "":"ViewEvents"}>View Event</NavDropdown.Item>
+          <NavDropdown.Item href={ (Alogin==0)? "":"Events"}>Edit Events</NavDropdown.Item>
           <NavDropdown.Item href={ (Alogin==0)? "":"AdminPanel"}>Admin Panel</NavDropdown.Item>
         </NavDropdown>
       :

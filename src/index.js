@@ -13,6 +13,8 @@ import SignUp from "./components/SignUp"
 import AddMember from "./components/AdminPanel/AddMember"
 import ViewEvents from "./components/ViewEvents/ViewEvents.jsx"
 import ViewMember from "./components/ViewMembers/ViewMember.jsx"
+import EventList from "./components/ViewEvents/EventList.jsx"
+import Events from "./components/ViewEvents/Events"
 import {
   BrowserRouter,
   Routes,
@@ -35,6 +37,8 @@ root.render(
       <Route path="AddEvent" element={<AddEvent />} />
       <Route path="ClientPanel" element={<ClientPanel />} />
       <Route path="AdminPanel" element={<AdminPanel />} />
+      <Route path="EventList" element={<EventList/>} />
+      <Route path="Events" element={<Events/>} />
 
    
    

@@ -4,9 +4,9 @@ import axios from "axios"
 import "../../App.css";
 import NavBar from "../NavBar"
 import { ToastContainer, toast } from 'react-toastify';
-import moment from 'moment'
-import 'react-toastify/dist/ReactToastify.css';
+  import 'react-toastify/dist/ReactToastify.css';
   import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
+  import moment from 'moment'
 const ViewMember = () => {
     const [Members, setEvents] = useState([]);
     const [hiddens, sethiddens] = useState("hidden");
@@ -20,7 +20,7 @@ const ViewMember = () => {
        
       
       localStorage.setItem("userSelect" , i);
-      window.open("http://localhost:3000/AddMember","_self",false);
+      window.open("http://localhost:3000/EventList","_self",false);
 
       }
 
@@ -35,7 +35,7 @@ const ViewMember = () => {
 
      const  DeletedUsers  =  () => {
 
-       fetch(`http://localhost:5000/Delete/${DoneD}` , {mode: 'cors'})
+       fetch(`http://localhost:5000/DeletEvents/${DoneD}` , {mode: 'cors'})
         .then((response) => console.log(response))
     
         notify();
@@ -49,11 +49,12 @@ const ViewMember = () => {
 }, []);
    const test = async ()=>
    {
-    await fetch(`http://localhost:5000/`)
+    await fetch(`http://localhost:5000/view`)
    .then((response) => response.json())
    .then((actualData) => setEvents(actualData))
   }
- 
+  
+  console.log(Members);
 
     return(
       <>
@@ -67,12 +68,13 @@ const ViewMember = () => {
           <thead>
             <tr>
               <th>Id</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Mobile</th>
-              <th>DOB</th>
-              <th>Gender</th>
-              <th>TransactionId</th>
+              <th>lead</th>
+              <th>Event Name</th>
+              <th>Date</th>
+              <th>Location</th>
+              <th>Time</th>
+              <th>Budget</th>
+              <th>Fees </th>
               <th>Admin </th>
             </tr>
           </thead>
@@ -82,16 +84,17 @@ const ViewMember = () => {
                             
                             <tr> 
                             <td>{Member.id}</td>
-                            <td>{Member.name}</td>
-                            <td>{Member.email}</td>
-                            <td>{Member.mobile}</td>
-                            <td>{moment(Member.dob).format('YYYY-MM-DD')}</td>
-                            <td>{Member.gender}</td>
-                            <td>{Member.transaction}</td>
+                            <td>{Member.lead}</td>
+                            <td>{Member.event}</td>
+                            <td>{moment(Member.edate).format('YYYY-MM-DD')}</td>
+                            <td>{Member.location}</td>
+                            <td>{moment(Member.etime ,  "HH:mm:ss").format("hh:mm A")}</td>
+                            <td>{Member.budget}</td>
+                            <td>{Member.fees}</td>
                             <td>
                              
                               <div onClick={HandleDelete.bind(this, Member.id)} key={Member.id} className="rights">Delete</div>
-                              <div onClick={HandleEdit.bind(this, Member.id)} key={Member.id} className="rights">Edit</div>
+                                  <div onClick={HandleEdit.bind(this, Member.id)} key={Member.id} className="rights">Edit</div>
                               
                             </td>
                             
@@ -113,7 +116,7 @@ const ViewMember = () => {
      
      {/* DeletePop */}
      <div className={hiddens}>
-       <p>Do you Really Want to Delete this User </p>
+       <p>Do you Really Want to Delete this Event </p>
        <div className="DeletePopB">
        
        <button type="button" className="DeleteBtn"  onClick={DeletedUsers}>Yes</button>

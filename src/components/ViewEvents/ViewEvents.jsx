@@ -2,6 +2,7 @@ import react , {useState , useEffect} from "react";
 import EventPanel from "./EventsPanel.jsx";
 import "../../App.css";
 import NavBar from "../NavBar";
+
 const ViewEvents = () => {
     const [Events, setEvents] = useState([
       
@@ -47,15 +48,30 @@ await fetch(`http://localhost:5000/search/${searchv}`)
 
 // console.table(Events)
 
+const [hiddens, sethiddens] = useState("hidden");
+
+
+const  DeletedUsers  =  () => {
+
+    
+     sethiddens("hidden")
+   }
 
     return(
      
      <>
      <NavBar/>
-     <div className="HomeLogin2">
-
+     <div className="HomeLogin2" >
+     <div className={hiddens}>
+       <p>Do you Really Want to Delete this User </p>
+       <div className="DeletePopB">
+       
+       <button type="button" className="DeleteBtn"  onClick={DeletedUsers}>Yes</button>
+       <button type="button" className="DeleteBtn" onClick={() => sethiddens("hidden")}>Cancel</button>
+     </div>
+     </div>
 {Events?.length > 0 ? (
-<div className="EventPanelView">
+<div className="EventPanelView" onclick={()=>sethiddens("DeletePop")}>
 {Events.map((event) => (
 <EventPanel event={event} />
 

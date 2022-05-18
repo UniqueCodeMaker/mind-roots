@@ -1,14 +1,15 @@
-import react from "react";
+import react , {useState} from "react";
 
 import "../../App.css";
 import Table from 'react-bootstrap/Table';
+import moment from "moment";
 const EventPanel = (props) => {
 
 // console.log(props.event);
     return(
 
         <div className="EventsPosts">
-
+                
        <img src={props.event.EImageUrl} alt ="event" className="FixImgLen"/>
         <div className="EventTimings">
        
@@ -26,13 +27,12 @@ const EventPanel = (props) => {
             </thead>
 
             <tbody>
-
-           
+                
                 <td>{props.event.lead}</td>
                 <td>{props.event.event}</td>
-                <td>{props.event.edate}</td>
+                <td>{moment(props.event.edate).format('YYYY-MM-DD')}</td>
                 <td>{props.event.location}</td>
-                <td>{props.event.etime}</td>
+                <td>{moment(props.event.etime ,  "HH:mm:ss").format("hh:mm A")}</td>
                 <td>{props.event.budget}</td>
                 <td>{props.event.fees}</td> 
 
