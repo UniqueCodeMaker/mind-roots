@@ -9,7 +9,7 @@ const NavBar = () => {
     const Role = localStorage.getItem('Role')
     const Clogin = localStorage.getItem('Clogin')
     const Alogin = localStorage.getItem('Alogin')
-    console.log("C" , Clogin ,"A" ,  Alogin , "R", Role)
+    // console.log("C" , Clogin ,"A" ,  Alogin , "R", Role)
     
     const [SearchValue , setSearchValue] = useState();
  
@@ -58,6 +58,7 @@ return (
         <NavDropdown  title={Title} id="navbarScrollingDropdown" >
           {/* <NavDropdown.Item href={ (Alogin==0)? "":"AddMember"} >Edit Member</NavDropdown.Item> */}
           <NavDropdown.Item href={ (Alogin==0) ? "":"ViewMember"}>View Member</NavDropdown.Item>
+          <NavDropdown.Item href={ (Alogin==0)? "":"Applyform"}>Add Member</NavDropdown.Item>
           <NavDropdown.Item href={ (Alogin==0)? "":"AddEvent"}>Add Event</NavDropdown.Item>
           <NavDropdown.Item href={ (Alogin==0)? "":"ViewEvents"}>View Event</NavDropdown.Item>
           <NavDropdown.Item href={ (Alogin==0)? "":"Events"}>Edit Events</NavDropdown.Item>
@@ -85,10 +86,13 @@ return (
       />
         &nbsp;
         &nbsp;
-      
-        <Button variant="btn btn-primary"
-          onClick={test2}
+        { (Clogin==1 || Alogin==1 )?
+        
+        <Button variant="btn btn-primary"        
         >Search</Button>
+        :
+        <></>
+}
       </Form>
     </Navbar.Collapse>
   </Container>

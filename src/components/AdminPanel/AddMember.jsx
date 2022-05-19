@@ -63,7 +63,7 @@ const AddMember = () => {
 	});
 
     const [user, setUser] = useState([])
-    console.log(user)
+    // console.log(user)
     const [Generate, setGenerate] = useState("Generate Transaction Id")
 
     const registerUser = yup.object().shape({
@@ -74,10 +74,10 @@ const AddMember = () => {
         // mobile: yup.number(),
         // gender: yup.string(),
     })
-    const { register,getValues ,formState: { errors }, handleSubmit, watch, reset } = useForm({ mode: 'onChange', resolver: yupResolver(registerUser) })
+    const { register ,formState: { errors }, handleSubmit, watch, reset } = useForm({ mode: 'onChange', resolver: yupResolver(registerUser) })
 
     const onSubmit = async (data) => {
-        console.log(details)
+    
         details.dob = moment().format('YYYY-MM-DD')
         const requestOptions = {
             method: 'post',
@@ -89,9 +89,11 @@ const AddMember = () => {
         };
         const res = await fetch('http://localhost:5000/Edit', requestOptions)
         
-        // console.log(res);
         notify();
-
+        // reset();
+        setChangeD("date")
+        setDetails("")
+        
     }
 
 
@@ -99,8 +101,7 @@ const AddMember = () => {
     const onError = (errors, e) => console.log(errors, e);
 
     const [Check, setCheck] = useState([{}]);
-    // const [loading, setloading] = useState("");
-
+    
 
 
 
@@ -112,19 +113,14 @@ const AddMember = () => {
             )
     }
     const [ChangeD, setChangeD] = useState("date");
-    // const [ChangeT, setChangeT] = useState("time");
-
+    
     const handleChange = (e) => {
-        console.log(e.target.name, e.target.value)
-        // console.log(getValues());
         setDetails({
         ...details,
         [e.target.name] : e.target.value
         })
     }
     
-    const userSelected = watch('User')
-    console.log(userSelected)
     return (
         <>
         <NavBar/>
@@ -172,7 +168,7 @@ const AddMember = () => {
                                         {...register('name', { required: true })}
                                         type="text"
                                         placeholder="Enter Name"
-                                       value={details.name}
+                                    //    value={details.name}
                                        onChange={handleChange}
                                         className={classnames('input form-control', { 'is-invalid': errors && errors?.name })}
                                         
@@ -207,6 +203,7 @@ const AddMember = () => {
                                         {...register('password', { required: true })}
                                         type="text"
                                         placeholder="Enter Password"
+                                        onChange={handleChange}
                                         className={classnames('input  form-control', { 'is-invalid': errors && errors?.password })}
                                     />
                                     {errors && errors?.password && <FormFeedback>Please type Password</FormFeedback>}
@@ -218,6 +215,7 @@ const AddMember = () => {
                                         {...register('mobile', { required: true })}
                                         type="text"
                                         placeholder="Enter Mobile No."
+                                        onChange={handleChange}
                                         className={classnames('input  form-control', { 'is-invalid': errors && errors?.mobile })}
                                         defaultValue={details.mobile}
                                     />
@@ -230,7 +228,7 @@ const AddMember = () => {
                                         <input
                                             id="dob"
                                             value={moment(details.dob).format('YYYY-MM-DD')}               
-                                            
+                                            onChange={handleChange}
                                             name="dob"
                                             type={ChangeD}
                                             // id='datetimepicker1'
@@ -246,6 +244,7 @@ const AddMember = () => {
                                     <select
                                         name="gender"
                                         id="gender"
+                                        onChange={handleChange}
                                         {...register('gender', { required: true })}
                                         defaultValue={details.gender}
                                         className={classnames('form-control', { 'is-invalid': errors && errors?.gender})}
@@ -272,6 +271,7 @@ const AddMember = () => {
                         {...register('transaction', { required: true })}
                         placeholder="Transaction Id"
                         defaultValue={details.transaction}
+                        onChange={handleChange}
                     />
                     <br />
                     <button className=" font-weight-bold tn btn-outline-primary form-control" type="submit">

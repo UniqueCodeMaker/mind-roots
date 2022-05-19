@@ -15,7 +15,7 @@ const ViewProfile = () => {
     const [Check,setCheck ] = useState([{}]); 
   
     const TLogin = localStorage.getItem('Login');
-   
+    
     const style = { color: "white",
      fontSize: "2.5em",
      "backgroundImage": "linear-gradient(215deg, #5860f4 20%, #3bc2ce 50%)",

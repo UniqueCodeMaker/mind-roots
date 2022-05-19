@@ -63,7 +63,14 @@ const AddMember = () => {
     //   };
 
 
-
+    const handleChange = (e) => {
+        // console.log(e.target.name, e.target.value)
+        // console.log(getValues());
+        setDetails({
+        ...details,
+        [e.target.name] : e.target.value
+        })
+    }
 
     const [user, setUser] = useState([])
     console.log(user)
@@ -94,6 +101,9 @@ const AddMember = () => {
         const res = await fetch('http://localhost:5000/Editevent', requestOptions)
      
         notify();
+        setChangeD("date")
+        setChangeT("time")
+        setDetails("")
 
         // console.log(res);
 
@@ -168,7 +178,7 @@ const AddMember = () => {
                                         type="text"
                                         placeholder="Enter leader Name"
                                         className={classnames('input form-control', { 'is-invalid': errors && errors?.lead })}
-                                        
+                                        onChange={handleChange}
                                     />
                                     {errors && errors?.lead && <FormFeedback>Please type leader's  Name</FormFeedback>}
                                 </Col>
@@ -179,7 +189,7 @@ const AddMember = () => {
                                         defaultValue={details.event}
                                         {...register('event', { required: true })}
                                         type="text"
-
+                                        onChange={handleChange}
                                         placeholder="Enter event name"
                                         className={classnames('input form-control', { 'is-invalid': errors && errors?.event })}
                                     />
@@ -195,12 +205,13 @@ const AddMember = () => {
                                     <input
                                         // id="password"
                                         id="edate"
+                                        onChange={handleChange}
                                         value = {moment(details.edate).format('YYYY-MM-DD') }
                                         {...register('edate', { required: true })}
                                         type={ChangeD}
                                         placeholder="Enter date"
                                         className={classnames('input  form-control', { 'is-invalid': errors && errors?.edate })}
-                                       
+                                        
                                     />
                                     {errors && errors?.edate && <FormFeedback>Please type date</FormFeedback>}
                                 </Col>
@@ -208,6 +219,7 @@ const AddMember = () => {
                                     <label className="label label-primary">Location</label>
                                     <input
                                         id="location"
+                                        onChange={handleChange}
                                         {...register('location', { required: true })}
                                         type="text"
                                         placeholder="Enter location"
@@ -223,7 +235,7 @@ const AddMember = () => {
                                         <input
                                             id="etime"
    value={moment(details.etime ,  "HH:mm:ss").format("hh:mm A")}               
-                                            
+   onChange={handleChange}
                                             name="etime"
                                             type={ChangeT}
                                             // id='datetimepicker1'
@@ -240,8 +252,8 @@ const AddMember = () => {
                                             <label className="label label-primary ">budget</label>
                                             <input
                                                 id="budget"
-                                                defaultValue={details.budget}               
-                                                
+                                                  defaultValue={details.budget}               
+                                                  onChange={handleChange}                    
                                                 name="budget"
                                                 type="text"
                                                 // id='datetimepicker1'
@@ -259,7 +271,7 @@ const AddMember = () => {
                                             <input
                                                 id="fees"
                                                 defaultValue={details.fees}               
-                                                
+                                                onChange={handleChange}
                                                 name="fees"
                                                 type="text"
                                                 // id='datetimepicker1'

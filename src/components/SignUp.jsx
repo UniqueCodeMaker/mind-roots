@@ -53,7 +53,6 @@ const Role = localStorage.getItem('Role');
 	{
 		
 		notifyC();
-		
 		window.open("http://localhost:3000/AdminPanel","_self",false);
 		localStorage.setItem('Login' , Username );
 	}

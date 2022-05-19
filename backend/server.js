@@ -153,15 +153,13 @@ app.post('/Edit', (req, res) => {
     pool.getConnection((err, connection) => {
         if(err) throw err
         console.log(`connected as id ${connection.threadId}`)
-
+           
         const { id ,  	name ,	email ,	mobile	 , dob	 , gender	, password , transaction } = req.body
-        // dob = 2022-02-02
-        console.log(req.body)
+    
         connection.query('UPDATE `UserProfiles` SET `id`= ? ,`name`= ?,`email`= ?,`mobile`=? ,`dob`=? ,`gender`=? ,`password`=? ,`transaction`=? WHERE id= ?', [  id ,   name ,	email ,	mobile	 , dob	 , gender	, password , transaction , id] , (err, rows) => {
             connection.release() // return the connection to pool
 
             if(!err) {
-                console.log("hello")
                 res.send(`User with the name: ${name} has Updated .`)
             } else {
                 console.log(err)
@@ -169,7 +167,7 @@ app.post('/Edit', (req, res) => {
 
         })
 
-        console.log(req.body)
+       console.log("Hello")
     })
 })
 
@@ -295,6 +293,16 @@ app.get('/SignCheck/:name/:password', (req, res) => {
     
 })
 
+
+
+
+
+
+
+
+
+
+
 // Add a record / beer
 app.post('/apply', (req, res) => {
     // console.log("a")
@@ -319,6 +327,40 @@ app.post('/apply', (req, res) => {
         // console.log(req.body)
     })
 })
+
+
+
+// app.get('/Check/:mobile', (req, res) => {
+
+//     pool.getConnection((err, connection) => {
+//         if(err) throw err
+//         console.log(`connected as id ${connection.threadId}`)
+
+//         connection.query('SELECT mobile from UserProfiles WHERE  `mobile` = ?',req.params.mobile ,  (err, rows) => {
+//             connection.release() // return the connection to pool
+//             console.log(rows.mobile)
+//             if(!err) {  
+               
+//             // if(rows.length > 0)    
+//             //    { 
+               
+//                 // res.send(rows)
+//             // } 
+//             // } 
+//             // else{
+//                 res.send(rows)
+//             }
+            
+//         })
+//     })
+//     res.status(200)
+    
+// })
+
+
+
+
+
 
 app.post('/eventlog', (req, res) => {
     console.log("a")
