@@ -3,9 +3,10 @@ import "../App.css";
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
   import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
+  import { useNavigate, Link } from "react-router-dom";
   import NavBar from "./NavBar"
 const SignUp = () => {
-	
+	const navigate = useNavigate();
 const Role = localStorage.getItem('Role');
 	const notifyA = () => toast("Welcome Client", 
 	{
@@ -53,15 +54,17 @@ const Role = localStorage.getItem('Role');
 	{
 		
 		notifyC();
-		window.open("http://localhost:3000/AdminPanel","_self",false);
 		localStorage.setItem('Login' , Username );
+		navigate("/AdminPanel")
+		
 	}
 	if(Check == true && Role == 2 )
 	{
 		
 		notifyA();
-		window.open("http://localhost:3000/ClientPanel","_self",false);
 		localStorage.setItem('Login' , Username );
+		navigate("/ClientPanel")
+		
 	}	
 	
 		const test3 = async ()=>
@@ -115,7 +118,7 @@ const Role = localStorage.getItem('Role');
             <button type="submit" className="btn btn-primary btn-lg" onClick={handleSubmit}>Sign In</button>
         </div>
     </form>
-	<div className="text-center">Dont Have Account? <a href="Applyform"> Register </a>  </div>
+	<div className="text-center">Dont Have Account? <Link to="/Applyform"> Register </Link>  </div>
 </div>
         </div>
  </>

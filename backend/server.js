@@ -130,9 +130,12 @@ app.get('/DeletEvents/:id', (req, res) => {
 })
 
   
-app.post("/user/generateToken", (req, res) => {
+app.post("/generateToken", (req, res) => {
     
   
+ 
+
+
     let jwtSecretKey ="abcsssawreyrtyfdvdwter53vtwtdc";
     let data = {
         time: Date(),
@@ -317,7 +320,7 @@ app.post('/apply', (req, res) => {
             connection.release() // return the connection to pool
 
             if(!err) {
-                res.send(`user with the name: ${params.name} has been added.`)
+                res.send(rows)
             } else {
                 console.log(err)
             }

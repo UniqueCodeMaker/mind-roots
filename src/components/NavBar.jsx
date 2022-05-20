@@ -1,8 +1,11 @@
 import React , { useState , useEffect } from "react";
 import { Navbar,Nav,NavDropdown,Form,FormControl,Button,Container } from 'react-bootstrap';
 import Logo from "../components/HomeScreen/images/Logo2.png";
-const NavBar = () => {
+import { useNavigate  , Link } from "react-router-dom";
 
+
+const NavBar = () => {
+  let navigate = useNavigate()
     const Title = <span className='HeaderLink'>Admin </span>;
     const Title2 = <span className='HeaderLink'>Client </span>;
 
@@ -20,7 +23,7 @@ const NavBar = () => {
    
           localStorage.setItem('search', SearchValue)
 
-          window.open("ViewEvents","_self")
+          navigate(`/ViewEvents`);
         }
   
         // useEffect(() => {
@@ -45,32 +48,32 @@ return (
         
         navbarScroll
       >
-        <Nav.Link href="Home" ><span className="HeaderLink">Home</span></Nav.Link>
+        <Link to="/Home" ><span className="HeaderLink">Home</span></Link>
        {  (Role==2)? 
         <NavDropdown  title={Title2} id="navbarScrollingDropdown" >
-          <NavDropdown.Item href={(Clogin==0)?"":"ViewProfile"} >View Profile</NavDropdown.Item>
-          <NavDropdown.Item href={(Clogin==0)?"":"ViewEvents"}>View Events</NavDropdown.Item>
-          <NavDropdown.Item href={ (Clogin==0)? "":"ClientPanel"}>Client Panel</NavDropdown.Item>
+          <Link to={(Clogin==0)?"":"/ViewProfile"} ><center>View Profile</center></Link>
+          <Link to={(Clogin==0)?"":"/ViewEvents"}><center>View Events</center></Link>
+          <Link to={ (Clogin==0)? "":"/ClientPanel"}><center>Client Panel</center></Link>
           
         </NavDropdown>
         :  
        (Role==1)?
         <NavDropdown  title={Title} id="navbarScrollingDropdown" >
           {/* <NavDropdown.Item href={ (Alogin==0)? "":"AddMember"} >Edit Member</NavDropdown.Item> */}
-          <NavDropdown.Item href={ (Alogin==0) ? "":"ViewMember"}>View Member</NavDropdown.Item>
-          <NavDropdown.Item href={ (Alogin==0)? "":"Applyform"}>Add Member</NavDropdown.Item>
-          <NavDropdown.Item href={ (Alogin==0)? "":"AddEvent"}>Add Event</NavDropdown.Item>
-          <NavDropdown.Item href={ (Alogin==0)? "":"ViewEvents"}>View Event</NavDropdown.Item>
-          <NavDropdown.Item href={ (Alogin==0)? "":"Events"}>Edit Events</NavDropdown.Item>
-          <NavDropdown.Item href={ (Alogin==0)? "":"AdminPanel"}>Admin Panel</NavDropdown.Item>
+          <Link to={ (Alogin==0) ? "":"/ViewMember"}><center>View Member</center></Link>
+          <Link to={ (Alogin==0)? "":"/Applyform"}><center>Add Member</center></Link>
+          <Link to={ (Alogin==0)? "":"/AddEvent"}><center>Add Event</center></Link>
+          <Link to={ (Alogin==0)? "":"/ViewEvents"}><center>View Event</center></Link>
+          <Link to={ (Alogin==0)? "":"/Events"}><center>Edit Events</center></Link>
+          <Link to={ (Alogin==0)? "":"/AdminPanel"}><center>Admin Panel</center></Link>
         </NavDropdown>
       :
       <></> 
       }
     {  (Clogin==1 || Alogin==1 )?   
-      <Nav.Link href="/"  >
+      <Link to="/"  >
         <span className="HeaderLink" >SignOut</span>
-        </Nav.Link>
+        </Link>
     :<></> 
      } </Nav>
       <Form className="d-flex">
@@ -89,7 +92,7 @@ return (
         { (Clogin==1 || Alogin==1 )?
         
         <Button variant="btn btn-primary"        
-        >Search</Button>
+        onClick={test2}>Search</Button>
         :
         <></>
 }

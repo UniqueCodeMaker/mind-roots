@@ -1,5 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
+
 import App from "./App"
 import "./index.css"
 import Home from "./components/HomeScreen/Home.jsx"
@@ -15,6 +16,8 @@ import ViewEvents from "./components/ViewEvents/ViewEvents.jsx"
 import ViewMember from "./components/ViewMembers/ViewMember.jsx"
 import EventList from "./components/ViewEvents/EventList.jsx"
 import Events from "./components/ViewEvents/Events"
+import Protected from "./Protected"
+import { isUserLoggedInToken, isUserLoggedIn, userData , ProtectedRoute } from './config.jsx'
 import {
   BrowserRouter,
   Routes,
@@ -28,7 +31,7 @@ root.render(
       
       <Route path="/" element={< Home/>} />
       <Route path="Home" element={<Home />} />
-      <Route path="SignUp" element={<SignUp />} />
+      <Route path="SignUp" element={<ProtectedRoute isLoggedin={{ isUserLoggedIn, isUserLoggedInToken, userData }}><SignUp /> </ProtectedRoute>} />
       <Route path="Applyform" element={<Applyform />} />
       <Route path="ViewProfile" element={<ViewProfile />} />
       <Route path="ViewEvents" element={<ViewEvents />} />
@@ -43,9 +46,9 @@ root.render(
    
    
    
-   
     </Routes>
   </BrowserRouter>
+
 
 );
 

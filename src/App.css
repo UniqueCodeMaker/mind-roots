@@ -280,8 +280,22 @@
 }
 
 a
-{text-decoration:none}
-a:hover{color:white}
+{
+  text-decoration:none;
+  padding-top: 8px;
+  background-color: transparent;
+  color:black;
+  margin:0px;
+
+}
+a:hover
+{
+  background-color:transparent !important;
+  color:blue;
+}
+
+
+
 
 /* CSS */
 .button-56 {

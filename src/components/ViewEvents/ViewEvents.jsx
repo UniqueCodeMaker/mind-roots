@@ -2,7 +2,7 @@ import react , {useState , useEffect} from "react";
 import EventPanel from "./EventsPanel.jsx";
 import "../../App.css";
 import NavBar from "../NavBar";
-
+import moment from "moment";
 const ViewEvents = () => {
     const [Events, setEvents] = useState([
       
@@ -75,8 +75,12 @@ const  DeletedUsers  =  () => {
 {Events.map((event) => (
 <EventPanel event={event} />
 
-))}
+)
 
+
+
+)}
+{console.log(moment(Date()).format("YYYY DD MM"))}
 </div>
 ) : (
 <div className="empty">

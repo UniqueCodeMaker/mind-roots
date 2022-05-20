@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "../../App.css";
-
+import { useNavigate  , Link } from "react-router-dom";
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
 import NavBar from "../NavBar"
 const Applyform = () => {
+    let navigate = useNavigate()
     const START = 123;
     const END = 456;
     const form = useRef();
@@ -75,11 +76,10 @@ const Applyform = () => {
             body: JSON.stringify(data),
         };
         const res = await fetch('http://localhost:5000/apply', requestOptions)
-        const response = res.json();
-        // console.log(response);
+        // const response = res.json();
         notify();
         reset();
-        window.open("http://localhost:3000/ClientPanel", "_self", false);
+        navigate(`/ClientPanel`);
     }
 
     const onError = (errors, e) => console.log(errors, e);

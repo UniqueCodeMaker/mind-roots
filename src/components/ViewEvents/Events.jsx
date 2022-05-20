@@ -2,6 +2,7 @@ import react , { useState , useEffect } from "react";
 import Table from 'react-bootstrap/Table';
 import axios from "axios"
 import "../../App.css";
+import { useNavigate, Link } from "react-router-dom";
 import NavBar from "../NavBar"
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
@@ -11,7 +12,7 @@ const ViewMember = () => {
     const [Members, setEvents] = useState([]);
     const [hiddens, sethiddens] = useState("hidden");
     const [DoneD , setDoneD] = useState("");
-  
+    const navigate = useNavigate();
     const notify = () => toast("User Deleted successfully", 
 	{
 	  transition: Zoom
@@ -20,7 +21,7 @@ const ViewMember = () => {
        
       
       localStorage.setItem("userSelect" , i);
-      window.open("http://localhost:3000/EventList","_self",false);
+      navigate("/EventList");
 
       }
 

@@ -2,6 +2,7 @@ import React,{useState} from "react"
 import "../../App.css";
 import NavBar from "../NavBar"
 import moment from "moment"
+import { useNavigate, Link } from "react-router-dom";
 const AdminPanel =()=>{
     // const [PeriodLeft,setPeriodLeft] = useState("View Members");
 
@@ -27,11 +28,11 @@ const AdminPanel =()=>{
                     <img src={Logo} alt="Logo" />
                 </span> */}
    
-       <a href="ViewMember"><button className="button-56 " role="button" >View Members</button></a>
-       <a href="AddEvent"><button className="button-56" role="button">Add Events</button></a>
-       <a href="ViewEvents"><button className="button-56" role="button">View Events</button></a>
-       <a href="Events"><button className="button-56" role="button">Edit Events</button></a>
-       <a href="AddMember"><button className="button-56" role="button">Add Member</button></a>
+       <Link to="/ViewMember"><button className="button-56 " role="button" >View Members</button></Link>
+       <Link to="/AddEvent"><button className="button-56" role="button">Add Events</button></Link>
+       <Link to="/ViewEvents"><button className="button-56" role="button">View Events</button></Link>
+       <Link to="/Events"><button className="button-56" role="button">Edit Events</button></Link>
+       <Link to="/AddMember"><button className="button-56" role="button">Add Member</button></Link>
 
      
 

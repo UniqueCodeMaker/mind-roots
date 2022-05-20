@@ -3,13 +3,20 @@ import react , {useState} from "react";
 import "../../App.css";
 import Table from 'react-bootstrap/Table';
 import moment from "moment";
+
+
 const EventPanel = (props) => {
+    const temp = moment(props.event.edate).format("YYYY-MM-DD")
+    const temp1 =   moment(Date.now() + ( 3600 * 1000 * 25 )).format('YYYY-MM-DD')
 
-// console.log(props.event);
+console.log(temp , " " , temp1)
     return(
+       <>
+     {   
 
+        (moment(props.event.edate).format("YYYY-MM-DD") >= moment(Date.now() ).format('YYYY-MM-DD'))?
         <div className="EventsPosts">
-                
+                 
        <img src={props.event.EImageUrl} alt ="event" className="FixImgLen"/>
         <div className="EventTimings">
        
@@ -46,9 +53,13 @@ const EventPanel = (props) => {
         <div className="EventTitle">
         <h1>{props.event.eventName}</h1>
         </div>
-
+    
         </div>
-    )
+      :
+      <></>
+      }
+      </>
+        )
 
 
 }
