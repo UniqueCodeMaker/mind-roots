@@ -130,7 +130,7 @@ app.get('/DeletEvents/:id', (req, res) => {
 })
 
   
-app.post("/generateToken", (req, res) => {
+app.post("/generateToken/:name/:password", (req, res) => {
     
   
  
@@ -139,12 +139,13 @@ app.post("/generateToken", (req, res) => {
     let jwtSecretKey ="abcsssawreyrtyfdvdwter53vtwtdc";
     let data = {
         time: Date(),
-        userId: 12,
+        userName: req.params.name,
+        password: req.params.password,
     }
   
     const token = jwt.sign(data, jwtSecretKey);
   
-    res.send(token);
+    res.json(token);
 });
 
 

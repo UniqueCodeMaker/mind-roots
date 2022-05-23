@@ -46,7 +46,20 @@ const Role = localStorage.getItem('Role');
 		
 		e.preventDefault();
 		test3();
-		setTimeout(() => notify(), 500);
+		fetch(`http://localhost:5000/generateToken/${Username}/${Password}`, {
+				crossDomain:true,
+				method: 'POST',
+				headers: {'Content-Type':'application/json'},
+				body: JSON.stringify({
+				  username: Username,
+				  password: Password,
+				})
+			  })
+				.then(response => response.json())
+				.then(responseJson => {
+				  localStorage.setItem('token', responseJson)}
+				  )
+	
 		
 	}
 
@@ -69,16 +82,17 @@ const Role = localStorage.getItem('Role');
 	
 		const test3 = async ()=>
 		{
-			
+		
 		await fetch(`http://localhost:5000/SignCheck/${Username}/${Password}`)
 		.then((response) => response.json())
 		.then((actualData) => {actualData ? setCheck(true):setCheck(false)
-			
+			  
+			  
 		})
 
+		
 	}
-	
-	// console.log(Check , Role)	
+		
     return(
  <>
  <NavBar/>

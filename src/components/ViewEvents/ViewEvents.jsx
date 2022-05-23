@@ -18,7 +18,7 @@ useEffect(() => {
         {
          
           test3();
-          console.log("3")
+          // console.log("3")
         }
         else
         {
@@ -80,7 +80,7 @@ const  DeletedUsers  =  () => {
 
 
 )}
-{console.log(moment(Date()).format("YYYY DD MM"))}
+{/* {console.log(moment(Date()).format("YYYY DD MM"))} */}
 </div>
 ) : (
 <div className="empty">

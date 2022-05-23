@@ -60,18 +60,19 @@ return (
        (Role==1)?
         <NavDropdown  title={Title} id="navbarScrollingDropdown" >
           {/* <NavDropdown.Item href={ (Alogin==0)? "":"AddMember"} >Edit Member</NavDropdown.Item> */}
-          <Link to={ (Alogin==0) ? "":"/ViewMember"}><center>View Member</center></Link>
-          <Link to={ (Alogin==0)? "":"/Applyform"}><center>Add Member</center></Link>
-          <Link to={ (Alogin==0)? "":"/AddEvent"}><center>Add Event</center></Link>
-          <Link to={ (Alogin==0)? "":"/ViewEvents"}><center>View Event</center></Link>
-          <Link to={ (Alogin==0)? "":"/Events"}><center>Edit Events</center></Link>
-          <Link to={ (Alogin==0)? "":"/AdminPanel"}><center>Admin Panel</center></Link>
+          <Link to={(Alogin==0)?"":"/ViewProfile"} ><center>View Profile</center></Link>
+          <Link to={ (Alogin==0)?"":"/ViewMember"}><center>View Member</center></Link>
+          <Link to={ (Alogin==0)?"":"/Applyform"}><center>Add Member</center></Link>
+          <Link to={ (Alogin==0)?"":"/AddEvent"}><center>Add Event</center></Link>
+          <Link to={ (Alogin==0)?"":"/ViewEvents"}><center>View Event</center></Link>
+          <Link to={ (Alogin==0)?"":"/Events"}><center>Edit Events</center></Link>
+          <Link to={ (Alogin==0)?"":"/AdminPanel"}><center>Admin Panel</center></Link>
         </NavDropdown>
       :
       <></> 
       }
     {  (Clogin==1 || Alogin==1 )?   
-      <Link to="/"  >
+      <Link to="/" >
         <span className="HeaderLink" >SignOut</span>
         </Link>
     :<></> 

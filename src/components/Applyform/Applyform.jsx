@@ -48,7 +48,24 @@ const Applyform = () => {
 
     const [Generate, setGenerate] = useState("Generate Transaction Id")
 
-
+    //     const test2 = () => {
+    //        console.log(user)
+           
+           
+    //         fetch(``, {
+    //     crossDomain:true,
+    //     method: 'POST',
+    //     headers: {'Content-Type':'application/json'},
+    //     // body: JSON.stringify({
+    //     //   username: Username,
+    //     //   password: Password,
+    //     // })
+    //   })
+    //     .then(response => response.json())
+    //     .then(responseJson => {
+    //       localStorage.setItem('token', responseJson)}
+    //       )
+    //     }
 
 
 
@@ -76,11 +93,14 @@ const Applyform = () => {
             body: JSON.stringify(data),
         };
         const res = await fetch('http://localhost:5000/apply', requestOptions)
-        // const response = res.json();
+        
         notify();
+        // test2();
         reset();
+
         navigate(`/ClientPanel`);
     }
+    
 
     const onError = (errors, e) => console.log(errors, e);
 

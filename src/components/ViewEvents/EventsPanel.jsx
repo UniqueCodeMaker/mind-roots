@@ -6,10 +6,7 @@ import moment from "moment";
 
 
 const EventPanel = (props) => {
-    const temp = moment(props.event.edate).format("YYYY-MM-DD")
-    const temp1 =   moment(Date.now() + ( 3600 * 1000 * 25 )).format('YYYY-MM-DD')
-
-console.log(temp , " " , temp1)
+    
     return(
        <>
      {   
