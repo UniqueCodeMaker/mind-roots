@@ -12,7 +12,7 @@ const NavBar = () => {
     const Role = localStorage.getItem('Role')
     const Clogin = localStorage.getItem('Clogin')
     const Alogin = localStorage.getItem('Alogin')
-    // console.log("C" , Clogin ,"A" ,  Alogin , "R", Role)
+
     
     const [SearchValue , setSearchValue] = useState();
  
@@ -26,14 +26,7 @@ const NavBar = () => {
           navigate(`/ViewEvents`);
         }
   
-        // useEffect(() => {
-        //   Navbar();
-        //   }, []);
-          
-
-
-        // console.table(Check);
-
+      
 
 return (
   <>

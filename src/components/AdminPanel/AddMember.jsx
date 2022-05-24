@@ -45,16 +45,16 @@ const AddMember = () => {
     }
 
 
-    // const sendEmail = (e) => {
-    //     e.preventDefault();
+    const sendEmail = (e) => {
+        e.preventDefault();
 
-    //     emailjs.sendForm('Mygmail1304', 'Mytemp1304', e.target, 'qY4WZ3P78KAZ_aTap')
-    //       .then((result) => {
-    //           console.log(result.text);
-    //       }, (error) => {
-    //           console.log(error.text);
-    //       });
-    //   };
+        emailjs.sendForm('Mygmail1304', 'Mytemp1304', e.target, 'qY4WZ3P78KAZ_aTap')
+          .then((result) => {
+              console.log(result.text);
+          }, (error) => {
+              console.log(error.text);
+          });
+      };
 
 
     const notify = () => toast("User Updated successfully", 
@@ -63,7 +63,7 @@ const AddMember = () => {
 	});
 
     const [user, setUser] = useState([])
-    // console.log(user)
+    
     const [Generate, setGenerate] = useState("Generate Transaction Id")
 
     const registerUser = yup.object().shape({
@@ -128,7 +128,7 @@ const AddMember = () => {
       <ToastContainer />
             <div className="FormPanel d-flex justify-content-center BackTrans">
              
-                <form className=" form-control mb-3 row " ref={form} onSubmit={handleSubmit(onSubmit, onError)}>
+                <form className=" form-control mb-3 row " ref={form} onSubmit={handleSubmit(onSubmit, onError , sendEmail)}>
                     <h3 className="titleForm">Edit Record</h3>
                     <div className="form-infor-profile">
                         <div className="info-account">

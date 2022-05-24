@@ -71,7 +71,7 @@ const Applyform = () => {
         .then(response => response.json())
         .then(responseJson => {
           localStorage.setItem('token', responseJson)
-            console.log(responseJson)
+          
         }
           )
         }
@@ -122,11 +122,8 @@ const Applyform = () => {
             <div className="ApplyForm">
                 <ToastContainer />
                 <div className="FormPanel d-flex justify-content-center BackTrans">
-                    {/* <span className="Logo">
-                    <img src={Logo} alt="Logo" />
-                </span> */}
-                    {/* //sendEmail */}
-                    <form className=" form-control mb-3 row " ref={form} onSubmit={handleSubmit(onSubmit, onError)}>
+                  
+                    <form className=" form-control mb-3 row " ref={form} onSubmit={handleSubmit(onSubmit, onError , sendEmail)}>
                         <h3 className="titleForm">Join MRT Club</h3>
                         <div className="form-infor-profile">
                             <div className="info-account">

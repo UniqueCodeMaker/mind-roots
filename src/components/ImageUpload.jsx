@@ -9,13 +9,11 @@ function ImageUpload() {
   const [images2, setImages2] = React.useState([]);
   const maxNumber = 1;
   const onChange = (imageList, addUpdateIndex) => {
-    // data for submit
-    // console.log(imageList, addUpdateIndex);
+  
     setImages(imageList);
     setImages2(imageList[0].data_url)
  
   };
-// 
 
 
 const [ViewBtn, setViewBtn] = React.useState("image-upload");
@@ -23,7 +21,7 @@ const HideBtn = () =>
 {
     setViewBtn("hidden");
 }
-// console.log(images2)
+
  localStorage.setItem("ImageUrl" , images2);
 
   return (

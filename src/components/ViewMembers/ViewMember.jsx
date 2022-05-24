@@ -38,12 +38,12 @@ const ViewMember = () => {
 
       fetch(`http://localhost:5000/Delete/${DoneD}`, { mode: 'cors' })
       .then((response) => {
-        console.log(response)
+    
         let arr = Members.filter(curr=>{
           return curr.id!==DoneD
         })
 
-        console.log(arr);
+     
     
         setEvents(arr);
       });

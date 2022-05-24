@@ -31,7 +31,7 @@ const AddEvent =()=> {
     const { register, formState: { errors }, handleSubmit , reset} = useForm({ mode: 'onChange', resolver: yupResolver(registerUser) })
     const onSubmit = async (data) =>  {
         data.EImageUrl = localStorage.getItem('EImageUrl');
-        console.log(data)
+       
         const requestOptions = {
         method: 'POST',
         headers: { 
@@ -43,7 +43,7 @@ const AddEvent =()=> {
         };
         const res = await fetch('http://localhost:5000/eventlog', requestOptions)
         const response = res.json();
-        console.log(response);
+      
         notify();
         reset();
     }
@@ -54,13 +54,11 @@ const AddEvent =()=> {
     const [images2, setImages2] = React.useState([]);
     const maxNumber = 1;
     const onChange = (imageList, addUpdateIndex) => {
-      // data for submit
-      // console.log(imageList, addUpdateIndex);
+      
       setImages(imageList);
       setImages2(imageList[0].data_url)
    
     };
-  // 
   
   
   const [ViewBtn, setViewBtn] = React.useState("image-upload");

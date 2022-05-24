@@ -51,21 +51,10 @@ const AddMember = () => {
     }
 
 
-    // const sendEmail = (e) => {
-    //     e.preventDefault();
-
-    //     emailjs.sendForm('Mygmail1304', 'Mytemp1304', e.target, 'qY4WZ3P78KAZ_aTap')
-    //       .then((result) => {
-    //           console.log(result.text);
-    //       }, (error) => {
-    //           console.log(error.text);
-    //       });
-    //   };
-
+   
 
     const handleChange = (e) => {
-        // console.log(e.target.name, e.target.value)
-        // console.log(getValues());
+       
         setDetails({
         ...details,
         [e.target.name] : e.target.value
@@ -73,7 +62,7 @@ const AddMember = () => {
     }
 
     const [user, setUser] = useState([])
-    console.log(user)
+    
     const [Generate, setGenerate] = useState("Generate Transaction Id")
 
     const registerUser = yup.object().shape({
@@ -87,7 +76,7 @@ const AddMember = () => {
     const { register, formState: { errors }, handleSubmit, watch, reset } = useForm({ mode: 'onChange', resolver: yupResolver(registerUser) })
 
     const onSubmit = async (data) => {
-        // console.log(details);
+  
         
         details.dob = moment().format('YYYY-MM-DD')
         const requestOptions = {

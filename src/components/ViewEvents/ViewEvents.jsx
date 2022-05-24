@@ -18,12 +18,12 @@ useEffect(() => {
         {
          
           test3();
-          // console.log("3")
+        
         }
         else
         {
           test2();
-          console.log("2")
+        
         }
 
     
@@ -46,7 +46,7 @@ await fetch(`http://localhost:5000/search/${searchv}`)
     })
 }
 
-// console.table(Events)
+
 
 const [hiddens, sethiddens] = useState("hidden");
 
@@ -80,7 +80,7 @@ const  DeletedUsers  =  () => {
 
 
 )}
-{/* {console.log(moment(Date()).format("YYYY DD MM"))} */}
+
 </div>
 ) : (
 <div className="empty">
