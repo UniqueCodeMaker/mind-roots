@@ -101,8 +101,8 @@ const ViewMember = () => {
                             <td>{Member.fees}</td>
                             <td>
                              
-                              <div onClick={HandleDelete.bind(this, Member.id)} key={Member.id} className="rights">Delete</div>
-                              <div onClick={HandleEdit.bind(this, Member.id)} key={Member.id} className="rights">Edit</div>
+                              <div onClick={HandleDelete.bind(this, Member.id)} key={Member.id+91} className="rights">Delete</div>
+                              <div onClick={HandleEdit.bind(this, Member.id)} key={Member.id+92} className="rights">Edit</div>
                               
                             </td>
                             

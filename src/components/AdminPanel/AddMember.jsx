@@ -92,7 +92,7 @@ const AddMember = () => {
         notify();
         // reset();
         setChangeD("date")
-        setDetails("")
+        // setDetails("")
         
     }
 

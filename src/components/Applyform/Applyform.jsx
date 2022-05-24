@@ -43,29 +43,38 @@ const Applyform = () => {
             transition: Zoom
         });
 
-
+    const [Username, setUsername] = useState("");
+	const [Password, setPassword] = useState("");
     const [user, setUser] = useState()
 
+	const handleChangeN = (e) => {
+		setUsername(e.target.value);
+
+	}
+	const handleChangeP = (e) => {
+		setPassword(e.target.value);
+
+	}
     const [Generate, setGenerate] = useState("Generate Transaction Id")
 
-    //     const test2 = () => {
-    //        console.log(user)
-           
-           
-    //         fetch(``, {
-    //     crossDomain:true,
-    //     method: 'POST',
-    //     headers: {'Content-Type':'application/json'},
-    //     // body: JSON.stringify({
-    //     //   username: Username,
-    //     //   password: Password,
-    //     // })
-    //   })
-    //     .then(response => response.json())
-    //     .then(responseJson => {
-    //       localStorage.setItem('token', responseJson)}
-    //       )
-    //     }
+        const test2 = () => {
+        
+            fetch(`http://localhost:5000/generateToken/${Username}/${Password}`, {
+        crossDomain:true,
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          username: Username,
+          password: Password,
+        })
+      })
+        .then(response => response.json())
+        .then(responseJson => {
+          localStorage.setItem('token', responseJson)
+            console.log(responseJson)
+        }
+          )
+        }
 
 
 
@@ -95,9 +104,9 @@ const Applyform = () => {
         const res = await fetch('http://localhost:5000/apply', requestOptions)
         
         notify();
-        // test2();
-        reset();
-
+        test2();
+        
+        localStorage.setItem('Login' ,  Username)
         navigate(`/ClientPanel`);
     }
     
@@ -130,8 +139,10 @@ const Applyform = () => {
                                         defaultValue={user?.name}
                                         {...register('name', { required: true })}
                                         type="text"
+                                        onChange={handleChangeN}
                                         placeholder="Enter Name"
                                         className={classnames('input form-control', { 'is-invalid': errors && errors?.name })}
+                                        on
                                     />
                                     {errors && errors?.name && <FormFeedback>Please type Name</FormFeedback>}
                                 </Col>
@@ -159,6 +170,7 @@ const Applyform = () => {
                                         id="inputPassword"
                                         {...register('password', { required: true })}
                                         type="password"
+                                        onChange={handleChangeP}
                                         placeholder="Enter Password"
                                         className={classnames('input  form-control', { 'is-invalid': errors && errors?.password })}
                                     />

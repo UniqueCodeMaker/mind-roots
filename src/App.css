@@ -914,7 +914,8 @@ th {
   position: absolute;
   top: -10px;
   margin: 10px;
-  left:-20px;
+  /* margin-right: 300px; */
+  left:-50px;
 }
 
 .LogoUp:hover

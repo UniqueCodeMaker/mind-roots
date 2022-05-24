@@ -17,7 +17,7 @@ import ViewMember from "./components/ViewMembers/ViewMember.jsx"
 import EventList from "./components/ViewEvents/EventList.jsx"
 import Events from "./components/ViewEvents/Events"
 
-import { ProtectedRoute } from './config.jsx'
+import { ProtectedRoute  , AuthRoute } from './config.jsx'
 import {
   BrowserRouter,
   Routes,
@@ -30,20 +30,21 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <BrowserRouter>
     <Routes>
-      
+    <Route exact path={`/SignUp`} 
+    element={<AuthRoute isLoggedin={{ isUserLoggedInToken }}><SignUp /></AuthRoute>} />
       <Route path="/" element={< Home/>} />
       <Route path="Home" element={<Home />} />
-      <Route path="SignUp" element={<SignUp /> } />
+      {/* <Route path="SignUp" element={<SignUp /> } /> */}
       <Route path="Applyform" element={<Applyform />} />
-      <Route path="ViewProfile" element={<ProtectedRoute isLoggedin={isUserLoggedInToken}><ViewProfile /></ProtectedRoute>} />
-      <Route path="ViewEvents" element={<ProtectedRoute isLoggedin={   isUserLoggedInToken }><ViewEvents /></ProtectedRoute>} />
-      <Route path="AddMember" element={<ProtectedRoute isLoggedin={   isUserLoggedInToken }><AddMember /></ProtectedRoute>} />
-      <Route path="ViewMember" element={<ProtectedRoute isLoggedin={   isUserLoggedInToken }><ViewMember/></ProtectedRoute>} />
-      <Route path="AddEvent" element={<ProtectedRoute isLoggedin={   isUserLoggedInToken }><AddEvent /></ProtectedRoute>} />
-      <Route path="ClientPanel" element={<ProtectedRoute isLoggedin={   isUserLoggedInToken }><ClientPanel /></ProtectedRoute>} />
-      <Route path="AdminPanel" element={<ProtectedRoute isLoggedin={   isUserLoggedInToken }><AdminPanel /></ProtectedRoute>} />
+      <Route path="ViewProfile" element={<ProtectedRoute isLoggedin={{isUserLoggedInToken}}><ViewProfile /></ProtectedRoute>} />
+      <Route path="ViewEvents" element={<ProtectedRoute isLoggedin={   {isUserLoggedInToken} }><ViewEvents /></ProtectedRoute>} />
+      <Route path="AddMember" element={<ProtectedRoute isLoggedin={   { isUserLoggedInToken } }><AddMember /></ProtectedRoute>} />
+      <Route path="ViewMember" element={<ProtectedRoute isLoggedin={   { isUserLoggedInToken } }><ViewMember/></ProtectedRoute>} />
+      <Route path="AddEvent" element={<ProtectedRoute isLoggedin={   { isUserLoggedInToken } }><AddEvent /></ProtectedRoute>} />
+      <Route path="ClientPanel" element={<ProtectedRoute isLoggedin={   { isUserLoggedInToken } }><ClientPanel /></ProtectedRoute>} />
+      <Route path="AdminPanel" element={<ProtectedRoute isLoggedin={   { isUserLoggedInToken } }><AdminPanel /></ProtectedRoute>} />
       <Route path="EventList" element={<ProtectedRoute isLoggedin={   isUserLoggedInToken }><EventList/></ProtectedRoute>} />
-      <Route path="Events" element={<ProtectedRoute isLoggedin={  isUserLoggedInToken}><Events/></ProtectedRoute>} />
+      <Route path="Events" element={<ProtectedRoute isLoggedin={  { isUserLoggedInToken }}><Events/></ProtectedRoute>} />
 
    
    

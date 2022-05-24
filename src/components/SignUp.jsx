@@ -69,6 +69,7 @@ const SignUp = () => {
 			}
 			)
 
+			localStorage.setItem('Login' ,  Username)
 		notify()
 	
 	
@@ -106,8 +107,8 @@ const SignUp = () => {
 	}
 	const form = useRef();
 	const registerUser = yup.object().shape({
-		username: yup.string().min(5).required(),
-		password: yup.string().min(6).max(16).required(),
+		username: yup.string().min(2).required(),
+		password: yup.string().min(2).max(16).required(),
 
 	})
 	const { register, formState: { errors }, handleSubmit , reset } = useForm({ mode: 'onChange', resolver: yupResolver(registerUser) })
