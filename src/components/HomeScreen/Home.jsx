@@ -27,6 +27,8 @@ const Home = (props) => {
                 <div className="midPanel">
 
                     <h4 className="Row1  Feed">Login As</h4>
+                    <hr  />
+                    <span className="Midrow">
                     <span className="Row2">
                         <button onClick={() => setRole(1)} className="button-73" role="button" >Admin</button>
 
@@ -35,7 +37,8 @@ const Home = (props) => {
                     <span className="Row3">
                         <button onClick={() => setRole(2)} className="button-74" role="button">Client</button>
 
-
+                       
+                    </span>
                     </span>
                     <h4 className="Apply" > <Link to="/Applyform"> <span className="changeLcolor Feed">Apply</span> </Link></h4>
                 </div>

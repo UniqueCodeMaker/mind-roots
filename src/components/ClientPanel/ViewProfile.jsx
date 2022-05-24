@@ -36,7 +36,7 @@ const ViewProfile = () => {
                     .then((actualData) => setCheck(actualData))
                 }
               
-    // console.log(Check)
+   
     return( 
        <>
         <NavBar/>

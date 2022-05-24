@@ -94,7 +94,7 @@ const AddMember = () => {
         setChangeT("time")
         setDetails("")
 
-        // console.log(res);
+      
 
     }
 

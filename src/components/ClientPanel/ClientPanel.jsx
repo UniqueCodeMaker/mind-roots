@@ -21,12 +21,7 @@ const ClientPanel =()=>{
     }
 
 
-    // useEffect(async() => {
-        
-    //     const res = await fetch('http://localhost:5000/generateToken')
-    //     console.log(res);
-    // }, []);
-
+  
 
 
 

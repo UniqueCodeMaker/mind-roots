@@ -251,8 +251,8 @@ const AddEvent =()=> {
        
 
           <div className="row">
-              <div className="col-6">
-                  <button className="btn btn-primary" type = "submit">Add</button>
+              <div className="col-12">
+                  <button className="btn btn-primary BtnWDHT" type = "submit">Add</button>
                   
               </div>
           </div>
