@@ -7,7 +7,7 @@ import { Navigate } from 'react-router-dom'
 export const ProtectedRoute = ({ isLoggedin, children }) => {
   console.log("CHeck" , isUserLoggedInToken())
   if (isUserLoggedInToken()==null || isUserLoggedInToken()==0) {
-    return <Navigate to={"/Home"} replace />;
+    return <Navigate to={"/SignUp"} replace />;
   }
   return children;
 };

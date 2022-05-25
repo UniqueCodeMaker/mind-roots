@@ -8,7 +8,8 @@ import classnames from 'classnames'
 import { Col, Row, FormFeedback } from 'reactstrap'
 import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import NavBar from '../NavBar'
+import NavBar from '../NavBar';
+import {  Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
   import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
@@ -26,13 +27,27 @@ const intialVal = {
 
 
 const AddMember = () => {
-
+    localStorage.setItem("UserDetails" , JSON.stringify( intialVal ));
+    
     const [details, setDetails] = useState(intialVal);
+    
     useEffect(() => {
         test2();
-
-
+         
+        setChangeD("text")
+        const UserSelected  = localStorage.getItem("userSelect")
+        // UserSelected
+    
+        fetch(`http://localhost:5000/UserSelected/${UserSelected}`)
+        .then((response) => response.json())
+        .then((actualData) => setDetails(...actualData))
+       
+        
+    
     }, []);
+
+  
+    
     const START = 123;
     const END = 456;
     const form = useRef();
@@ -45,18 +60,7 @@ const AddMember = () => {
     }
 
 
-    const sendEmail = (e) => {
-        e.preventDefault();
-
-        emailjs.sendForm('Mygmail1304', 'Mytemp1304', e.target, 'qY4WZ3P78KAZ_aTap')
-          .then((result) => {
-              console.log(result.text);
-          }, (error) => {
-              console.log(error.text);
-          });
-      };
-
-
+  
     const notify = () => toast("User Updated successfully", 
 	{
 	  transition: Zoom
@@ -76,9 +80,9 @@ const AddMember = () => {
     })
     const { register ,formState: { errors }, handleSubmit, watch, reset } = useForm({ mode: 'onChange', resolver: yupResolver(registerUser) })
 
-    const onSubmit = async (data) => {
+    const onSubmit = async (data , e ) => {
     
-        details.dob = moment().format('YYYY-MM-DD')
+        details.dob = moment(details.dob).format('YYYY-MM-DD')
         const requestOptions = {
             method: 'post',
             headers: {
@@ -93,7 +97,12 @@ const AddMember = () => {
         // reset();
         setChangeD("date")
         // setDetails("")
-        
+        // emailjs.sendForm('Mygmail1304', 'Mytemp1304', e.target , 'qY4WZ3P78KAZ_aTap')
+        // .then((result) => {
+        //     console.log(result.text);
+        // }, (error) => {
+        //     console.log(error.text);
+        // });
     }
 
 
@@ -103,7 +112,7 @@ const AddMember = () => {
     const [Check, setCheck] = useState([{}]);
     
 
-
+// console.log(Check);
 
     const test2 = async () => {
         await fetch(`http://localhost:5000/`)
@@ -128,7 +137,7 @@ const AddMember = () => {
       <ToastContainer />
             <div className="FormPanel d-flex justify-content-center BackTrans">
              
-                <form className=" form-control mb-3 row " ref={form} onSubmit={handleSubmit(onSubmit, onError , sendEmail)}>
+                <form className=" form-control mb-3 row " ref={form} onSubmit={handleSubmit(onSubmit, onError )}>
                     <h3 className="titleForm">Edit Record</h3>
                     <div className="form-infor-profile">
                         <div className="info-account">
@@ -151,11 +160,12 @@ const AddMember = () => {
 
                                             }
                                         })}
-                                        className="SelectUser form-control"
+                                        className="SelectUser form-control hidden"
 
                                     >
                                         {/* <option value="Select Users" hidden selected>Select Users</option> */}
                                         {Check.map((checks) => <option value={checks.name}  >{checks.name}</option>)
+                                        
                                         }
                                     </select>
                                 </Col>
@@ -277,9 +287,9 @@ const AddMember = () => {
                     <button className=" font-weight-bold tn btn-outline-primary form-control" type="submit">
                         Edit
                     </button>
-                  
+                    <Link to="/ViewMember" style={{display: "inline" , marginLeft: "150px" , color:"white" , fontSize:"30px"}}> {`>`}</Link>
                 </form>
-
+           
             </div>
 
 

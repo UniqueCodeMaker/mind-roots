@@ -267,25 +267,27 @@ app.get('/events/:event', (req, res) => {
     })
 })
 
-app.get('/SignCheck/:name/:password', (req, res) => {
+app.get('/SignCheck/:name/:password/:Role', (req, res) => {
 
     pool.getConnection((err, connection) => {
         if(err) throw err
         console.log(`connected as id ${connection.threadId}`)
-
-        connection.query('SELECT name,password from UserProfiles', (err, rows) => {
+            console.log(req.params)
+            const name = req.params.name
+            const password =  req.params.password
+            const Role = req.params.Role
+        connection.query('SELECT * from UserProfiles WHERE name = ? AND password = ? AND Role = ?', [name , password , Role]  , (err, rows) => {
            
-            
+            // SELECT name,password from UserProfiles
             
             connection.release() // return the connection to pool
-            for(var i =0 ; i<rows.length ; i++) {
-                if(req.params.name == rows[i].name && req.params.password == rows[i].password)
-                {
-                res.send(rows[i])
-                break;    
+               if(!err)
+               {
+                   console.log(rows)
+                        res.send(rows)
+                   
                }
-               
-            }
+            
             if(err) {  
                 console.log(err)
 
@@ -316,7 +318,7 @@ app.post('/apply', (req, res) => {
         console.log(`connected as id ${connection.threadId}`)
         res.status(200)
         const params = req.body
-        params.dob = moment().format('YYYY-MM-DD')
+        
         connection.query('INSERT INTO UserProfiles SET ?' , params , (err, rows) => {
             connection.release() // return the connection to pool
 
@@ -332,7 +334,49 @@ app.post('/apply', (req, res) => {
     })
 })
 
+app.get('/UserSelected/:id', (req, res) => {
+  
+    pool.getConnection((err, connection) => {
+        if(err) throw err
+        console.log(`connected as id ${connection.threadId}`)
+        res.status(200)
+        
+        connection.query('SELECT * FROM UserProfiles WHERE id =  ?' , req.params.id , (err, rows) => {
+            connection.release() // return the connection to pool
 
+            if(!err) {
+                res.send(rows)
+            } else {
+                console.log(err)
+            }
+
+        })
+
+        // console.log(req.body)
+    })
+})
+
+app.get('/EventSelected/:id', (req, res) => {
+  
+    pool.getConnection((err, connection) => {
+        if(err) throw err
+        console.log(`connected as id ${connection.threadId}`)
+        res.status(200)
+        
+        connection.query('SELECT * FROM Addevent WHERE id =  ?' , req.params.id , (err, rows) => {
+            connection.release() // return the connection to pool
+
+            if(!err) {
+                res.send(rows)
+            } else {
+                console.log(err)
+            }
+
+        })
+
+        // console.log(req.body)
+    })
+})
 
 // app.get('/Check/:mobile', (req, res) => {
 

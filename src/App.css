@@ -24,7 +24,7 @@
     height:calc( 100vh - 64px);
     top:0;
   overflow-y: auto;
-    
+
 }
 .FormPanel 
 {
@@ -73,14 +73,10 @@
   align-items: center;
   z-index: 2;
   width: 25%;
-  /* top:0; */
   margin-top:10px;
-  /* height: max-content; */
-  /* width:25%; */
   padding:10px;
   height: calc(100vh - 64px);
   background-color: transparent;
-  /* padding-top: 100px; */
   box-shadow:3px 3px 3px 3px rgb(0, 0, 0);
   background-color:white;
 
@@ -147,8 +143,9 @@
     z-index: -2;
     height:calc( 100vh - 64px);
     overflow-y: scroll;
-    
-   
+    overflow-x: scroll;
+    /* justify-content:center; */
+
     
 }
 .HomeLogin2{
@@ -273,17 +270,6 @@
   }
 }
 
-@media (min-width : 119px) and (max-width: 1080px){
-  
-  .FormPanel
-  {
-    width: 100%;
-  }
-  .FormPanel
-  {
-   height:max-content;
-  }
-}
 
 
 .Apply
@@ -380,11 +366,92 @@ a:hover
     color:white;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 375px ) and  (max-width: 892px ){
   .button-56 {
     padding: 0 40px;
   }
+  .FormPanel
+  {
+    width: 100%;
+  }
+  .HomeLogin
+  {
+    width: 100%;
+  }
+  .midPanel
+  {
+    width: 100%;
+  }
 }
+
+@media (min-width: 360px ) and  (max-width: 780px ) {
+  .button-56 {
+    padding: 0 40px;
+  }
+  .FormPanel
+  {
+    width: 100%;
+  }
+  .HomeLogin
+  {
+    width: 100%;
+  }
+  .midPanel
+  {
+    width: 100%;
+  }
+}
+
+@media (min-width: 280px ) and  (max-width: 780px ){
+  .button-56 {
+    padding: 0 40px;
+  }
+  .FormPanel
+  {
+    width: 80%;
+    flex-direction: column;
+  }
+  .DesignPanel
+  {
+    max-width: 100%;
+    
+  }
+  .signup-form
+  {
+    width: 49%;
+  }
+  .FormPanel2
+  {
+    width: 80%;
+    flex-direction: column;
+  }
+  .HomeLogin
+  {
+    width: 100%;
+    flex-direction: column;
+    overflow-x: scroll;
+  }
+  .HomeLogin2
+  {
+    width: 100%;
+    flex-direction: column;
+  }
+  .midPanel
+  {
+    width: 90%;
+  }
+  .SignupPanel
+  {
+    width: 70%;
+  }
+  .text-center{
+    font-size:15px;
+    float:left;
+  }
+
+}
+
+
 
 .ImageUpload {
     font-family: sans-serif;
@@ -832,20 +899,21 @@ hr
   flex-wrap: wrap;    
   width: 100%;
   /* height:calc(100vh - 64px) */
+  overflow: scroll;
 }
 
 .EventsPosts
 {
   display: flex;
    flex-direction: column;
-    cursor: pointer;
+    cursor: grabbing;
   border-radius:20px;
   flex: 1 0 35%; 
   margin: 5px;
   width:200px;
   height:max-content;
-  object-fit: cover;
-  overflow: hidden;
+  /* object-fit: cover; */
+  overflow: scroll;
   
 }
 
@@ -858,7 +926,8 @@ hr
   font-size: 21px;
   color:white;
   margin: 5px;
-  
+  overflow-x: scroll;
+
   text-align: center;
 
 }

@@ -44,8 +44,15 @@ const SignUp = () => {
 	}
 
 	useEffect(() => {
-		(Role == 1) ? notifyC() : notifyA()
-
+	
+		if(Role==1 )
+		{
+			notifyC();
+		}
+		else if(Role==2)
+		{
+			notifyA();
+		}
 	}, []);
 
 
@@ -54,6 +61,15 @@ const SignUp = () => {
 
 		// e.preventDefault();
 		test3();
+
+		
+			localStorage.setItem('Login' ,  Username)
+		notify()
+	
+	
+	}
+
+	const test2 = async() =>{
 		await fetch(`http://localhost:5000/generateToken/${Username}/${Password}`, {
 			crossDomain: true,
 			method: 'POST',
@@ -68,38 +84,49 @@ const SignUp = () => {
 				localStorage.setItem('token', responseJson)
 			}
 			)
+	}
 
-			localStorage.setItem('Login' ,  Username)
-		notify()
+	// if (Check == true && Role == 1) {
+
+		
+	// 	navigate("/AdminPanel")
+
+	// }
+	// else if (Check == true && Role == 2) {
+
+		
+	// 	localStorage.setItem('Login', Username);
+	// 	navigate("/ClientPanel")
+
+	// }
 	
-	
-	}
-
-
-	if (Check == true && Role == 1) {
-
-		notifyC();
-		navigate("/AdminPanel")
-
-	}
-	else if (Check == true && Role == 2) {
-
-		notifyA();
-
-		localStorage.setItem('Login', Username);
-		navigate("/ClientPanel")
-
-	}
 	const test3 = async () => {
 
-		await fetch(`http://localhost:5000/SignCheck/${Username}/${Password}`)
+		await fetch(`http://localhost:5000/SignCheck/${Username}/${Password}/${Role}`)
 			.then((response) => response.json())
 			.then((actualData) => {
-				actualData ? setCheck(true) : setCheck(false)
+
+				test2()
+
+				if(actualData.length > 0 && Role == 2) {
+
+				localStorage.setItem('Login', Username);
+				navigate("/ClientPanel")
+
+				}
+				else if (actualData.length > 0 && Role == 1)
+				{
+					
+		localStorage.setItem('Login', Username);
+				navigate("/AdminPanel")
 
 
+				}
+				else
+				{
+					notify()
+				}
 			})
-
 
 
 
@@ -115,7 +142,7 @@ const SignUp = () => {
 
 	    
 
-    const onError = (errors, e) => console.log(errors, e);
+    const onError = (errors, e) => console.log("Hello");
 
 
 	return (
