@@ -9,9 +9,11 @@ const NavBar = () => {
     const Title = <span className='HeaderLink'>Admin </span>;
     const Title2 = <span className='HeaderLink'>Client </span>;
 
-    const Role = localStorage.getItem('Role')
+   
     const Clogin = localStorage.getItem('Clogin')
     const Alogin = localStorage.getItem('Alogin')
+    const Role = localStorage.getItem('Role')
+    console.log(" A " , Alogin ," C " ,  Clogin , " R " , Role )
 
     
     const [SearchValue , setSearchValue] = useState();
@@ -42,34 +44,29 @@ return (
         navbarScroll
       >
         <Link to="/Home" ><span className="HeaderLink">Home</span></Link>
-       {  (Role==2)? 
+       {  (Clogin==1)? 
         <NavDropdown  title={Title2} id="navbarScrollingDropdown" >
-          <Link to={(Clogin==0)?"":"/ViewProfile"} ><center>View Profile</center></Link>
-          <Link to={(Clogin==0)?"":"/ViewEvents"}><center>View Events</center></Link>
-          <Link to={ (Clogin==0)? "":"/ClientPanel"}><center>Client Panel</center></Link>
+          <Link to={"/ViewProfile"} ><center>View Profile</center></Link>
+          <Link to={"/ViewEvents"}><center>View Events</center></Link>
+          <Link to={ "/ClientPanel"}><center>Client Panel</center></Link>
           
         </NavDropdown>
-        :  
-       (Role==1)?
-        <NavDropdown  title={Title} id="navbarScrollingDropdown" >
+        :
+       (Alogin==1)?
+       <NavDropdown  title={Title} id="navbarScrollingDropdown" >
           {/* <NavDropdown.Item href={ (Alogin==0)? "":"AddMember"} >Edit Member</NavDropdown.Item> */}
-          <Link to={(Alogin==0)?"":"/ViewProfile"} ><center>View Profile</center></Link>
-          <Link to={ (Alogin==0)?"":"/ViewMember"}><center>View Member</center></Link>
-          <Link to={ (Alogin==0)?"":"/Applyform"}><center>Add Member</center></Link>
-          <Link to={ (Alogin==0)?"":"/AddEvent"}><center>Add Event</center></Link>
-          <Link to={ (Alogin==0)?"":"/ViewEvents"}><center>View Event</center></Link>
-          <Link to={ (Alogin==0)?"":"/Events"}><center>Edit Events</center></Link>
-          <Link to={ (Alogin==0)?"":"/AdminPanel"}><center>Admin Panel</center></Link>
+          <Link to={"/ViewProfile"} ><center>View Profile</center></Link>
+          <Link to={ "/ViewMember"}><center>View Member</center></Link>
+          <Link to={ "/Applyform"}><center>Add Member</center></Link>
+          <Link to={ "/AddEvent"}><center>Add Event</center></Link>
+          <Link to={ "/ViewEvents"}><center>View Event</center></Link>
+          <Link to={ "/Events"}><center>Edit Events</center></Link>
+          <Link to={ "/AdminPanel"}><center>Admin Panel</center></Link>
         </NavDropdown>
       :
       <></> 
       }
-    {  (Clogin==1 || Alogin==1 )?   
-      <Link to="/" >
-        <span className="HeaderLink" >SignOut</span>
-        </Link>
-    :<></> 
-     } </Nav>
+    </Nav>
       <Form className="d-flex">
         <FormControl
           type="search"

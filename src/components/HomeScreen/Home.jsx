@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 const Home = (props) => {
 
     const [Role, setRole] = useState(0);
-    const history = useNavigate();
+    const history = useNavigate();  
 
     localStorage.setItem('Role', 0)
     localStorage.setItem('Clogin', 0)
@@ -16,6 +16,7 @@ const Home = (props) => {
     useEffect(() => {
         if (Role !== 0) {
             localStorage.setItem('Role', Role);
+            console.log("testing")
             history("/SignUp")
         }
     }, [Role])

@@ -20,7 +20,7 @@ const ViewMember = () => {
       var HandleEdit = async  function(i) {
        
       
-      localStorage.setItem("userSelect" , i);
+      localStorage.setItem("Event" , i);
       navigate("/EventList");
 
       }

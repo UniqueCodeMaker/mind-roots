@@ -14,7 +14,7 @@ const SignUp = () => {
 	const navigate = useNavigate();
 	const Role = localStorage.getItem('Role');
 	const token = localStorage.getItem('token')
-
+	
 
 	const notifyA = () => toast("Welcome Client",
 		{
@@ -25,6 +25,11 @@ const SignUp = () => {
 			transition: Zoom
 		});
 	const notify = () => toast("Please Type correct details or register yourself",
+		{
+			transition: Zoom
+		});
+
+	const notifyx = () => toast("You are Signing with wrong account",
 		{
 			transition: Zoom
 		});
@@ -44,8 +49,15 @@ const SignUp = () => {
 	}
 
 	useEffect(() => {
-		(Role == 1) ? notifyC() : notifyA()
-
+	
+		if(Role==1 )
+		{
+			notifyC();
+		}
+		else if(Role==2)
+		{
+			notifyA();
+		}
 	}, []);
 
 
@@ -53,7 +65,17 @@ const SignUp = () => {
 	const onSubmit = async() => {
 
 		// e.preventDefault();
+		test2();
 		test3();
+		
+		
+			localStorage.setItem('Login' ,  Username)
+		// notify()
+	
+	
+	}
+
+	const test2 = async() =>{
 		await fetch(`http://localhost:5000/generateToken/${Username}/${Password}`, {
 			crossDomain: true,
 			method: 'POST',
@@ -68,38 +90,40 @@ const SignUp = () => {
 				localStorage.setItem('token', responseJson)
 			}
 			)
-
-			localStorage.setItem('Login' ,  Username)
-		notify()
-	
-	
 	}
 
 
-	if (Check == true && Role == 1) {
 
-		notifyC();
-		navigate("/AdminPanel")
-
-	}
-	else if (Check == true && Role == 2) {
-
-		notifyA();
-
-		localStorage.setItem('Login', Username);
-		navigate("/ClientPanel")
-
-	}
 	const test3 = async () => {
 
-		await fetch(`http://localhost:5000/SignCheck/${Username}/${Password}`)
+		await fetch(`http://localhost:5000/SignCheck/${Username}/${Password}/${Role}`)
 			.then((response) => response.json())
-			.then((actualData) => {
-				actualData ? setCheck(true) : setCheck(false)
+			.then((actualData) => { 
+				setCheck(true)
+				if(actualData.length == 0 )
+				{
+				// console.log("Match Not found")
+				notifyx();	
+				}
+				else
+				{
+					if (Role == 1) {
 
-
+						localStorage.setItem('Login', Username);
+						
+						navigate("/AdminPanel")
+				
+					}
+					else if (Role == 2) {
+				
+						
+						localStorage.setItem('Login', Username);
+						navigate("/ClientPanel")
+				
+					}
+				}
+				
 			})
-
 
 
 
@@ -115,7 +139,7 @@ const SignUp = () => {
 
 	    
 
-    const onError = (errors, e) => console.log(errors, e);
+    const onError = (errors, e) => console.log("Hello");
 
 
 	return (

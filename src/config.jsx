@@ -7,16 +7,19 @@ import { Navigate } from 'react-router-dom'
 export const ProtectedRoute = ({ isLoggedin, children }) => {
   console.log("CHeck" , isUserLoggedInToken())
   if (isUserLoggedInToken()==null || isUserLoggedInToken()==0) {
-    return <Navigate to={"/Home"} replace />;
+    return <Navigate to={"/SignUp"} replace />;
   }
   return children;
 };
 
 
 export const AuthRoute = ({ isLoggedin, children }) => {
-  console.log("CHeckAuth" , isUserLoggedInToken())
-  if (isUserLoggedInToken()!=0) {
-    return <Navigate to={-1} replace />;
+  console.log("OUT" , isUserLoggedInToken())
+ 
+  if (!isUserLoggedInToken()) 
+  {
+    console.log("CHeckAuth" , isUserLoggedInToken())
+    return <Navigate to={-1}  replace />;
   }
   return children;
 };

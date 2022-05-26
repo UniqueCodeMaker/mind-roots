@@ -12,6 +12,7 @@ import NavBar from '../NavBar';
 import Flatpickr from 'react-flatpickr'
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+  import {  Link } from "react-router-dom";
   import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
 const intialVal = {
     "EImageUrl": "",
@@ -36,8 +37,15 @@ const AddMember = () => {
     const [details, setDetails] = useState(intialVal);
     useEffect(() => {
         test2();
-
-
+        setChangeD("text")
+        setChangeT("text")
+        const EventSelected  = localStorage.getItem("Event")
+        
+        fetch(`http://localhost:5000/EventSelected/${EventSelected}`)
+        .then((response) => response.json())
+        .then((actualData) => setDetails(...actualData))
+       
+        
     }, []);
     const START = 123;
     const END = 456;
@@ -149,7 +157,7 @@ const AddMember = () => {
 
                                             }
                                         })}
-                                        className="SelectUser form-control"
+                                        className="SelectUser form-control hidden"
 
                                     >
                                         {/* <option value="Select Users" hidden selected>Select Users</option> */}
@@ -283,7 +291,7 @@ const AddMember = () => {
                     <button className=" font-weight-bold tn btn-outline-primary form-control" type="submit">
                         Edit
                     </button>
-                  
+                    <Link to="/Events" style={{display: "inline" , marginLeft: "150px" , color:"white" , fontSize:"30px"}}> {`>`}</Link>
                 </form>
 
             </div>

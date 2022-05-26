@@ -12,6 +12,7 @@ const ViewMember = () => {
   const [Members, setEvents] = useState([]);
   const [hiddens, sethiddens] = useState("hidden");
   const [DoneD, setDoneD] = useState("");
+  const [Status, setStatus] = useState("Inactive");
   const navigate = useNavigate();
   const notify = () => toast("User Deleted successfully",
     {
@@ -68,20 +69,20 @@ const ViewMember = () => {
     <>
       <NavBar />
       <div className="HomeLogin">
-
+      <div className="table-responsive-md">
         {
 
           Members?.length > 0 ? (
-            <Table striped bordered hover>
-              <thead>
+            <Table striped bordered hover className="table " style={{ textAlign: "center" }}>
+              <thead >
                 <tr>
-                  <th>Id</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Mobile</th>
-                  <th>DOB</th>
-                  <th>Gender</th>
-                  <th>TransactionId</th>
+                  <th  class="col-sm-1 " >Id</th>
+                  <th class="col-sm-1">Name</th>
+                  <th class="col-sm-2" >Email</th>
+                  <th class="col-sm-2">Mobile</th>
+                  <th class="col-sm-1">DOB</th>
+                  <th class="col-sm-1">Gender</th>
+                  <th class="col-sm-1">TransactionId</th>
                   <th>Admin </th>
                 </tr>
               </thead>
@@ -101,7 +102,7 @@ const ViewMember = () => {
 
                       <div onClick={HandleDelete.bind(this, Member.id)} key={Member.id+91} className="rights">Delete</div>
                       <div onClick={HandleEdit.bind(this, Member.id)} key={Member.id+92} className="rights">Edit</div>
-
+                    
                     </td>
 
                   </tr>
@@ -119,7 +120,7 @@ const ViewMember = () => {
           )
 
         }
-
+</div>
         {/* DeletePop */}
         <div className={hiddens}>
           <p>Do you Really Want to Delete this User </p>
@@ -132,7 +133,7 @@ const ViewMember = () => {
         <ToastContainer />
 
       </div>
-
+      
     </>
 
 
