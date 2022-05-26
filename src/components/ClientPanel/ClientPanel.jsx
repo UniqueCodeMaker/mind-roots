@@ -22,7 +22,7 @@ const ClientPanel =()=>{
 
 
   
-
+console.log()
 
 
     return(
@@ -41,6 +41,7 @@ const ClientPanel =()=>{
       </div>
    </>
 )
+
 
 }
 

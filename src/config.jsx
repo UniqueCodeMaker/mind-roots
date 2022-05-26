@@ -1,8 +1,6 @@
 import { Navigate } from 'react-router-dom'
  const isUserLoggedInToken = () => localStorage.getItem('token') ? localStorage.getItem('token') : sessionStorage.getItem('token')
-// export const isUserLoggedIn = () => localStorage.getItem('userData') ? localStorage.getItem('userData') : sessionStorage.getItem('userData')
-// export const userData = () => JSON.parse(localStorage.getItem('userData')) ? JSON.parse(localStorage.getItem('userData')) : JSON.parse(sessionStorage.getItem('userData'))
-
+ const Role = () => localStorage.getItem('Role') ? localStorage.getItem('Role') : sessionStorage.getItem('Role')
 
 export const ProtectedRoute = ({ isLoggedin, children }) => {
   console.log("CHeck" , isUserLoggedInToken())
@@ -14,12 +12,19 @@ export const ProtectedRoute = ({ isLoggedin, children }) => {
 
 
 export const AuthRoute = ({ isLoggedin, children }) => {
-  console.log("OUT" , isUserLoggedInToken())
- 
-  if (!isUserLoggedInToken()) 
+  // console.log("OUT" ,isUserLoggedInToken())
+  
+  if (isUserLoggedInToken()!="0" || isUserLoggedInToken()!=0 ) 
   {
-    console.log("CHeckAuth" , isUserLoggedInToken())
+    // console.log("CHeckAuth" , isUserLoggedInToken())
     return <Navigate to={-1}  replace />;
+  }
+  else if (Role()=="0")
+  {
+  
+    return <Navigate to="/Home"  replace />;
+
+    
   }
   return children;
 };

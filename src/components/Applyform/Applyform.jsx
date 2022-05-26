@@ -17,8 +17,8 @@ import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
 import NavBar from "../NavBar"
 const Applyform = () => {
     let navigate = useNavigate()
-    const START = 123;
-    const END = 456;
+    const START = 100;
+    const END = 5000;
     const form = useRef();
     const num = Math.floor(Math.random() * (START - END + 1)) + END;
 
@@ -28,16 +28,16 @@ const Applyform = () => {
 
     }
 
-    const sendEmail = (e) => {
-        e.preventDefault();
+    // const sendEmail = (e) => {
+    //     e.preventDefault();
             
-        emailjs.sendForm('Mygmail1304', 'Mytemp1304', e.target, 'qY4WZ3P78KAZ_aTap')
-            .then((result) => {
-                console.log(result.text);
-            }, (error) => {
-                console.log(error.text);
-            });
-    };
+    //     emailjs.sendForm('Mygmail1304', 'Mytemp1304', e.target, 'qY4WZ3P78KAZ_aTap')
+    //         .then((result) => {
+    //             console.log(result.text);
+    //         }, (error) => {
+    //             console.log(error.text);
+    //         });
+    // };
 
     const notify = () => toast("User Added Successfully",
         {

@@ -24,7 +24,7 @@ const SignUp = () => {
 		{
 			transition: Zoom
 		});
-	const notify = () => toast("Please Type correct details or register yourself",
+	const notify = () => toast("Make sure to fill correct Details",
 		{
 			transition: Zoom
 		});
@@ -62,7 +62,7 @@ const SignUp = () => {
 
 
 
-	const onSubmit = async() => {
+	const onSubmit = () => {
 
 		// e.preventDefault();
 		test2();
@@ -102,8 +102,7 @@ const SignUp = () => {
 				setCheck(true)
 				if(actualData.length == 0 )
 				{
-				// console.log("Match Not found")
-				notifyx();	
+						notifyx();	
 				}
 				else
 				{
@@ -192,7 +191,7 @@ const SignUp = () => {
 						</div>
 
 						<div className="form-group">
-							<label className="form-check-label"><input type="checkbox" required="required" className="largerCheckbox" /><span className="LargeText"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></span></label>
+							<label className="form-check-label"><input type="checkbox" required="required" className="largerCheckbox" onClick={()=>notify()}/><span className="LargeText"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></span></label>
 						</div>
 						<div className="form-group">
 							<button type="submit" className="btn btn-primary btn-lg" onClick={handleSubmit}>Sign In</button>
