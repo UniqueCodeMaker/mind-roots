@@ -67,12 +67,12 @@ const ViewMember = () => {
     return(
       <>
 <NavBar/>      
-      <div className="HomeLogin">
+      <div className="HomeLogin3">
      
      { 
      
         Members?.length > 0 ? (
-          <Table striped bordered hover>
+          <Table bordered   className="table bg-dark text-light ">
           <thead>
             <tr>
               <th>Id</th>
@@ -91,7 +91,7 @@ const ViewMember = () => {
           {  Members.map((Member,i) => (
                             
                             <tr> 
-                            <td>{Member.id}</td>
+                            <td>{i+1}</td>
                             <td>{Member.lead}</td>
                             <td>{Member.event}</td>
                             <td>{moment(Member.edate).format('YYYY-MM-DD')}</td>

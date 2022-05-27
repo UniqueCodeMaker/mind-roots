@@ -8,6 +8,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { BsCalendarDate } from "react-icons/bs";
 import { BsGenderAmbiguous   } from "react-icons/bs";
 import { MdOutlinePassword } from "react-icons/md";
+import webImg from "../HomeScreen/images/ClientPic2.webp"
 import NavBar from "../NavBar";
 import moment from 'moment';
 // import 'moment-timezone';
@@ -18,7 +19,7 @@ const ViewProfile = () => {
     
     const style = { color: "white",
      fontSize: "2.5em",
-     "backgroundImage": "linear-gradient(215deg, #5860f4 20%, #3bc2ce 50%)",
+    
      padding:"8px",
      borderRadius:"5px",    
 
@@ -41,13 +42,14 @@ const ViewProfile = () => {
        <>
         <NavBar/>
         <div className="HomeLogin">
+            
        <div className="DesignPanel">
                 <div className="CProfileView">
                 <h2 className="CProfileName">{(Check[0].name)? Check[0].name : "abc" }</h2>
                 <h5 className="CProfileEmail">{(Check[0].email) ? Check[0].email : "abc"}</h5>
 
                     <div className="CProfilePic">
-                        <img src={(Check[0].ImageUrl)} alt="Profile Pic" className="ImageClient"/>
+                        <img src={(Check[0].ImageUrl)? (Check[0].ImageUrl) : webImg} alt="Profile Pic" className="ImageClient"/>
                     </div>
                     <hr className="midLine"/>
                    <div className="IconsDetails">

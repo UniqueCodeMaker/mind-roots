@@ -11,22 +11,12 @@ const ViewEvents = () => {
 
     const [Check,setCheck ] = useState(); 
 const searchv = localStorage.getItem("search")
-localStorage.setItem("search", " ")
 
+console.log(searchv)
 useEffect(() => {
-        if(searchv.length > 1)
-        {
-         
-          test3();
-        
-        }
-        else
-        {
           test2();
         
-        }
-
-    
+     
     }, []);
         const test2 = async ()=>
         {
@@ -37,16 +27,6 @@ useEffect(() => {
         })
     }
   
-    const test3 = async ()=>
-    {
-await fetch(`http://localhost:5000/search/${searchv}`)
-    .then((response) => response.json())
-    .then((actualData) => {setEvents(actualData)
-    
-    })
-}
-
-
 
 const [hiddens, sethiddens] = useState("hidden");
 

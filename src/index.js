@@ -16,6 +16,7 @@ import ViewEvents from "./components/ViewEvents/ViewEvents.jsx"
 import ViewMember from "./components/ViewMembers/ViewMember.jsx"
 import EventList from "./components/ViewEvents/EventList.jsx"
 import Events from "./components/ViewEvents/Events"
+import ParticlesBg from "particles-bg";
 
 import { ProtectedRoute  , AuthRoute } from './config.jsx'
 import {
@@ -26,9 +27,42 @@ import {
 const isUserLoggedInToken = localStorage.getItem('token');
 // console.log(isUserLoggedInToken)
 // console.log(isUserLoggedInToken)
+let config = {
+  num: [10, 30],
+  rps: 3.8,
+  radius: [0, 100],
+  life: [1.5, 3],
+  v: [2, 3],
+  tha: [-40, 40],
+  alpha: [0.6, 0],
+  scale: [.1, 0.4],
+  position: "all",
+  color: ["random", "#ff0000"],
+  cross: "dead",
+  // emitter: "follow",
+  random: 15
+};
+
+if (Math.random() > 0.85) {
+  config = Object.assign(config, {
+    onParticleUpdate: (ctx, particle) => {
+      ctx.beginPath();
+      ctx.rect(
+        particle.p.x,
+        particle.p.y,
+        particle.radius * 2,
+        particle.radius * 2
+      );
+      ctx.fillStyle = particle.color;
+      ctx.fill();
+      ctx.closePath();
+    }
+  });
+}
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <BrowserRouter>
+     <ParticlesBg type="custom" config={config} bg={true} />
     <Routes>
     <Route exact path={`/SignUp`} 
     element={<AuthRoute isLoggedin={{ isUserLoggedInToken }}><SignUp /></AuthRoute>} />

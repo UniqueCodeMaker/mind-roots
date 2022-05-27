@@ -18,6 +18,10 @@ const ViewMember = () => {
     {
       transition: Zoom
     });
+    const notifyx = () => toast("You cant delete Logged In Only can edit",
+    {
+      transition: Zoom
+    });
   var HandleEdit = async function (i) {
 
 
@@ -25,18 +29,29 @@ const ViewMember = () => {
     navigate("/AddMember");
 
   }
-
+const Login  =  localStorage.getItem("Login")
   var HandleDelete = async function (i) {
-
+    let array = Members.filter(curr=>{
+      return curr.id==i
+    })
+   
     sethiddens("DeletePop")
-    setDoneD(i)
-
+   if(array[0].name!=Login) 
+   { 
+     setDoneD(i)
+    
+   }
+   else
+   {
+    setDoneD(0)
+   }
     test();
 
   }
 
   const DeletedUsers = () => {
-
+      // console.log(DoneD)
+      if(DoneD!=0){
       fetch(`http://localhost:5000/Delete/${DoneD}`, { mode: 'cors' })
       .then((response) => {
     
@@ -44,13 +59,17 @@ const ViewMember = () => {
           return curr.id!==DoneD
         })
 
-     
-    
+        
         setEvents(arr);
       });
-
-    notify();
+    
+    // notify();
     sethiddens("hidden")
+    }
+    else
+    {
+      notifyx();
+    }
   }
 
 
@@ -68,12 +87,12 @@ const ViewMember = () => {
   return (
     <>
       <NavBar />
-      <div className="HomeLogin">
+      <div className="HomeLogin3 ">
       <div className="table-responsive-md">
         {
 
           Members?.length > 0 ? (
-            <Table striped bordered hover className="table " style={{ textAlign: "center" }}>
+            <Table  bordered className="table bg-dark text-light " style={{ textAlign: "center" }}>
               <thead >
                 <tr>
                   <th  class="col-sm-1 " >Id</th>
@@ -89,9 +108,9 @@ const ViewMember = () => {
               <tbody>
 
                 {Members.map((Member, i) => (
-
+                  
                   <tr>
-                    <td>{Member.id}</td>
+                    <td>{i+1}</td>
                     <td>{Member.name}</td>
                     <td>{Member.email}</td>
                     <td>{Member.mobile}</td>

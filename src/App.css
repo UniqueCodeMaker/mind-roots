@@ -2,51 +2,94 @@
 {
     margin:0;
     padding: 0;
-    /* overflow:hidden; */
-   
-}
+    /* border-radius:20px; */
+    font-family: "sans sarif";
+  }
 *::-webkit-scrollbar
 {
   /* overflow: hidden; */
   scrollbar-width: none;
   display:none;
+  
+}
+.coverBoth
+{
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+width: 87%;
+/* border:2px solid black; */
+}
+.backIMg
+{
+  z-index:0;
+  position: relative;
+  object-fit: cover;
+  min-width: 720px;
+  border-radius:60px!important;
+  height: 550px;
+  margin: 20px;
+  box-shadow: none !important;
+  padding: 0!important;
+  -webkit-border-radius:60px!important;
+  -moz-border-radius:60px!important;
+  -ms-border-radius:60px!important;
+  -o-border-radius:60px!important;
 }
 
 .ApplyForm{
-
-    display: flex;
-    flex-direction: column;
-    margin:0 auto;
-    align-items: center;
-    width:100%;
-    /* background-color:white; */
-    z-index: -2;
-    height:calc( 100vh - 64px);
-    top:0;
+  display: flex;
+  flex-direction: column;
+  margin:0 auto;
+  align-items: center;
+  width:100%;
+  /*background-color:white;
+  */z-index: -2;
+  height:calc( 100vh - 64px);
+  top:0;
   overflow-y: auto;
-
+  /* opacity: 0.9; */
+  /* border:2px solid white; */
 }
 .FormPanel 
 {
-       background-image: linear-gradient(315deg, #0059ff 0%, #7ee8fa 74%);
+       /* background-image: linear-gradient(315deg, #0059ff 0%, #7ee8fa 74%); */
       top:0;
 }
 .Test
 {
   width:max-content;
-  height:50px;
+  height:47px;
   margin-top: 10px;
+}
+.OwnBack
+{
+  min-width: 100%;
+  min-height:100%;
+}
+.DetailsAbout
+{
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+
 }
 .form-control
 {
     background-color: transparent;
-    border-color:white;
-    color:blue;
-   
+    border:2px solid black;
+    /* color:rgb(0, 0, 255); */
+    border-radius:10px;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    -ms-border-radius:10px;
+    -o-border-radius:10px;
 }
 .form-control::placeholder
 {
-    color:rgb(0, 0, 255);
+    color:black;
 }
 
 
@@ -69,17 +112,16 @@
 {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  
   z-index: 2;
   width: 25%;
-  margin-top:10px;
+  
   padding:10px;
   height: calc(100vh - 64px);
   background-color: transparent;
-  box-shadow:3px 3px 3px 3px rgb(0, 0, 0);
-  background-color:white;
-
+  /* box-shadow:3px 3px 3px 3px rgb(0, 0, 0,0.7); */
+  overflow:scroll
+  
 }
 
 
@@ -91,12 +133,12 @@
     align-items: center;
     z-index: 2;
     width: 100%;
-    margin-top:10px;
+    /* margin-top:10px; */
     padding:10px;
-   
+    
     background-color: transparent;
     box-shadow:3px 3px 3px 3px rgb(0, 0, 0);
-    background-color:white;
+    /* background-color:white; */
 
 }
 .FormPanel2
@@ -105,7 +147,7 @@
    
     justify-content: space-around;
 
-      background-image: linear-gradient(315deg, #1fd1f9 40%, #2167fe 74%);
+      /* background-image: linear-gradient(315deg, #1fd1f9 40%, #2167fe 74%); */
 
 }
 .form-profile
@@ -119,57 +161,61 @@
 }
 .titleForm
 {
-    font-family: "Josefin Sans";
-    background-color: rgb(61, 67, 255);
-    color:white;
-    /* padding: 5px; */
-    /* align-items: center; */
-    justify-content: center;
-    font-weight: bold;
-    display:flex;
-
+  font-family: "Josefin Sans";
+  /* background-color: rgb(61, 67, 255); */
+  color:black;
+  /*padding: 5px;
+  *//*align-items: center;
+  */justify-content: center;
+  font-weight: bold;
+  display:flex;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
 }
 
 
-.HomeLogin{
+.HomeLogin , .HomeLogin3{
 
     display: flex;
     flex-direction: column;
     margin:0 auto;
     align-items: center;
     width:100%;
-    background-image: linear-gradient(215deg, #045de9 10%, #09c6f9 80%);
+    /* background-image: linear-gradient(215deg, #045de9 10%, #09c6f9 80%); */
     background-repeat: repeat-y;
     z-index: -2;
     height:calc( 100vh - 64px);
     overflow-y: scroll;
     overflow-x: scroll;
-    /* justify-content:center; */
-
-    
+    /* background-color: white!important; */
+    /* opacity: 0.5; */
+}
+.HomeLogin3
+{
+  margin-top:10px
+}
+.HomeLogin
+{
+  justify-content:center;
 }
 .HomeLogin2{
-
   display: flex;
   flex-direction: column;
   margin:0 auto;
   align-items: center;
   width:100%;
-  background-image: linear-gradient(215deg, #045de9 10%, #09c6f9 80%);
+  /* background-image: linear-gradient(215deg, #045de9 10%, #09c6f9 80%); */
   background-repeat: repeat-y;
   z-index: -2;
   height:max-content;
-  
- 
-  
-}
-.Logo:hover
-{
-    transform: scale(1.145);
-    -webkit-transform: scale(1.145);
-    -moz-transform: scale(1.145);
-    -ms-transform: scale(1.145);
-    -o-transform: scale(1.145);
+  border-radius: 2px;   ;
+  -webkit-border-radius: 2px   ;
+  -moz-border-radius: 2px   ;
+  -ms-border-radius: 2px   ;
+  -o-border-radius: 2px   ;
 }
 
 .midPanel
@@ -180,7 +226,7 @@
     align-items: center;
     z-index: 2;
     height: max-content;
-    width:30%;
+    width:26%;
     padding:10px;
     /* height:calc( 100vh - 64px); */
     box-shadow:1px 1px 4px 1px rgb(0, 0, 0);
@@ -214,10 +260,10 @@
 }
 .button-74,.button-73 {
   appearance: none;
-  background-color: #FFFFFF;
+  background-color: #00e1ff;
   border-radius: 40em;
   border-style: none;
-  box-shadow: #ADCFFF 0 -12px 6px inset;
+  box-shadow: #001aff 0 -12px 6px inset;
   box-sizing: border-box;
   color: #000000;
   cursor: pointer;
@@ -239,7 +285,7 @@
 }
 
 .button-73:hover {
-  background-color: #48ff00;
+  background-color: #436fff;
   box-shadow: #14ebff 0 -6px 8px inset;
   transform: scale(1.125);
   color:white;
@@ -303,7 +349,7 @@ a
 a:hover
 {
   background-color:transparent !important;
-  color:blue;
+  color:black;
 }
 
 
@@ -362,7 +408,7 @@ a:hover
 
 .button-56:hover {
   outline: 0;
-    background-color:blue;
+    background-color:black;
     color:white;
 }
 
@@ -419,6 +465,8 @@ a:hover
   .signup-form
   {
     width: 49%;
+    /* height: 100vh; */
+
   }
   .FormPanel2
   {
@@ -460,7 +508,7 @@ a:hover
     justify-content: center;
     align-items: center;
     background-color:transparent;
-    /* border: 2px solid blue; */
+    /* border: 2px solid black; */
   }
   .ImageUpload:hover 
   {
@@ -487,12 +535,12 @@ a:hover
   }
 
 
-
+/* 
   select:hover,input:hover
   {
     transform: scale(1.125);
     border:2px solid black;
-  }
+  } */
 
 .Times
 {
@@ -504,17 +552,13 @@ a:hover
 {
   display: flex;
   flex-direction: column;
-  background-color:white;
+  background-color:rgb(48, 48, 48);
+  color:white;
   width:500px  ;
   height:calc( 100vh - 64px);
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 30%;
-  background-image: linear-gradient(215deg, #00eeff 20%, #0911f9 50%);
+ 
   font-weight: bold;
-  border-top-right-radius: 50%;
-  border-top-left-radius: 10pX;
   padding:20px;
-  /* margin-top:10px; */
   overflow-y: scroll;
 }
 
@@ -522,7 +566,10 @@ a:hover
 {
   display:flex;
   flex-direction: column;
-  font-family: "cursive";
+  font-family: "sans sarif";
+  font-size: 25px;
+  background-color: transparent;
+  color:white;
 }
 
 .CProfilePic
@@ -550,15 +597,20 @@ a:hover
 
 .midLine
 {
-  width:60%;
-  margin-top:20px;
+  width:100%;
+  margin-top:30px;
+
   align-items: center;
   display:flex;
-  
   min-height: 5px;
   border-radius:30px;
-  background-image: linear-gradient(215deg, #ffffff 5%, #ffffff 40%);
-  z-index: 0px;
+  /*background-image: linear-gradient(215deg, #ffffff 5%, #ffffff 40%);
+  */z-index: 0px;
+  background-color:black;
+  -webkit-border-radius:30px;
+  -moz-border-radius:30px;
+  -ms-border-radius:30px;
+  -o-border-radius:30px;
 }
 
 .ImageClient
@@ -604,7 +656,7 @@ a:hover
 .DetailView
 {
   font-family:'Courier New', Courier, monospace;
-  font-size: 17px;
+  font-size: 25px;
   color:white;
 }
 
@@ -642,14 +694,14 @@ a:hover
 {
   display : flex;
   flex-direction: column;
-
+  overflow: inherit;
 }
 
 
 
 .HeaderLink
 {
-  /* border:1px solid blue; */
+  /* border:1px solid black; */
   color:white;
   padding:5px;
   padding-left:20px;
@@ -681,14 +733,14 @@ a:hover
   margin-top: 10px;
   border-radius: 5px;
   font-size:21px;
-  color:blue;
+  color:black;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
 .box .header{
-  background-color: rgb(4, 0, 255);
+  background-color: black;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -696,7 +748,7 @@ a:hover
   text-align: center;
   padding:5px;
   font-size: 20px;
-  color:#fff;
+  color:white;
   font-family: sans-serif;
 }
 .AddEventF{
@@ -706,8 +758,8 @@ a:hover
 
   margin:auto;
   padding:10px;
-  border:2px solid white;
-  background-image: linear-gradient(215deg, #0687ff 20%, #8affd0 50%);
+  border:2px solid black;
+  /* background-image: linear-gradient(215deg, #0687ff 20%, #8affd0 50%); */
   border-radius:20px;
   -webkit-border-radius:20px;
   -moz-border-radius:20px;
@@ -725,23 +777,23 @@ a:hover
 .row .col-4 input{
   background:transparent;
   width: 210%;
-  border:2px solid white;
+  border:2px solid black;
   outline:none;
   padding:3px;
   border-radius: 5px;
   font-size:20px;
-  color:blue;
+  color:black;
 }
 .row .col-8 input{
   background:transparent;
   width: 210%;
-  border:2px solid white;
+  border:2px solid black;
   outline:none;
   padding:3px;
   border-radius: 5px;
   width:385px;
   font-size:20px;
-  color:blue;
+  color:black;
 }
 .row .col-3 input{
   background:transparent;
@@ -770,28 +822,69 @@ input.largerCheckbox {
 	font-size: 15px;
 }
  .input-group-text {
-	/* border-color: transparent; */
-  /* padding: 10px; */
+
   margin: 10px;
-  background-image: linear-gradient(215deg, #0687ff 20%, #8affd0 50%);
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
+  background-color: transparent;
+  /* color:white; */
 }
 .signup-form form input::placeholder {
   font-size:20px;
 }
 .signup-form {
-	width: 400px;
-	margin: 0 auto;
-	padding: 30px 0;		
-  font-size: 22px;
+  width: 500px;
+  z-index: 20;
+  margin: 0 auto;
+  /*padding: 30px 30px;
+  */font-size: 22px;
+  display:flex;
+  flex-direction: column;
+  /*padding-left: 80px;
+  */border-radius:40px!important;
+ 
 }
+.DetailsAbout
+{
+  width: 50%  ;
+  /* border:2px solid white; */
+  height: 70vh;
+}
+.ControlUi
+{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.TextAbout
+{
+  font-size: 80px;
+  width: max-content;
+  margin: 10px;
+  position: absolute;
+  bottom:50px;
+  right:200px;
+  z-index:20;
+  font-family: "Sofia";
+  color:black;
+  /* background-color:white; */
+  text-shadow: 10px 5px 5px  rgba(0, 0, 0, 0.61);
+    border:none !important;
+  box-shadow: none !important;
+  /* background-color: white; */
+}
+.CustomCenter
+{
+  padding-top:10px;
+  padding-left: 40px;
+}
+
 .signup-form {
 	color: rgb(0, 0, 0);
 	border-radius: 3px;
 	margin-bottom: 15px;
 	/* background: transparent; */
-	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	box-shadow: 2px 5px 5px 5px rgb(0, 0, 0, 0.7);
 	padding: 30px;
 }
 .signup-form h2 {
@@ -801,10 +894,11 @@ input.largerCheckbox {
 }
 .signup-form hr {
 	margin: 0 -30px 20px;
-  color:blue;
+  color:black;
 }
 .signup-form .form-group {
 	margin-bottom: 20px;
+  margin-left: 30px;
 }
 .signup-form label {
 	font-weight: normal;
@@ -824,17 +918,19 @@ input.largerCheckbox {
 	background: #2affd4 !important;
 	border: none;
 	min-width: 140px;
+  /* margin: 0 auto; */
 }
 .signup-form .btn:hover, .signup-form .btn:focus {
 	background: #214aff !important;
-  color:white;
+  color:black;
 }
 .signup-form a {
-	color: #fff;	
-	text-decoration: underline;
+	color: red;	
+	text-decoration: none;
 }
 .signup-form a:hover {
 	text-decoration: none;
+  /* color: rgb(55, 0, 255) !important */
 }
 .signup-form form a {
 	color: #0aff4f;
@@ -845,17 +941,18 @@ input.largerCheckbox {
 	text-decoration: underline;
 }
 .signup-form .fa {
-	font-size: 30px;
+	font-size: 28px;
 }
 .fa
 {
-  color: blue;
+  color: black;
 
 }
 
 .CenterSi
 {
   text-align: center;
+  color: black !important;
 }
 
 .LargeText
@@ -864,12 +961,13 @@ input.largerCheckbox {
 }
 hr
 {
-  color: black;
+  color: white;
+  
 }
 .SelectUser
 {
   background-color: transparent;
-  color:blue;
+  color:black;
   /* width:180px;   */
   font-size:20px;
   margin:10px;
@@ -883,35 +981,41 @@ hr
 .SelectUser:active
 {
   background-color: transparent;
-  color:blue;
+  color:black;
 }
 
 
 .SelectUser::after
 {
   background-color: transparent;
-  color:blue;
+  color:black;
 }
 
 .EventPanelView
 {
   display: flex;
-  flex-wrap: wrap;    
+  flex-wrap: wrap;
   width: 100%;
-  /* height:calc(100vh - 64px) */
-  overflow: scroll;
+  /*height:;
+  calc(100vh-64px)*/overflow: scroll;
+  border-radius: 2px !important;
+  -webkit-border-radius: 2px !important;
+  -moz-border-radius: 2px !important;
+  -ms-border-radius: 2px !important;
+  -o-border-radius: 2px !important;
 }
 
 .EventsPosts
 {
   display: flex;
    flex-direction: column;
-    cursor: grabbing;
+    /* cursor: grabbing; */
   border-radius:20px;
-  flex: 1 0 35%; 
-  margin: 5px;
+  flex: 1 0 40%; 
+  margin: 10px;
   width:200px;
   height:max-content;
+  object-fit: cover;
   /* object-fit: cover; */
   overflow: scroll;
   
@@ -952,41 +1056,54 @@ hr
 
 .Eventtable
 {
-   /* border: 3px solid black; */
-  border-collapse: collapse;
-  color:white;
-  font-size:25px;
+  /*border: 3px solid black;
+  */border-collapse: collapse;
+  color:black;
+  /* font-size:25px; */
   table-layout: fixed;
   text-align: center;
   overflow-x:auto;
   overflow-y:auto;
   border:none;
+  margin:0 auto;
+  padding: auto;
   outline:none ;
-  
+  border-radius:2px ;
+
 }
 
 table {
   table-layout: fixed;
   border-collapse: collapse;
   width: 50%;
-
+  border-radius: 2px;
+  /* overflow: scroll; */
 }      
-td {
-  background: #86dbd7;
+/* td {
+  background: #00fff2;
   padding: 25px;
-  overflow: hidden;
+  overflow: scroll;
   white-space: nowrap;
   width: 100px;
-  border: solid 1px #666;
+  border: solid 1px black;
+  border-radius:1px;
+  -webkit-border-radius:1px;
+  -moz-border-radius:1px;
+  -ms-border-radius:1px;
+  -o-border-radius:1px;
 }
 th {
-  background: #86dbd7;
+  background: #00f7ea;
   padding: 25px;
-  /* overflow: hidden; */
-  /* white-space: nowrap; */
   width: 100px;
   border: solid 1px #666;
-}
+  border-radius:1px;
+  -webkit-border-radius:1px;
+  -moz-border-radius:1px;
+  -ms-border-radius:1px;
+  -o-border-radius:1px;
+  overflow: scroll;
+} */
 
 .LogoUp
 {
@@ -1002,16 +1119,11 @@ th {
   left:-30px;
 }
 
-.LogoUp:hover
-{
-  width:100px; 
-  height:100px;
-}
 
 
 body{
-
-  background-image: linear-gradient(215deg, #00eeff 20%, #242bffc2 90%);
+background-color: transparent;
+  /* background-image: linear-gradient(215deg, #00eeff 20%, #242bffc2 90%); */
 }
 
 .rights
@@ -1020,7 +1132,7 @@ body{
   margin: 10px;
   outline:none;
   background-color: transparent;
-  border:3px solid #ccc;  ;
+  /* border:3px solid #ccc;   */
   color:white;
   padding-left:10px;
   padding-right:10px;
@@ -1032,7 +1144,7 @@ body{
 .rights:hover
 {
     background-color:white;
-    color:blue;
+    color:black;
     font-weight:bold;
 }
 
@@ -1070,7 +1182,7 @@ body{
 
 .Feed
 {
-  color: white!important;
+  /* color: white!important;   */
 }
 .BtnWDHT
 {
@@ -1080,3 +1192,5 @@ body{
   align-items: center;
   justify-content: center;
 }
+
+

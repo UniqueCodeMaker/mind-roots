@@ -17,7 +17,7 @@ const EventPanel = (props) => {
        <img src={props.event.EImageUrl} alt ="event" className="FixImgLen"/>
         <div className="EventTimings">
        
-            <Table striped bordered hover  className="Eventtable">
+            <Table bordered   className="Eventtable table bg-dark text-light " >
             <thead>
               <tr >
                 <th>Lead </th>

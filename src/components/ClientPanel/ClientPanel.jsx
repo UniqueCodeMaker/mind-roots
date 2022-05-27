@@ -21,10 +21,6 @@ const ClientPanel =()=>{
     }
 
 
-  
-console.log()
-
-
     return(
    <>
    <NavBar/>

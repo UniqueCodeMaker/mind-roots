@@ -13,12 +13,12 @@ const NavBar = () => {
     const Clogin = localStorage.getItem('Clogin')
     const Alogin = localStorage.getItem('Alogin')
     const Role = localStorage.getItem('Role')
-    console.log(" A " , Alogin ," C " ,  Clogin , " R " , Role )
+    // console.log(" A " , Alogin ," C " ,  Clogin , " R " , Role )
 
     
     const [SearchValue , setSearchValue] = useState();
  
-
+  console.log(SearchValue)
 
         const test2 =  ()=>
         {
@@ -32,10 +32,10 @@ const NavBar = () => {
 
 return (
   <>
-  <div className="navBar">
-      <Navbar  expand="md" className="m-auto" sticky="top" >
+  <div className="" >
+      <Navbar  expand="lg" className="mx-auto bg-dark navbar-light" sticky="top"  >
   <Container fluid >
-    <Navbar.Brand href="#"><img src={Logo} className="LogoUp" /></Navbar.Brand>
+    {/* <Navbar.Brand href="#"><img src={Logo} className="LogoUp" /></Navbar.Brand> */}
     <Navbar.Toggle aria-controls="navbarScroll"  />
     <Navbar.Collapse id="navbarScroll">
       <Nav
@@ -43,9 +43,9 @@ return (
         
         navbarScroll
       >
-        <Link to="/Home" ><span className="HeaderLink">Home</span></Link>
+        
        {  (Clogin==1)? 
-        <NavDropdown  title={Title2} id="navbarScrollingDropdown" >
+        <NavDropdown  title={Title2} id="collasible-nav-dropdown" >
           <Link to={"/ViewProfile"} ><center>View Profile</center></Link>
           <Link to={"/ViewEvents"}><center>View Events</center></Link>
           <Link to={ "/ClientPanel"}><center>Client Panel</center></Link>
@@ -53,9 +53,9 @@ return (
         </NavDropdown>
         :
        (Alogin==1)?
-       <NavDropdown  title={Title} id="navbarScrollingDropdown" >
+       <NavDropdown  title={Title} id="collasible-nav-dropdown" >
           {/* <NavDropdown.Item href={ (Alogin==0)? "":"AddMember"} >Edit Member</NavDropdown.Item> */}
-          <Link to={"/ViewProfile"} ><center>View Profile</center></Link>
+          <Link to={"/ViewProfile"} className="testDrop" ><center>View Profile</center></Link>
           <Link to={ "/ViewMember"}><center>View Member</center></Link>
           <Link to={ "/Applyform"}><center>Add Member</center></Link>
           <Link to={ "/AddEvent"}><center>Add Event</center></Link>
@@ -67,27 +67,8 @@ return (
       <></> 
       }
     </Nav>
-      <Form className="d-flex">
-        <FormControl
-          type="search"
-          placeholder="Search"
-          className="me-2"
-          aria-label="Search"
-
-          onChange={(e)=> setSearchValue(e.target.value)}
-      
-      
-      />
-        &nbsp;
-        &nbsp;
-        { (Clogin==1 || Alogin==1 )?
-        
-        <Button variant="btn btn-primary"        
-        onClick={test2}>Search</Button>
-        :
-        <></>
-}
-      </Form>
+    <Link to="/Home" ><span className="HeaderLink">About</span></Link>
+    <Link to="/Home" ><span className="HeaderLink">Logout</span></Link>
     </Navbar.Collapse>
   </Container>
 </Navbar>

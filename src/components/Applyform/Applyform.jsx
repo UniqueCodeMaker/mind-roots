@@ -131,7 +131,7 @@ const Applyform = () => {
                 <ToastContainer />
                 <div className="FormPanel d-flex justify-content-center BackTrans">
                   
-                    <form className=" form-control mb-3 row " ref={form} onSubmit={handleSubmit(onSubmit, onError )}>
+                    <form className="mb-3 row AddEventF" ref={form} onSubmit={handleSubmit(onSubmit, onError )}>
                         <h3 className="titleForm">Join MRT Club</h3>
                         <div className="form-infor-profile">
                             <div className="info-account">
@@ -233,7 +233,7 @@ const Applyform = () => {
 
                             </div>
                         </div>
-                        <input className="form-control"
+                        <input className="form-control mb-3 "
                             type="text"
                             onClick={GenerateId}
                             name="transaction"
@@ -241,8 +241,9 @@ const Applyform = () => {
                             {...register('transaction', { required: true })}
                             value={Generate}
                         />
-                        <br />
-                        <button className=" font-weight-bold tn btn-outline-primary form-control" type="submit">
+                       
+                       
+                        <button className=" form-control font-weight-bold   form-control" type="submit">
                             <b>Join</b>
                         </button>
                     </form>

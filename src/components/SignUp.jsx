@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import classnames from 'classnames'
+import Background from "./HomeScreen/images/SignUp.jpg"
 const SignUp = () => {
 	const navigate = useNavigate();
 	const Role = localStorage.getItem('Role');
@@ -146,7 +147,13 @@ const SignUp = () => {
 
 			<NavBar />
 			<div className="HomeLogin">
+
 				<ToastContainer />
+					<h1>Welcome to <span className="text-warning ">Mind-root Club </span></h1>
+				<br/>
+				<br/>
+				<div className="coverBoth m-6">
+				<img src={Background} alt="imgae" className="signup-form backIMg "/>
 				<div className="signup-form">
 					<form action="#" method="GET" className="SignupPanel" ref={form}  onSubmit={handleSubmit(onSubmit, onError)}>
 						<h2 className="CenterSi Feed">Sign In</h2>
@@ -190,14 +197,17 @@ const SignUp = () => {
 							</div>
 						</div>
 
-						<div className="form-group">
-							<label className="form-check-label"><input type="checkbox" required="required" className="largerCheckbox" onClick={()=>notify()}/><span className="LargeText"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></span></label>
+						<div className="form-group d-flex align-items-center flex-column">
+							<label className="form-check-label  "><input type="checkbox" required="required" className="largerCheckbox pr-10" onClick={()=>notify()}/><span className="LargeText"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></span></label>
 						</div>
-						<div className="form-group">
-							<button type="submit" className="btn btn-primary btn-lg" onClick={handleSubmit}>Sign In</button>
+						<div className="form-group  ">
+							<button type="submit" 
+							className="btn btn-primary btn-lg d-flex mx-auto text-center CustomCenter" 
+							onClick={handleSubmit}>Sign In</button>
 						</div>
 					</form>
 					<div className="text-center">Dont Have Account? <Link to="/Applyform"> Register </Link>  </div>
+				</div>
 				</div>
 			</div>
 		</>
