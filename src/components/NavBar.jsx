@@ -16,17 +16,17 @@ const NavBar = () => {
     // console.log(" A " , Alogin ," C " ,  Clogin , " R " , Role )
 
     
-    const [SearchValue , setSearchValue] = useState();
+    // const [SearchValue , setSearchValue] = useState();
  
-  console.log(SearchValue)
+  // console.log(SearchValue)
 
-        const test2 =  ()=>
-        {
+        // const test2 =  ()=>
+        // {
    
-          localStorage.setItem('search', SearchValue)
+        //   localStorage.setItem('search', SearchValue)
 
-          navigate(`/ViewEvents`);
-        }
+        //   navigate(`/ViewEvents`);
+        // }
   
       
 
@@ -35,12 +35,12 @@ return (
   <div className="" >
       <Navbar  expand="lg" className="mx-auto bg-dark navbar-light" sticky="top"  >
   <Container fluid >
-    {/* <Navbar.Brand href="#"><img src={Logo} className="LogoUp" /></Navbar.Brand> */}
+    <Navbar.Brand href="#" className="text-warning ">Mind-root Club</Navbar.Brand>
     <Navbar.Toggle aria-controls="navbarScroll"  />
     <Navbar.Collapse id="navbarScroll">
       <Nav
         className="HeaderItems"
-        
+         
         navbarScroll
       >
         
@@ -67,8 +67,8 @@ return (
       <></> 
       }
     </Nav>
-    <Link to="/Home" ><span className="HeaderLink">About</span></Link>
-    <Link to="/Home" ><span className="HeaderLink">Logout</span></Link>
+    <Link to="/About" ><span className="HeaderLink">About</span></Link>
+    <Link to="/Home" ><span className=" user-dropdown-menu">Logout</span></Link>
     </Navbar.Collapse>
   </Container>
 </Navbar>

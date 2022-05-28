@@ -108,12 +108,12 @@ const Applyform = () => {
         // console.log(data)
         notify();
         
-        // emailjs.sendForm('Mygmail1304', 'Mytemp1304', e.target , 'qY4WZ3P78KAZ_aTap')
-        // .then((result) => {
-        //     console.log(result.text);
-        // }, (error) => {
-        //     console.log(error.text);
-        // });
+        emailjs.sendForm('Mygmail1304', 'Mytemp1304', e.target , 'qY4WZ3P78KAZ_aTap')
+        .then((result) => {
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
         localStorage.setItem('Login' ,  Username)
         navigate(`/ClientPanel`);
     }

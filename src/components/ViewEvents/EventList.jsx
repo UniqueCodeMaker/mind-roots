@@ -287,11 +287,11 @@ const AddMember = () => {
                         </div>
                     </div>
                  
-                    <br />
-                    <button className=" font-weight-bold tn btn-outline-primary form-control" type="submit">
+                    {/* <br /> */}
+                    <button className=" font-weight-bold tn btn-outline-primary " type="submit">
                         Edit
                     </button>
-                    <Link to="/Events" style={{display: "inline" , marginLeft: "150px" , color:"white" , fontSize:"30px"}}> {`>`}</Link>
+                    <Link to="/Events" style={{display: "inline" , marginLeft: "150px" , color:"black" , fontSize:"30px"}}> {`>`}</Link>
                 </form>
 
             </div>

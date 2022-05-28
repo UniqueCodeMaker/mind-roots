@@ -17,7 +17,7 @@ import ViewMember from "./components/ViewMembers/ViewMember.jsx"
 import EventList from "./components/ViewEvents/EventList.jsx"
 import Events from "./components/ViewEvents/Events"
 import ParticlesBg from "particles-bg";
-
+import About from "./components/About"
 import { ProtectedRoute  , AuthRoute } from './config.jsx'
 import {
   BrowserRouter,
@@ -68,8 +68,8 @@ root.render(
     element={<AuthRoute isLoggedin={{ isUserLoggedInToken }}><SignUp /></AuthRoute>} />
       <Route path="/" element={< Home/>} />
       <Route path="Home" element={<Home />} />
-      {/* <Route path="SignUp" element={<SignUp /> } /> */}
       <Route path="Applyform" element={<Applyform />} />
+      <Route path="About" element={<About/>} />
       <Route path="ViewProfile" element={<ProtectedRoute isLoggedin={{isUserLoggedInToken}}><ViewProfile /></ProtectedRoute>} />
       <Route path="ViewEvents" element={<ProtectedRoute isLoggedin={   {isUserLoggedInToken} }><ViewEvents /></ProtectedRoute>} />
       <Route path="AddMember" element={<ProtectedRoute isLoggedin={   { isUserLoggedInToken } }><AddMember /></ProtectedRoute>} />

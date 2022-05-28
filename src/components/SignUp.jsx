@@ -206,7 +206,9 @@ const SignUp = () => {
 							onClick={handleSubmit}>Sign In</button>
 						</div>
 					</form>
+					{Role==2 ?
 					<div className="text-center">Dont Have Account? <Link to="/Applyform"> Register </Link>  </div>
+								:<></>}
 				</div>
 				</div>
 			</div>
