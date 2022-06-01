@@ -10,7 +10,8 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import classnames from 'classnames'
-import Background from "./HomeScreen/images/SignUp.jpg"
+
+import SideNavbar from "../Sidebar";
 const SignUp = () => {
 	const navigate = useNavigate();
 	const Role = localStorage.getItem('Role');
@@ -91,19 +92,19 @@ const SignUp = () => {
 				localStorage.setItem('token', responseJson)
 			}
 			)
-	}
-
-
-
-	const test3 = async () => {
-
+		}
+		
+		
+		
+		const test3 = async () => {
+			
 		await fetch(`http://localhost:5000/SignCheck/${Username}/${Password}/${Role}`)
-			.then((response) => response.json())
+		.then((response) => response.json())
 			.then((actualData) => { 
 				setCheck(true)
 				if(actualData.length == 0 )
 				{
-						notifyx();	
+					notifyx();	
 				}
 				else
 				{
@@ -146,6 +147,7 @@ const SignUp = () => {
 		<>
 
 			<NavBar />
+			<SideNavbar/>
 			<div className="HomeLogin">
 
 				<ToastContainer />
@@ -153,7 +155,6 @@ const SignUp = () => {
 				<br/>
 				<br/>
 				<div className="coverBoth m-6">
-				<img src={Background} alt="imgae" className="signup-form backIMg "/>
 				<div className="signup-form">
 					<form action="#" method="GET" className="SignupPanel" ref={form}  onSubmit={handleSubmit(onSubmit, onError)}>
 						<h2 className="CenterSi Feed">Sign In</h2>

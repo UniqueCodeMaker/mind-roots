@@ -11,6 +11,7 @@ app.use(cors())
 app.use(bodyParser.urlencoded({limit: '200mb', extended: true}));
 dotenv.config();
 app.use(bodyParser.json())
+app.use(express.json())
 
 // MySQL
 const pool = mysql.createPool({
@@ -85,6 +86,66 @@ app.get('/View', (req, res) => {
     res.status(200)
     
 })
+
+
+
+app.get('/SearchVal/:search', (req, res) => {
+    
+    pool.getConnection((err, connection) => {
+        
+        if(err) throw err
+        const search  =  (req.params.search)
+        console.log(`connected as id ${connection.threadId}`)
+        console.log("Hello conn")
+connection.query(`SELECT * from UserProfiles where name LIKE '${req.params.search}%' OR email LIKE '${req.params.search}%' OR mobile LIKE '${req.params.search}%' OR dob LIKE '${req.params.search}%' OR gender LIKE '${req.params.search}%' OR transaction LIKE '${req.params.search}%'` ,   (err, rows) => {
+            connection.release() // return the connection to pool
+
+            if(!err) {  
+
+                res.send(rows)
+
+
+
+
+            } else {
+                console.log(err)
+            }
+
+        })
+    })
+    res.status(200)
+    
+})
+
+
+app.get('/SearchEve/:search', (req, res) => {
+    
+    pool.getConnection((err, connection) => {
+        
+        if(err) throw err
+        const search  =  (req.params.search)
+        console.log(`connected as id ${connection.threadId}`)
+        console.log("Hello conn")
+connection.query(`SELECT * from Addevent where lead LIKE '${req.params.search}%' OR event LIKE '${req.params.search}%' OR location LIKE '${req.params.search}%' OR etime LIKE '${req.params.search}%' OR budget LIKE '${req.params.search}%' OR fees LIKE '${req.params.search}%'` ,   (err, rows) => {
+            connection.release() // return the connection to pool
+
+            if(!err) {  
+
+                res.send(rows)
+
+
+
+
+            } else {
+                console.log(err)
+            }
+
+        })
+    })
+    res.status(200)
+    
+})
+
 
 app.get('/Delete/:id', (req, res) => {
     // console.log("Hello")

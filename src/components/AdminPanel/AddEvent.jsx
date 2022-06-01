@@ -10,6 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
 import NavBar from "../NavBar"
+import SideNavbar from "../../Sidebar"
 const AddEvent =()=> {
   const notify = () => toast("Event Added Successfully", 
 	{
@@ -77,6 +78,7 @@ const AddEvent =()=> {
     return(
 <>
       <NavBar/>
+      <SideNavbar/>
 <div className="HomeLogin">
                   
                   <ToastContainer />

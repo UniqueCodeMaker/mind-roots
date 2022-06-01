@@ -3,6 +3,7 @@ import EventPanel from "./EventsPanel.jsx";
 import "../../App.css";
 import NavBar from "../NavBar";
 import moment from "moment";
+import SideNavbar from "../../Sidebar"
 const ViewEvents = () => {
     const [Events, setEvents] = useState([
       
@@ -41,6 +42,8 @@ const  DeletedUsers  =  () => {
      
      <>
      <NavBar/>
+     
+    <SideNavbar/>
      <div className="HomeLogin2" >
      <div className={hiddens}>
        <p>Do you Really Want to Delete this User </p>

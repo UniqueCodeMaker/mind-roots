@@ -5,18 +5,20 @@ import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
-import Background from "./images/HomeBack2.jpg"
+// import Background from "./images/HomeBack2.jpg"
+import Background from "./images/SignUp.jpg"
+import SideNavbar from "../../Sidebar";
 
 const Home = (props) => {
  
 const Alogin = localStorage.getItem("Alogin")
 const Clogin  = localStorage.getItem("Clogin")
 const notify = () => toast("Logout Successfully",
-		{
+{
 			transition: Zoom
 		});    
 useEffect(()=> {
-        if(Alogin==1 || Clogin==2)
+        if(Alogin==1 || Clogin==1)
         {
             notify();
         }
@@ -30,11 +32,11 @@ useEffect(()=> {
     localStorage.setItem('Alogin', 0)
     localStorage.setItem('token', 0)
     localStorage.setItem('Login', 0)
-
+    
     useEffect(() => {
         if (Role !== 0) {
             localStorage.setItem('Role', Role);
-           
+            
             history("/SignUp")
         }
     }, [Role])
@@ -45,12 +47,15 @@ useEffect(()=> {
         <>
         
          <NavBar />
+        <SideNavbar/>
         <ToastContainer/>
-    
+      
             <div className="HomeLogin ">
+        
             <div className="coverBoth m-6">
                             <div className="DetailsAbout">
-                                <img src={Background} alt="imgae" className="signup-form backIMg  OwnBack"/>
+                                 <img src={Background} alt="imgae" className="signup-form backIMg  OwnBack"/>
+				            
                             </div>
                 <div className="ControlUi">
                             <div className="midPanel signup-form">
@@ -71,7 +76,7 @@ useEffect(()=> {
                                 </span>
                                 <h4 className="Apply" > <Link to="/Applyform"> <span className="changeLcolor Feed">Apply</span> </Link></h4>
                             </div>
-                           <div className="TextAbout midPanel font-effect-fire font-effect-neon">
+                           <div className="TextAbout midPanel  ">
 
 This is Demo Project <br/>based on Club Events                             
                            </div>

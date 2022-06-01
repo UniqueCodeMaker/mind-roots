@@ -16,24 +16,12 @@ const NavBar = () => {
     // console.log(" A " , Alogin ," C " ,  Clogin , " R " , Role )
 
     
-    // const [SearchValue , setSearchValue] = useState();
- 
-  // console.log(SearchValue)
 
-        // const test2 =  ()=>
-        // {
-   
-        //   localStorage.setItem('search', SearchValue)
-
-        //   navigate(`/ViewEvents`);
-        // }
-  
-      
 
 return (
   <>
   <div className="" >
-      <Navbar  expand="lg" className="mx-auto bg-dark navbar-light" sticky="top"  >
+      <Navbar  expand="lg" className="mx-auto ownDark navbar-light" sticky="top"  >
   <Container fluid >
     <Navbar.Brand href="#" className="text-warning ">Mind-root Club</Navbar.Brand>
     <Navbar.Toggle aria-controls="navbarScroll"  />
@@ -66,12 +54,45 @@ return (
       :
       <></> 
       }
+
+
+
     </Nav>
     <Link to="/About" ><span className="HeaderLink">About</span></Link>
     <Link to="/Home" ><span className=" user-dropdown-menu">Logout</span></Link>
     </Navbar.Collapse>
+    
+
   </Container>
 </Navbar>
+{ (Alogin==1)?
+<div className="BreadCenter">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><Link to="/ViewProfile">View Profile</Link></li> 
+    <li class="breadcrumb-item"><Link to="/ViewEvents">View Events</Link></li>
+    <li class="breadcrumb-item"><Link to="/AddEvent">Add Event</Link></li>
+    <li class="breadcrumb-item"><Link to="/ViewMember">View Members</Link></li>
+   
+  </ol>
+</nav>
+
+</div>
+:(Clogin==1)?
+<div className="BreadCenter">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><Link to="/ViewProfile">View Profile</Link></li> 
+    <li class="breadcrumb-item"><Link to="/ViewEvents">View Events</Link></li>
+
+   
+  </ol>
+</nav>
+
+</div>
+:
+<></>
+}
 </div>
 
   </>

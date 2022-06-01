@@ -13,6 +13,7 @@ import {  Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
   import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
+  import SideNavbar from "../../Sidebar"
 // import moment from "moment"
 const intialVal = {
     "id": "",
@@ -133,6 +134,7 @@ const AddMember = () => {
     return (
         <>
         <NavBar/>
+        <SideNavbar/>
       <div className="ApplyForm">
       <ToastContainer />
             <div className="FormPanel d-flex justify-content-center BackTrans">

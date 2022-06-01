@@ -2,12 +2,14 @@ import BackAbout from "./HomeScreen/images/BackAbout.jpg"
 import "../App.css";
 import { useNavigate, Link } from "react-router-dom";
 import NavBar from "../components/NavBar"
+import SideNavbar from "../Sidebar";
 const About  =  () => {
 
     return (
 
         <>
         <NavBar/>
+<SideNavbar/>
         <div className="container-fluid Imagesback">
             {/* <img src={BackAbout} alt="" /> */}
             {/* <Link to="/ViewMember" style={{display: "inline" , marginLeft: "150px" , color:"white" , fontSize:"30px"}}></Link> */}

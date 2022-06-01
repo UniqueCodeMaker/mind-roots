@@ -13,6 +13,7 @@ import Flatpickr from 'react-flatpickr'
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
   import {  Link } from "react-router-dom";
+  import SideNavbar from "../../Sidebar";
   import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
 const intialVal = {
     "EImageUrl": "",
@@ -82,7 +83,7 @@ const AddMember = () => {
         gender: yup.string(),
     })
     const { register, formState: { errors }, handleSubmit, watch, reset } = useForm({ mode: 'onChange', resolver: yupResolver(registerUser) })
-
+    
     const onSubmit = async (data) => {
   
         
@@ -96,12 +97,12 @@ const AddMember = () => {
             body: JSON.stringify(details),
         };
         const res = await fetch('http://localhost:5000/Editevent', requestOptions)
-     
+        
         notify();
         setChangeD("date")
         setChangeT("time")
         setDetails("")
-
+        
       
 
     }
@@ -109,31 +110,32 @@ const AddMember = () => {
 
 
     const onError = (errors, e) => console.log(errors, e);
-
+    
     const [Check, setCheck] = useState([{}]);
     const [ChangeD, setChangeD] = useState("date");
     const [ChangeT, setChangeT] = useState("time");
     
     // const [loading, setloading] = useState(false);
-
-
-
-
+    
+    
+    
+    
     const test2 = async () => {
         await fetch(`http://localhost:5000/View`)
-            .then((response) => response.json())
-            .then((actualData) => setCheck(actualData)
-         
-            )
+        .then((response) => response.json())
+        .then((actualData) => setCheck(actualData)
+        
+        )
     }
-
+    
     return (
         <>
         <NavBar/>
+        <SideNavbar/>
       <div className="ApplyForm">
       <ToastContainer />
             <div className="FormPanel d-flex justify-content-center BackTrans">
-         
+        
                 <form className=" form-control mb-3 row " ref={form} onSubmit={handleSubmit(onSubmit, onError)}>
                     <h3 className="titleForm">Edit Events</h3>
                     <div className="form-infor-profile">
@@ -287,7 +289,7 @@ const AddMember = () => {
                         </div>
                     </div>
                  
-                    {/* <br /> */}
+                    
                     <button className=" font-weight-bold tn btn-outline-primary " type="submit">
                         Edit
                     </button>

@@ -2,13 +2,11 @@
 {
     margin:0;
     padding: 0;
-    /* border-radius:20px; */
     font-family: "sans sarif";
   }
 *::-webkit-scrollbar
 {
-  /* overflow: hidden; */
-  scrollbar-width: none;
+    scrollbar-width: none;
   display:none;
   
 }
@@ -17,8 +15,7 @@
   display:flex;
   flex-direction:row;
   justify-content: space-between;
-width: 87%;
-/* border:2px solid black; */
+  width: 87%;
 }
 .backIMg
 {
@@ -48,8 +45,6 @@ width: 87%;
   height:calc( 100vh - 64px);
   top:0;
   overflow-y: scroll;
-  /* opacity: 0.9; */
-  /* border:2px solid white; */
 }
 .FormPanel 
 {
@@ -81,7 +76,7 @@ width: 87%;
 {
     background-color: transparent;
     border:2px solid black;
-    /* color:rgb(0, 0, 255); */
+    color:white;
     border-radius:10px;
     -webkit-border-radius:10px;
     -moz-border-radius:10px;
@@ -90,7 +85,7 @@ width: 87%;
 }
 .form-control::placeholder
 {
-    color:black;
+    color:white;
 }
 
 
@@ -169,7 +164,7 @@ width: 87%;
 {
   font-family: "Josefin Sans";
   /* background-color: rgb(61, 67, 255); */
-  color:black;
+  color:white;
   /*padding: 5px;
   *//*align-items: center;
   */justify-content: center;
@@ -242,7 +237,7 @@ width: 87%;
 .Row1
 {
     font-family: verdana, arial, helvetica;
-    color:rgb(0, 0, 0);    
+    color:white;    
 }
 .Midrow
 {
@@ -266,12 +261,12 @@ width: 87%;
 }
 .button-74,.button-73 {
   appearance: none;
-  background-color: #00e1ff;
+  background-color: transparent;
   border-radius: 40em;
   border-style: none;
-  box-shadow: #001aff 0 -12px 6px inset;
+  box-shadow: #000000 0 -12px 6px inset;
   box-sizing: border-box;
-  color: #000000;
+  color: white;
   cursor: pointer;
   display: inline-block;
   font-family: -apple-system,sans-serif;
@@ -291,15 +286,15 @@ width: 87%;
 }
 
 .button-73:hover {
-  background-color: #436fff;
-  box-shadow: #14ebff 0 -6px 8px inset;
+  /* background-color: #436fff; */
+  box-shadow: #000000 0 -6px 8px inset;
   transform: scale(1.125);
   color:white;
 }   
 
 .button-74:hover {
-    background-color: #ff0000;
-    box-shadow: #ffef0c 0 -6px 8px inset;
+    /* background-color: #ff0000; */
+    box-shadow: #000000 0 -6px 8px inset;
     transform: scale(1.125);
     color:white;
 }
@@ -339,7 +334,7 @@ width: 87%;
 
 .changeLcolor
 {
-  color:black;
+  color:white;
   text-decoration: none;
 }
 
@@ -348,14 +343,14 @@ a
   text-decoration:none;
   padding-top: 8px;
   background-color: transparent;
-  color:black;
+  color:white;
   margin:0px;
 
 }
 a:hover
 {
   background-color:transparent !important;
-  color:black;
+  color:white;
 }
 
 
@@ -364,11 +359,11 @@ a:hover
 /* CSS */
 .button-56 {
   align-items: center;
-  background-color: #11fefe;
+  background-color: #000000;
   border: 2px solid rgb(0, 0, 0);
   border-radius: 8px;
   box-sizing: border-box;
-  color: rgb(0, 21, 255);
+  color: rgb(255, 255, 255);
   cursor: pointer;
   display: flex;
   font-family: Inter,sans-serif;
@@ -558,7 +553,7 @@ a:hover
 {
   display: flex;
   flex-direction: column;
-  background-color:rgb(48, 48, 48);
+  background-color:rgb(0, 0, 0);
   color:white;
   width:max-content  ;
   height:calc( 100vh - 64px);
@@ -583,11 +578,11 @@ a:hover
   display:flex;
   position:absolute;
   z-index: 2px;
-  top:70px;
+  top:130px;
   left:53%;
    width:max-content;
   height:max-content;
-  background-color:white;
+  /* background-color:white; */
   border-radius:50%;
   object-fit: cover;
   max-width: 150px;
@@ -604,7 +599,7 @@ a:hover
 .midLine
 {
   width:100%;
-  margin-top:30px;
+  margin-top:50px;
 
   align-items: center;
   display:flex;
@@ -630,6 +625,7 @@ a:hover
   -moz-border-radius: 30%;
   -ms-border-radius: 30%;
   -o-border-radius: 30%;
+  top: 250px !important;;
 }
 .CProfileEmail
 {
@@ -650,7 +646,7 @@ a:hover
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-left: 50px;
+  /* padding-left: 50px; */
   padding-bottom:20px;
   font-family: 'Times New Roman', Times, serif;
 }
@@ -676,20 +672,25 @@ a:hover
 /* Tooltip text */
 .IconsView .tooltiptext {
   visibility: hidden;
-  width: 120px;
-  background-color:  aquamarine;
-  color: black;
+  width: max-content;
+  background-color:  rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   text-align: center;
   font-weight: bold;
-  padding: 5px 0;
+  padding: 5px 10px;
   margin: 5px 5px;
   border-radius: 6px;
- 
-  /* Position the tooltip text - see examples below! */
-  position: absolute;
+  /*Positionthetooltiptext-seeexamplesbelow!*/position: absolute;
   z-index: 1;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
 }
-
+.show
+{
+  color: black !important;
+}
 /* Show the tooltip text when you mouse over the tooltip container */
 .IconsView:hover .tooltiptext {
   visibility: visible;
@@ -734,7 +735,7 @@ a:hover
   position: absolute !important;
   right:0 !important;
   top:10px;
-  color:white;
+  color: black !important;;
   padding:5px;
   padding-left:20px;
   padding-right:20px;
@@ -743,7 +744,7 @@ a:hover
 .user-dropdown-menu:hover
 {
   background-color:white;
-  color:black;
+  color: black !important;;
 }
 
 .Imagesback
@@ -903,9 +904,9 @@ input.largerCheckbox {
   right:200px;
   z-index:20;
   font-family: "Sofia";
-  color:black;
+  color:rgb(166, 0, 255);
   /* background-color:white; */
-  text-shadow: 10px 5px 5px  rgba(0, 0, 0, 0.61);
+  text-shadow: 10px 5px 5px  rgb(83, 28, 113);
     border:none !important;
   box-shadow: none !important;
   /* background-color: white; */
@@ -952,17 +953,17 @@ input.largerCheckbox {
 .signup-form .btn, .signup-form .btn:active {        
 	font-size: 20px;
 	font-weight: bold;
-	background: #2affd4 !important;
+	background: #000000 !important;
 	border: none;
 	min-width: 140px;
   /* margin: 0 auto; */
 }
 .signup-form .btn:hover, .signup-form .btn:focus {
-	background: #214aff !important;
+	background: #ffffff !important;
   color:black;
 }
 .signup-form a {
-	color: red;	
+	color: white;	
 	text-decoration: none;
 }
 .signup-form a:hover {
@@ -1219,7 +1220,7 @@ background-color: transparent;
 
 .Feed
 {
-  /* color: white!important;   */
+  color: white!important;  
 }
 .BtnWDHT
 {
@@ -1231,3 +1232,128 @@ background-color: transparent;
 }
 
 
+
+.BreadCenter
+{
+  display: flex ; 
+  flex-direction: row;
+  align-items: center;
+  margin: 0 auto;
+  justify-content: center;
+  z-index: 1000;
+    font-size:20px;
+    margin-top:20px;
+}
+
+.TextBold
+{
+  color:black;
+  font-weight:bold;
+  cursor: pointer;
+
+}
+.TextBold:hover{
+  font-size: 20px;
+}
+
+
+.MyDataTable , .MyDataTable2 
+{
+  display:  flex;
+  /* border:2px solid black; */
+  width: 100%;
+  flex-direction:row;
+  justify-content:space-between;
+  padding:8px;
+}
+.MyDataTable2
+{
+  justify-content:space-evenly;
+}
+.MydataEnter
+{
+  display: flex;
+  flex-direction:row;
+  padding:8px;
+}
+
+
+.Sidebar
+{
+  width: 4%;
+  position: absolute;
+  height:calc( 100vh - 64px);
+   /* min-height: 200vh; */
+  display:flex;
+  /* top:-500px; */
+  /* overflow:hidden; */
+  /* background-color:blue; */
+} 
+
+.ownDark
+{
+  background-color:black
+}
+
+.bg-dark
+{
+  background-color:black!important;
+
+}
+.HomeLogin3 , .MyDataTable2  , .MyDataTable , .BreadCenter   , .HomeLogin2 , .Applyform , .HomeLogin3 
+{
+  width: 96% !important;
+  float: right !important;
+  /* background-color: transparent !important; */
+  color:white;
+}
+.HomeLogin3{
+  height:90vh!important;
+  
+}
+.BreadCenter
+{
+  display: none !important;
+}
+
+.TopCorner {
+  top:60px;
+  left:70px;
+
+  position: absolute;
+}
+
+.TopCornerRight {
+  top:180px;
+  left:400px;
+  position: absolute;
+}
+.TopCornerRightmore {
+  top:340px;
+  left:700px;
+  position: absolute;
+}
+
+.TopCornerRightmore2 {
+  top:540px;
+  left:1100px;
+  position: absolute;
+}
+.BottomLeft
+{
+  position: absolute;
+  /* bottom: 0; */
+  top:740px;
+  left:1500px;
+
+}
+
+body
+{
+  overflow:scroll;
+}
+
+h1 , h2 , h3 , h4 , h5 , h6
+{
+  color: white;
+}

@@ -18,15 +18,18 @@ import EventList from "./components/ViewEvents/EventList.jsx"
 import Events from "./components/ViewEvents/Events"
 import ParticlesBg from "particles-bg";
 import About from "./components/About"
+
+
+import '.././src/App.css'
 import { ProtectedRoute  , AuthRoute } from './config.jsx'
 import {
   BrowserRouter,
   Routes,
   Route,
+  useNavigate
 } from "react-router-dom";
 const isUserLoggedInToken = localStorage.getItem('token');
-// console.log(isUserLoggedInToken)
-// console.log(isUserLoggedInToken)
+
 let config = {
   num: [10, 30],
   rps: 3.8,
@@ -60,14 +63,19 @@ if (Math.random() > 0.85) {
   });
 }
 const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(
-  <BrowserRouter>
+
+root.render(<>
+
+<BrowserRouter>
+
      <ParticlesBg type="custom" config={config} bg={true} />
+   
     <Routes>
     <Route exact path={`/SignUp`} 
     element={<AuthRoute isLoggedin={{ isUserLoggedInToken }}><SignUp /></AuthRoute>} />
       <Route path="/" element={< Home/>} />
       <Route path="Home" element={<Home />} />
+     
       <Route path="Applyform" element={<Applyform />} />
       <Route path="About" element={<About/>} />
       <Route path="ViewProfile" element={<ProtectedRoute isLoggedin={{isUserLoggedInToken}}><ViewProfile /></ProtectedRoute>} />
@@ -86,7 +94,7 @@ root.render(
     </Routes>
   </BrowserRouter>
 
-
+  </>
 );
 
 

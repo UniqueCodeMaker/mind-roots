@@ -6,12 +6,13 @@ import { FaRegUserCircle } from 'react-icons/fa';
 import { FaMoneyCheckAlt } from 'react-icons/fa';
 import { HiOutlineMail } from "react-icons/hi";
 import { BsCalendarDate } from "react-icons/bs";
+
 import { BsGenderAmbiguous   } from "react-icons/bs";
 import { MdOutlinePassword } from "react-icons/md";
 import webImg from "../HomeScreen/images/ClientPic2.webp"
 import NavBar from "../NavBar";
 import moment from 'moment';
-// import 'moment-timezone';
+import SideNavbar from "../../Sidebar"
 const ViewProfile = () => {
     const [Check,setCheck ] = useState([{}]); 
   
@@ -41,6 +42,7 @@ const ViewProfile = () => {
     return( 
        <>
         <NavBar/>
+            <SideNavbar/>
         <div className="HomeLogin">
             
        <div className="DesignPanel">

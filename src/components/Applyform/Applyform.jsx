@@ -15,6 +15,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
 import NavBar from "../NavBar"
+import SideNavbar from "../../Sidebar"
 const Applyform = () => {
     let navigate = useNavigate()
     const START = 100;
@@ -126,7 +127,7 @@ const Applyform = () => {
     return (
         <>
             <NavBar />
-
+            <SideNavbar/>
             <div className="ApplyForm">
                 <ToastContainer />
                 <div className="FormPanel d-flex justify-content-center BackTrans">
@@ -138,7 +139,7 @@ const Applyform = () => {
 
                                 <ImageUpload />
                                 <Col sm={12}>
-                                    <label className="label label-primary ">Name</label>
+                                    <label className="label text-light ">Name</label>
                                     <input
                                         id="name"
                                         defaultValue={user?.name}
@@ -152,7 +153,7 @@ const Applyform = () => {
                                     {errors && errors?.name && <FormFeedback>Please type Name</FormFeedback>}
                                 </Col>
                                 <Col sm={12}>
-                                    <label className="label label-primary">Email</label>
+                                    <label className="label text-light">Email</label>
                                     <input
                                         id="email"
                                         defaultValue={user?.email}
@@ -169,7 +170,7 @@ const Applyform = () => {
                             <div className="info-social">
 
                                 <Col sm={12}>
-                                    <label className="label label-primary">Password</label>
+                                    <label className="label text-light">Password</label>
                                     <input
                                         // id="password"
                                         id="inputPassword"
@@ -182,7 +183,7 @@ const Applyform = () => {
                                     {errors && errors?.password && <FormFeedback>Please type Password</FormFeedback>}
                                 </Col>
                                 <Col sm={12}>
-                                    <label className="label label-primary">Mobile</label>
+                                    <label className="label text-light">Mobile</label>
                                     <input
                                         id="mobile"
                                         {...register('mobile', { required: true })}
@@ -196,7 +197,7 @@ const Applyform = () => {
                                 <row>
                                     <Col sm={12}>
                                         <div className="form-group  md-form ">
-                                            <label className="label label-primary ">Date Of Birth</label>
+                                            <label className="label text-light ">Date Of Birth</label>
                                             <input
                                                 id="dob datetimepicker1"
                                                 defaultValue={user?.dob}
@@ -213,7 +214,7 @@ const Applyform = () => {
                                     </Col>
                                 </row>
 
-                                <Col sm={12}>  <label className="label label-primary ">Gender</label>
+                                <Col sm={12}>  <label className="label text-light ">Gender</label>
                                     <select
                                         name="gender"
                                         id="gender"
