@@ -4,8 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import "./App.css";
 const SideNavbar = () => {
     const navigate = useNavigate();
-return (
+    const Alogin = localStorage.getItem("Alogin")
+    const Clogin = localStorage.getItem("Clogin")
 
+return (
+<>
+{ (Alogin!=0 || Clogin!=0) ? 
   <div className="Sidebar">
   <SideNav
 onSelect={(selected) => {
@@ -22,39 +26,44 @@ onSelect={(selected) => {
           Home
       </NavText>
   </NavItem>
-  <NavItem eventKey="charts">
+  <NavItem eventKey="Members">
       <NavIcon>
       <i class="fa fa-user-secret" aria-hidden="true"  style={{ fontSize: '1.75em' }}></i>
       </NavIcon>
       <NavText>
           Members
       </NavText>
-      <NavItem eventKey="charts/linechart">
+      <NavItem eventKey="/Applyform">
           <NavText>
             Add Members
           </NavText>
       </NavItem>
-      <NavItem eventKey="charts/barchart">
+      <NavItem eventKey="/ViewMember">
           <NavText>
               View Members
           </NavText>
       </NavItem>
   </NavItem>
-  <NavItem eventKey="test">
+  <NavItem eventKey="Events">
       <NavIcon>
       <i class="fa fa-snowflake-o" aria-hidden="true" style={{ fontSize: '1.75em' }}></i>
       </NavIcon>
       <NavText>
           Events
       </NavText>
-      <NavItem eventKey="charts/linechart">
+      <NavItem eventKey="/AddEvent">
           <NavText>
               Add Events
           </NavText>
       </NavItem>
-      <NavItem eventKey="charts/barchart">
+      <NavItem eventKey="/EventList">
           <NavText>
               Edit Events
+          </NavText>
+      </NavItem>
+      <NavItem eventKey="/ViewEvents">
+          <NavText>
+              View Events
           </NavText>
       </NavItem>
   </NavItem>
@@ -66,12 +75,12 @@ onSelect={(selected) => {
       <NavText>
           Profiles
       </NavText>
-      <NavItem eventKey="charts/linechart">
+      <NavItem eventKey="/SignUp">
           <NavText>
               Sign In
           </NavText>
       </NavItem>
-      <NavItem eventKey="charts/barchart">
+      <NavItem eventKey="/Home">
           <NavText>
               Logout
           </NavText>
@@ -85,6 +94,10 @@ onSelect={(selected) => {
 </SideNav.Nav>
 </SideNav>
   </div>
+:
+<></>  
+}
+  </>
 )
 
 

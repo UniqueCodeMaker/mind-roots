@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useLayoutEffect, useState } from "react";
 
 
 function DaysLeft() {
@@ -22,7 +22,7 @@ function DaysLeft() {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
   const [year] = useState(new Date().getFullYear());
 
-  useEffect(() => {
+ useLayoutEffect(() => {
     setTimeout(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);

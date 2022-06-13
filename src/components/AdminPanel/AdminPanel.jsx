@@ -3,13 +3,12 @@ import "../../App.css";
 import NavBar from "../NavBar"
 import moment from "moment"
 import SideNavbar from "../../Sidebar"
-import { useNavigate, Link } from "react-router-dom";
+import {Link} from "react-router-dom"
 const AdminPanel =()=>{
 
     localStorage.setItem("Alogin" , 1)
 
-
-
+    
 
 
     return(
@@ -30,10 +29,6 @@ const AdminPanel =()=>{
 
        </div>
         
-       
-    
-    
-    
     
     
     

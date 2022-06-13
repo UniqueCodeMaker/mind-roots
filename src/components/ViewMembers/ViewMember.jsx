@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from "react";
+import react, { useState, useEffect , useLayoutEffect } from "react";
 import Table from 'react-bootstrap/Table';
 import axios from "axios"
 import "../../App.css";
@@ -7,6 +7,7 @@ import NavBar from "../NavBar"
 import { ToastContainer, toast } from 'react-toastify';
 import moment from 'moment'
 import 'react-toastify/dist/ReactToastify.css';
+
 import SideNavbar from "../../Sidebar"
 import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
 const ViewMember = () => {
@@ -14,12 +15,14 @@ const ViewMember = () => {
   const [hiddens, sethiddens] = useState("hidden");
   const [DoneD, setDoneD] = useState("");
   const [Search , setSearch] = useState("");
-  const navigate = useNavigate();
   const[ Limit , setLimit]= useState(5);
   const[Startvalue , setStartvalue]= useState(0);
   const[Endvalue , setEndvalue]= useState(5);
   const[page , setPage]= useState(1);
-
+  const[ToggleName , setToggleName] = useState(0);
+  const[ToggleEmail , setToggleEmail] = useState(0);
+  const navigate = useNavigate();
+  const TotalCount = Members.length;
   const notify = () => toast("User Deleted successfully",
     {
       transition: Zoom
@@ -55,6 +58,21 @@ const Login  =  localStorage.getItem("Login")
 
   }
 
+
+
+ useLayoutEffect(() => {
+  fetch(`http://localhost:5000/testdata/${ToggleName}`)
+  .then((response) => response.json())
+  .then((actualData) => setMembers(actualData))
+}, [ToggleName]);
+
+useLayoutEffect(() => {
+  fetch(`http://localhost:5000/testemail/${ToggleEmail}`)
+  .then((response) => response.json())
+  .then((actualData) => setMembers(actualData)) 
+}, [ToggleEmail]);
+
+
   
   const DeletedUsers = () => {
       // console.log(DoneD)
@@ -80,7 +98,7 @@ const Login  =  localStorage.getItem("Login")
   }
 
 
-  useEffect(() => {
+ useLayoutEffect(() => {
     test();
 
   }, []);
@@ -99,7 +117,7 @@ const Login  =  localStorage.getItem("Login")
   }
 
 
-  useEffect( () => {
+ useLayoutEffect( () => {
     if(Search!="")
 {    SearchVal();
 }
@@ -111,7 +129,7 @@ else
   }, [Search])
 
 
-  useEffect( () => {
+ useLayoutEffect( () => {
     setEndvalue(Limit)
     
   }, [Limit])
@@ -120,13 +138,13 @@ else
 
  const IncrValue = () => {
     setPage(page+1)
-    setStartvalue(Startvalue+5)
+    setStartvalue(Startvalue+Limit)
     setEndvalue(Endvalue+5)
  }
 
  const Decrvalue = () => {
   setPage(page-1)
-  setStartvalue(Startvalue-5)
+  setStartvalue(Startvalue-Limit)
   setEndvalue(Endvalue-5)
 }
   return (
@@ -135,42 +153,51 @@ else
       <SideNavbar/>
       <form className="MyDataTable" > 
    <div className="MydataEnter">
-    <label className="px-2 h4">Show</label> 
-    <select className="px-2 h4" aria-label="Default select example" 
+    <label className="px-2 h5 ">Show</label> 
+    <select className="px-2 h5 " aria-label="Default select example" 
     onChange={(e)=>setLimit(Number(e.target.value))}
+
     >
 
   <option value="5" selected>5</option>
   <option value="10">10</option>
   <option value="15">15</option>
 </select>
-<label className="px-2 h4">entries</label>
+<label className="px-2 h5 ">entries</label>
 </div>
 
 <div className="MydataEnter">
-  <label  className="px-2 h4 py-2">Search:</label>
-  <input  className="px-2 h4 form-control"
+  <input  className="px-2 h4 form-control border-light"
   onChange={(e)=>setSearch(e.target.value)}
+  placeholder="Search Members"
+
   />
 </div>
     </form>
       <div className="HomeLogin3 ">
    
-      <div className="table-responsive-md">
+      <div className="table-responsive-sm Res-table">
         {
 
           Members?.length > 0 ? (
-            <Table  bordered className="table bg-dark text-light " style={{ textAlign: "center" }}>
+            <Table  bordered className="table bg-dark text-light table-condensed table-responsive overflow-scroll" style={{ textAlign: "center" }}>
               <thead >
                 <tr>
-                  <th  className="col-sm-1 " >Id</th>
-                  <th className="col-sm-1">Name</th>
-                  <th className="col-sm-2" >Email</th>
-                  <th className="col-sm-2">Mobile</th>
-                  <th className="col-sm-1">DOB</th>
-                  <th className="col-sm-1">Gender</th>
-                  <th className="col-sm-1">TransactionId</th>
-                  <th>Admin </th>
+                
+                  <th  className="col-sm-1 overflow-scroll h6 small"  >Id</th>
+                  <th className="col-sm-1 overflow-scroll h6 small" 
+                  style={{cursor: "pointer"}} 
+                  onClick={()=>setToggleName(!ToggleName)}
+                  >Name</th>
+                  <th className="col-sm-2 overflow-scroll h6 small" 
+                  style={{cursor: "pointer"}}
+                  onClick={()=>setToggleEmail(!ToggleEmail)}
+                  >Email</th>
+                  <th className="col-sm-2 overflow-scroll h6 small">Mobile</th>
+                  <th className="col-sm-1 overflow-scroll h6 small">DOB</th>
+                  <th className="col-sm-1  overflow-scroll h6 small">Gender</th>
+                  <th className="col-sm-2 overflow-scroll h6 small">TransactionId</th>
+                  <th className="overflow-scroll h6 small">Admin </th>
                 </tr>
               </thead>
               <tbody>
@@ -178,18 +205,18 @@ else
                 {Members.slice(Startvalue,Endvalue).map((Member, i) => (
                   
                   <tr>
-                    <td>{Startvalue+i+1}</td>
-                    <td>{Member.name}</td>
-                    <td>{Member.email}</td>
-                    <td>{Member.mobile}</td>
-                    <td>{moment(Member.dob).format('YYYY-MM-DD')}</td>
-                    <td>{Member.gender}</td>
-                    <td>{Member.transaction}</td>
-                    <td>
+                    <td className=" overflow-scroll fst-italic h6 small">{Startvalue+i+1}</td>
+                    <td className=" overflow-scroll fst-italic h6 small">{Member.name}</td>
+                    <td className=" overflow-scroll fst-italic h6 small">{Member.email}</td>
+                    <td className=" overflow-scroll fst-italic h6 small">{Member.mobile}</td>
+                    <td className=" overflow-scroll fst-italic h6 small">{moment(Member.dob).format('YYYY-MM-DD')}</td>
+                    <td className=" overflow-scroll fst-italic h6 small">{Member.gender}</td>
+                    <td className=" overflow-scroll fst-italic h6 small">{Member.transaction}</td>
+                    <td className="overflow-scroll fst-italic h6 small TestFlex">
 
                       <div onClick={HandleDelete.bind(this, Member.id)} key={Member.id+91} className="rights">Delete</div>
                       <div onClick={HandleEdit.bind(this, Member.id)} key={Member.id+92} className="rights">Edit</div>
-                      <div className="hidden">{sample = i+1}</div>
+                      <div className="hidden">{sample =Startvalue + i+1}</div>
                         
                     </td>
                   
@@ -212,18 +239,23 @@ else
 </div>
 <div className="MyDataTable2" > 
    <div className="MydataEnter">
-    <label className=" h4">Showing</label> 
-    <label className="px-2 h4">{Startvalue+1} to {Endvalue} of {15}</label> 
+    <label className=" h5 small">Showing</label> 
+    <label className="px-1 h5 small">{Startvalue+1} to {sample} of {TotalCount}</label> 
         
-<label className=" h4">entries</label>
+<label className=" h5 small ">entries</label>
 </div>
 
-<nav aria-label="Page navigation example ">
-  <ul className="pagination">
-    <li className="page-item" onClick={()=>Decrvalue()}><Link className="page-link" to=""><span className="TextBold">{`<<`}</span></Link></li>
+<nav aria-label="Page navigation example  " className="bg-transparent">
+  <ul className="pagination bg-transparent">
+  <li className="page-item"  
+  onClick={page==1?( ()=>{} ):()=>Decrvalue()}
+  ><Link className="page-link" to=""><span className="TextBold">{page-1}</span></Link></li>        
+    <li className="page-item" onClick={page==1?( ()=>{} ):()=>Decrvalue()}><Link className="page-link" to=""><span className="TextBold">{`<<`}</span></Link></li>
     <li className="page-item"><Link className="page-link" to=""><span className="TextBold">{page}</span></Link></li>
-  
-    <li className="page-item" onClick={()=>IncrValue()}><Link className="page-link" to=""><span className="TextBold">{`>>`}</span></Link></li>
+   
+    <li className="page-item"  onClick={sample>=TotalCount?( ()=>{} ):()=>IncrValue()}><Link className="page-link" to=""><span className="TextBold">{`>>`}</span></Link></li>
+    <li className="page-item" onClick={sample>=TotalCount?( ()=>{} ):()=>IncrValue()}><Link className="page-link" to=""><span className="TextBold">{page+1}</span></Link></li>
+    
   </ul>
 </nav>
     </div>

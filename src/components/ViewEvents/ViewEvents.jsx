@@ -1,4 +1,4 @@
-import react , {useState , useEffect} from "react";
+import react , {useState , useLayoutEffect} from "react";
 import EventPanel from "./EventsPanel.jsx";
 import "../../App.css";
 import NavBar from "../NavBar";
@@ -14,7 +14,7 @@ const ViewEvents = () => {
 const searchv = localStorage.getItem("search")
 
 console.log(searchv)
-useEffect(() => {
+useLayoutEffect(() => {
           test2();
         
      
@@ -43,8 +43,8 @@ const  DeletedUsers  =  () => {
      <>
      <NavBar/>
      
-    <SideNavbar/>
-     <div className="HomeLogin2" >
+    {/* <SideNavbar/> */}
+     <div className="HomeLogin5" >
      <div className={hiddens}>
        <p>Do you Really Want to Delete this User </p>
        <div className="DeletePopB">
@@ -59,6 +59,7 @@ const  DeletedUsers  =  () => {
 <EventPanel event={event} />
 
 )
+
 
 
 

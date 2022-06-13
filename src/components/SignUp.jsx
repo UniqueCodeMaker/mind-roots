@@ -1,4 +1,4 @@
-import React, { useState, useEffect , useRef } from "react";
+import React, { useState, useLayoutEffect , useRef } from "react";
 import "../App.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -50,7 +50,7 @@ const SignUp = () => {
 
 	}
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 	
 		if(Role==1 )
 		{
@@ -148,13 +148,14 @@ const SignUp = () => {
 
 			<NavBar />
 			<SideNavbar/>
-			<div className="HomeLogin">
+			<div className="HomeLogin ">
 
 				<ToastContainer />
 					<h1>Welcome to <span className="text-warning ">Mind-root Club </span></h1>
 				<br/>
 				<br/>
 				<div className="coverBoth m-6">
+		{/* <img src="" /> */}
 				<div className="signup-form">
 					<form action="#" method="GET" className="SignupPanel" ref={form}  onSubmit={handleSubmit(onSubmit, onError)}>
 						<h2 className="CenterSi Feed">Sign In</h2>
@@ -203,7 +204,7 @@ const SignUp = () => {
 						</div>
 						<div className="form-group  ">
 							<button type="submit" 
-							className="btn btn-primary btn-lg d-flex mx-auto text-center CustomCenter" 
+							className="btn d-flex mx-auto CustomCenter " 
 							onClick={handleSubmit}>Sign In</button>
 						</div>
 					</form>

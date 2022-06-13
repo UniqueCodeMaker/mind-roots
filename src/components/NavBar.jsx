@@ -8,6 +8,7 @@ const NavBar = () => {
   let navigate = useNavigate()
     const Title = <span className='HeaderLink'>Admin </span>;
     const Title2 = <span className='HeaderLink'>Client </span>;
+    const Title3 = <span className='HeaderLink'>Profile </span>;
 
    
     const Clogin = localStorage.getItem('Clogin')
@@ -57,9 +58,12 @@ return (
 
 
 
+
+    <NavDropdown  title={Title3} id="collasible-nav-dropdown" >
+    <Link to="/About" ><span className=""><center>About</center></span></Link>
+    <Link to="/Home" ><span className=""><center>Logout</center></span></Link>
+    </NavDropdown>
     </Nav>
-    <Link to="/About" ><span className="HeaderLink">About</span></Link>
-    <Link to="/Home" ><span className=" user-dropdown-menu">Logout</span></Link>
     </Navbar.Collapse>
     
 

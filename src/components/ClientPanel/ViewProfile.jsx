@@ -1,4 +1,4 @@
-import React,{ useState , useEffect } from "react"
+import React,{ useState ,useLayoutEffect } from "react"
 import "../../App.css";
 import CProfilePic from "../HomeScreen/images/ClientPic2.webp"
 import { FaMobileAlt } from 'react-icons/fa';
@@ -26,7 +26,7 @@ const ViewProfile = () => {
 
      }
 
-                useEffect(() => {
+               useLayoutEffect(() => {
                  
                     test2();
                     

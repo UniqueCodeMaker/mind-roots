@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState,useLayoutEffect } from 'react';
 import "../../App.css";
 import moment from "moment";
 import { useForm } from 'react-hook-form'
@@ -32,7 +32,7 @@ const AddMember = () => {
     
     const [details, setDetails] = useState(intialVal);
     
-    useEffect(() => {
+   useLayoutEffect(() => {
         test2();
          
         setChangeD("text")
@@ -139,12 +139,12 @@ const AddMember = () => {
       <ToastContainer />
             <div className="FormPanel d-flex justify-content-center BackTrans">
              
-                <form className=" form-control mb-3 row " ref={form} onSubmit={handleSubmit(onSubmit, onError )}>
+                <form className=" form-control mb-3 row  AddEventF" ref={form} onSubmit={handleSubmit(onSubmit, onError )}>
                     <h3 className="titleForm">Edit Record</h3>
                     <div className="form-infor-profile">
                         <div className="info-account">
                             
-                                <Col sm={12}>
+                                {/* <Col sm={12}>
                                     <select
                                         name="User"
                                         id="User"
@@ -166,11 +166,11 @@ const AddMember = () => {
 
                                     >
                                         {/* <option value="Select Users" hidden selected>Select Users</option> */}
-                                        {Check.map((checks) => <option value={checks.name}  >{checks.name}</option>)
+                                        {/* {Check.map((checks) => <option value={checks.name}  >{checks.name}</option>)
                                         
-                                        }
-                                    </select>
-                                </Col>
+                                        } */}
+                                    {/* </select>
+                                </Col> */} 
 
                                 <Col sm={12}>
                                     <label className="label label-primary ">Name</label>
@@ -239,7 +239,7 @@ const AddMember = () => {
                                         <label className="label label-primary ">Date Of Birth</label>
                                         <input
                                             id="dob"
-                                            value={moment(details.dob).format('YYYY-MM-DD')}               
+                                            defaultValue={moment(details.dob).format('YYYY-MM-DD')}               
                                             onChange={handleChange}
                                             name="dob"
                                             type={ChangeD}
@@ -286,10 +286,18 @@ const AddMember = () => {
                         onChange={handleChange}
                     />
                     <br />
-                    <button className=" font-weight-bold tn btn-outline-primary form-control" type="submit">
+                    <button className=" form-control font-weight-bold tn btn btn-outline-dark  " type="submit">
                         Edit
                     </button>
-                    <Link to="/ViewMember" style={{display: "inline" , marginLeft: "150px" , color:"white" , fontSize:"30px"}}> {`>`}</Link>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <Link to="/ViewMember" 
+                    
+                   
+                    className=" font-weight-bold tn btn-outline-primary form-control text-center"
+                    
+                    > {`>`}</Link>
                 </form>
            
             </div>

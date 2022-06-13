@@ -56,6 +56,7 @@ const HideBtn = () =>
     onClick={HideBtn}
     onDrop={HideBtn}
     alt="upload"
+    style={{width:"100px"}}
     />
             <h5>Select Profile Pic</h5>
   </label>
@@ -64,7 +65,7 @@ const HideBtn = () =>
             &nbsp;
           {imageList.map((image, index) => (
               <div key={index} className="image-item">
-                <img src={image.data_url} alt="" width="100" />
+                <img src={image.data_url} alt="" width="100"/>
                 
               </div>
             ))}

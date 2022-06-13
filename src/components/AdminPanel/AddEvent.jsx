@@ -47,6 +47,7 @@ const AddEvent =()=> {
       
         notify();
         reset();
+        setImages("")
     }
 
     const onError = (errors, e) => console.log(errors, e);
@@ -119,6 +120,7 @@ const AddEvent =()=> {
   onClick={HideBtn}
   onDrop={HideBtn}
   alt="upload"
+  style={{width:"100px"}}
   />
           <h5>Upload Event Cover</h5>
 </label>
@@ -137,9 +139,9 @@ const AddEvent =()=> {
   </div>
           <div className="row ">
               <div className="col-2">
-                  <p>Event Leader</p>
+                  <p className="text-light">Event Leader</p>
               </div>
-              <div className="col-4 ">
+              <div className="col-12 JustifyF  ">
                   <input type="text" 
                     id="lead"
                     defaultValue={user?.lead}
@@ -154,9 +156,9 @@ const AddEvent =()=> {
 
           <div className="row">
               <div className="col-2">
-                  <p>Event Name</p>
+                  <p className="text-light">Event Name</p>
               </div>
-              <div className="col-8">
+              <div className="col-12">
                   <input type="text"
                    id="event"
                    defaultValue={user?.event}
@@ -169,16 +171,16 @@ const AddEvent =()=> {
           </div>
 
           <div className="row">
-              <div className="col-2">
-                  <p>Event Date</p>
+              <div className="col-2 ">
+                  <p className="text-light">Event Date</p>
               </div>
-              <div className="col-8">
+              <div className="col-12">
                   <input type="date" 
                      id="edate"
                      defaultValue={user?.edate}
                      {...register('edate', { required: true })}
-                     placeholder="Enter event date"
-                     className={classnames('input form-control', { 'is-invalid': errors && errors?.edate })}
+                    //  placeholder="Enter event date"
+                     className={classnames('input-group date form-group form-control selftest', { 'is-invalid': errors && errors?.edate })}
                    />
                    {errors && errors?.edate && <FormFeedback>Please type event date</FormFeedback>}
               </div>
@@ -186,9 +188,9 @@ const AddEvent =()=> {
 
           <div className="row">
               <div className="col-2">
-                  <p>Event Location</p>
+                  <p className="text-light">Event Location</p>
               </div>
-              <div className="col-8">
+              <div className="col-12">
                   <input type="text"
                      id="location"
                      defaultValue={user?.location}
@@ -204,25 +206,26 @@ const AddEvent =()=> {
 
           <div className="row">
               <div className="col-2">
-                  <p>Event Timing</p>
+                  <p className="text-light">Event Timing</p>
               </div>
-              <div className="col-8">
+              <div className="col-12">
                   <input type="time"
                     id="etime"
                     defaultVaqlue={user?.etime}
                     {...register('etime', { required: true })}
                     placeholder="Enter event time"
-                    className={classnames('input form-control', { 'is-invalid': errors && errors?.etime })}
+                    className={classnames('input form-control selftest', { 'is-invalid': errors && errors?.etime })}
                   />
                   {errors && errors?.etime && <FormFeedback>Please type event Time</FormFeedback>}
               </div>
           </div>
 
+
           <div className="row">
               <div className="col-2">
-                  <p>Event Budget</p>
+                  <p className="text-light">Event Budget</p>
               </div>
-              <div className="col-8">
+              <div className="col-12">
                   <input type="text"
                   id="budget"
                   defaultValue={user?.budget}
@@ -236,9 +239,9 @@ const AddEvent =()=> {
 
           <div className="row">
               <div className="col-2">
-                  <p>Fees Amount</p>
+                  <p className="text-light">Fees Amount</p>
               </div>
-              <div className="col-8">
+              <div className="col-12">
                   <input type="text"
                      id="fees"
                      defaultValue={user?.fees}
@@ -254,7 +257,7 @@ const AddEvent =()=> {
 
           <div className="row">
               <div className="col-12">
-                  <button className="btn btn-primary BtnWDHT" type = "submit">Add</button>
+                  <button className="btn ownDark BtnWDHT " type = "submit">Add</button>
                   
               </div>
           </div>

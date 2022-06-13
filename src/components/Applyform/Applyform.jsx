@@ -128,12 +128,12 @@ const Applyform = () => {
         <>
             <NavBar />
             <SideNavbar/>
-            <div className="ApplyForm">
+            <div className="ApplyForm ">
                 <ToastContainer />
-                <div className="FormPanel d-flex justify-content-center BackTrans">
+                <div className="FormPanel d-flex justify-content-center BackTrans ">
                   
                     <form className="mb-3 row AddEventF" ref={form} onSubmit={handleSubmit(onSubmit, onError )}>
-                        <h3 className="titleForm">Join MRT Club</h3>
+                        <h3 className="d-flex justify-content-center">Join MRT Club</h3>
                         <div className="form-infor-profile">
                             <div className="info-account">
 
@@ -233,7 +233,6 @@ const Applyform = () => {
                                 <br />
 
                             </div>
-                        </div>
                         <input className="form-control mb-3 "
                             type="text"
                             onClick={GenerateId}
@@ -244,9 +243,10 @@ const Applyform = () => {
                         />
                        
                        
-                        <button className=" form-control font-weight-bold   form-control" type="submit">
+                        <button className=" form-control font-weight-bold" type="submit">
                             <b>Join</b>
                         </button>
+                        </div>
                     </form>
 
                 </div>

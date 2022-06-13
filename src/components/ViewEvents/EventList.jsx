@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState,useLayoutEffect } from 'react';
 import "../../App.css";
 import moment from "moment";
 import { useForm } from 'react-hook-form'
@@ -36,7 +36,7 @@ const notify = () => toast("Event Updated successfully",
 const AddMember = () => {
 
     const [details, setDetails] = useState(intialVal);
-    useEffect(() => {
+   useLayoutEffect(() => {
         test2();
         setChangeD("text")
         setChangeT("text")
@@ -136,12 +136,12 @@ const AddMember = () => {
       <ToastContainer />
             <div className="FormPanel d-flex justify-content-center BackTrans">
         
-                <form className=" form-control mb-3 row " ref={form} onSubmit={handleSubmit(onSubmit, onError)}>
-                    <h3 className="titleForm">Edit Events</h3>
+                <form className=" form-control mb-3 row  TestForm" ref={form} onSubmit={handleSubmit(onSubmit, onError)}>
+                    <h3 className="d-flex justify-content-center">Edit Events</h3>
                     <div className="form-infor-profile">
                         <div className="info-account">
                         
-                                <Col sm={12}>
+                                {/* <Col sm={12}>
                                     <select
                                         name="User"
                                         id="User"
@@ -162,11 +162,11 @@ const AddMember = () => {
                                         className="SelectUser form-control hidden"
 
                                     >
-                                        {/* <option value="Select Users" hidden selected>Select Users</option> */}
+                                        <option value="Select Users" hidden selected>Select Users</option> 
                                         {Check.map((checks) => <option value={checks.event}  >{checks.event}</option>)
                                         }
                                     </select>
-                                </Col>
+                                </Col> */}
 
                                 <Col sm={12}>
                                     <label className="label label-primary ">Event Lead</label>
@@ -285,15 +285,17 @@ const AddMember = () => {
 
                        
                             <br />
+                    <div className="d-flex flex-row justify-content-around">
+                    <button className=" font-weight-bold btn  bg-transparent text-light w-10 p-3 border-2 border-light "   type="submit">
+                        Edit
+                    </button>
 
+                    <Link to="/Events"  className=" font-weight-bold btn  bg-transparent text-light w-10 p-3 border-2 border-light " > {`>`}</Link>
+                    </div>
+                       
                         </div>
                     </div>
                  
-                    
-                    <button className=" font-weight-bold tn btn-outline-primary " type="submit">
-                        Edit
-                    </button>
-                    <Link to="/Events" style={{display: "inline" , marginLeft: "150px" , color:"black" , fontSize:"30px"}}> {`>`}</Link>
                 </form>
 
             </div>

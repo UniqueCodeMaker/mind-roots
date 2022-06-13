@@ -6,13 +6,15 @@ const moment = require('moment')
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const app = express()
+
 const port = process.env.PORT || 5000;
 app.use(cors()) 
-app.use(bodyParser.urlencoded({limit: '200mb', extended: true}));
+// app.use(bodyParser.urlencoded({limit: '128mb', extended: true}));
 dotenv.config();
-app.use(bodyParser.json())
-app.use(express.json())
 
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '150mb', extended: true, parameterLimit: 500000 }));
+app.use(bodyParser.text({ limit: '200mb' }));
 // MySQL
 const pool = mysql.createPool({
     connectionLimit : 10000,
@@ -32,9 +34,10 @@ app.get('/', (req, res) => {
         console.log("Hello conn")
         connection.query('SELECT * from UserProfiles', (err, rows) => {
             connection.release() // return the connection to pool
-
+            
             if(!err) {  
                 res.send(rows)
+                
             } else {
                 console.log(err)
             }
@@ -65,6 +68,56 @@ app.post('/', (req, res) => {
     res.status(200)
     
 })
+
+app.get('/testdata/:value', (req, res) => {
+    // console.log("Hello")
+    pool.getConnection((err, connection) => {
+        if(err) throw err
+        console.log(`connected as id ${connection.threadId}`)
+        const query1 = 'SELECT * from UserProfiles ORDER BY name DESC'
+        const query2 = 'SELECT * from UserProfiles ORDER BY name ASC'
+        const query = req.params.value=="true" ? query1 : query2
+        // console.log(typeof(true))
+        connection.query(query, (err, rows) => {
+            connection.release() // return the connection to pool
+            console.log("Hello conn")   
+            if(!err) {  
+                res.send(rows)
+            } else {
+                console.log(err)
+            }
+
+        })
+    })
+    res.status(200)
+    
+})
+
+
+app.get('/testemail/:value', (req, res) => {
+    // console.log("Hello")
+    pool.getConnection((err, connection) => {
+        if(err) throw err
+        console.log(`connected as id ${connection.threadId}`)
+        const query1 = 'SELECT * from UserProfiles ORDER BY email DESC'
+        const query2 = 'SELECT * from UserProfiles ORDER BY email ASC'
+        const query = req.params.value=="true" ? query1 : query2
+        // console.log(typeof(true))
+        connection.query(query, (err, rows) => {
+            connection.release() // return the connection to pool
+            console.log("Hello conn")   
+            if(!err) {  
+                res.send(rows)
+            } else {
+                console.log(err)
+            }
+
+        })
+    })
+    res.status(200)
+    
+})
+
 
 app.get('/View', (req, res) => {
     // console.log("Hello")
@@ -289,7 +342,7 @@ app.get('/search/:searchvalue', (req, res) => {
 
 
 
-app.get('/test/:name', (req, res) => {
+app.get('/user/:name', (req, res) => {
 
     pool.getConnection((err, connection) => {
         if(err) throw err

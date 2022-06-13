@@ -33,17 +33,17 @@ const isUserLoggedInToken = localStorage.getItem('token');
 let config = {
   num: [10, 30],
   rps: 3.8,
-  radius: [0, 100],
+  radius: [50, 100],
   life: [1.5, 3],
   v: [2, 3],
   tha: [-40, 40],
   alpha: [0.6, 0],
   scale: [.1, 0.4],
   position: "all",
-  color: ["random", "#ff0000"],
+  color: ["random"],
   cross: "dead",
   // emitter: "follow",
-  random: 15
+  random: 10
 };
 
 if (Math.random() > 0.85) {
@@ -53,8 +53,8 @@ if (Math.random() > 0.85) {
       ctx.rect(
         particle.p.x,
         particle.p.y,
-        particle.radius * 2,
-        particle.radius * 2
+        particle.radius * 3,
+        particle.radius * 3
       );
       ctx.fillStyle = particle.color;
       ctx.fill();
