@@ -1,12 +1,15 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mysql = require('mysql')
+var smtpTransport = require('nodemailer-smtp-transport');
+var nodemailer = require('nodemailer');
 var cors = require('cors')
 const moment = require('moment')
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const app = express()
 
+// import handlebars from "handlebars";
 const port = process.env.PORT || 5000;
 app.use(cors()) 
 // app.use(bodyParser.urlencoded({limit: '128mb', extended: true}));
@@ -261,6 +264,111 @@ app.post("/generateToken/:name/:password", (req, res) => {
     res.json(token);
 });
 
+app.get('/reject/:email', (req, res) => {
+    // console.log("Hello")
+    pool.getConnection((err, connection) => {
+        if(err) throw err
+        console.log(`connected as id ${connection.threadId}`)
+
+        connection.query('DELETE FROM UserProfiles WHERE email = ?', req.params.email  , (err, rows) => {
+            connection.release() // return the connection to pool
+            console.log("Hello conn")   
+            if(!err) {  
+                res.send("User Rejected...")
+            } else {
+                console.log(err)
+            }
+
+        })
+    })
+    res.status(200)
+    
+})
+
+app.post("/sendmail", (req, res) => {
+    // console.log(req.body);
+   
+      
+
+
+var transporter = nodemailer.createTransport(smtpTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false, 
+    service: 'gmail',
+    auth: {
+      user: 'mr.rudraxmehta@gmail.com',
+      pass: 'oaizpngvbwmtmnme'
+    }
+  }));
+
+var mailOptions = {
+  from: 'mr.rudraxmehta@gmail.com',
+  to: 'mr.rudraxmehta@gmail.com',
+  subject: 'I am Applying to join this Club Application',
+  text: 'That was easy!',
+  html: `
+  
+    <div style="padding:10px; border:1px ; border-style:solid ">
+        <center><h3>............................ User Details ............................</h3></center>
+        <hr/>
+        <b><img src="cid:img" alt="Client_Dp" style="padding:10px ; margin-left:40px;"/></b>
+        <ul style="list-style-type:square ; font-size:15px ;" >
+        <li><b>Email: ${req.body.email}</b></li>
+        <li><b>Name: ${req.body.name}</b></li>
+        <li><b>Mobile: ${req.body.mobile}</b></li>
+        <li><b>DOB: ${req.body.dob}</b></li>
+        <li><b>Transaction_ID: ${req.body.transaction}</b></li>
+        <li><b>Gender: ${req.body.gender}</b></li>
+        </ul><center>
+        <a href ="http://localhost:5000/reject/${req.body.email}" target="_self" style="cursor:pointer!important;"><button type="button"  style = "background-color: transparent ; padding:10px  ; border:2px ;  border-style: solid ;  border-radius:10px ; cursor:pointer"
+         
+        >Reject</button></a>
+        <a href ="http://localhost:5000/approve/${req.body.email}" target="_self" style="cursor:pointer!important;"><button type="button" style = "background-color: transparent ; padding:10px  ; border:2px ;  border-style: solid ;  border-radius:10px ;  ">Accept</button></a>
+        </center>
+        </div>
+  
+  
+  `,
+  attachments: [{
+    filename: 'img.jpg',
+    path: `${req.body.ImageUrl}`, // path contains the filename, do not just give path of folder where images are reciding.
+    cid: 'img' // give any unique name to the image and make sure, you do not repeat the same string in given attachment array of object.
+   }]
+  
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
+   
+});
+
+app.get("/approve/:email", (req, res) => {
+
+    pool.getConnection((err, connection) => {
+        if(err) throw err
+        console.log(`Approve called`)
+        
+        connection.query('UPDATE UserProfiles SET status = ? where email = ?', ["Approved" , req.params.email ] , (err, rows) => {
+            connection.release() // return the connection to pool
+            console.log("Hello conn")   
+            if(!err) {  
+                
+                res.send("User Approved successfully")
+            } else {
+                console.log(err)
+            }
+
+        })
+    })
+    res.status(200)
+
+})
 
 
 

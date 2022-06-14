@@ -29,16 +29,6 @@ const Applyform = () => {
 
     }
 
-    // const sendEmail = (e) => {
-    //     e.preventDefault();
-            
-    //     emailjs.sendForm('Mygmail1304', 'Mytemp1304', e.target, 'qY4WZ3P78KAZ_aTap')
-    //         .then((result) => {
-    //             console.log(result.text);
-    //         }, (error) => {
-    //             console.log(error.text);
-    //         });
-    // };
 
     const notify = () => toast("User Added Successfully",
         {
@@ -87,6 +77,7 @@ const Applyform = () => {
         dob: yup.date().required(),
         mobile: yup.number().required(),
         gender: yup.string().required(),
+        transaction: yup.string().required(),
 
     })
     const { register, formState: { errors }, handleSubmit, reset } = useForm({ mode: 'onChange', resolver: yupResolver(registerUser) })
@@ -105,18 +96,19 @@ const Applyform = () => {
             body: JSON.stringify(data),
         };
         
-        const res = await fetch('http://localhost:5000/apply', requestOptions)
+        // await fetch('http://localhost:5000/apply', requestOptions)
         // console.log(data)
-        notify();
-        
-        emailjs.sendForm('Mygmail1304', 'Mytemp1304', e.target , 'qY4WZ3P78KAZ_aTap')
-        .then((result) => {
-            console.log(result.text);
-        }, (error) => {
-            console.log(error.text);
-        });
-        localStorage.setItem('Login' ,  Username)
-        navigate(`/ClientPanel`);
+        // notify();
+
+        // await fetch('http://localhost:5000/sendmail', requestOptions)
+        // .then(response => response.json())
+        // .then((text)=>{console.log(text)})
+        // .catch((error)=>{console.log(error)})
+        // .finally(() => {console.log('done')})
+        reset();
+        setGenerate("")
+        // localStorage.setItem('Login' ,  Username)
+        // navigate(`/ClientPanel`);
     }
     
 

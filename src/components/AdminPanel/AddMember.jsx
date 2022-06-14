@@ -54,11 +54,11 @@ const AddMember = () => {
     const form = useRef();
     const num = Math.floor(Math.random() * (START - END + 1)) + END;
 
-    function GenerateId(e) {
-        e.preventDefault();
-        setGenerate(num);
+    // function GenerateId(e) {
+    //     e.preventDefault();
+    //     setGenerate(num);
 
-    }
+    // }
 
 
   
