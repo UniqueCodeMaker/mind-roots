@@ -28,7 +28,7 @@ const ViewEvent = () => {
        
       
       localStorage.setItem("Event" , i);
-      navigate("/EventList");
+      navigate("/eventlist");
 
       }
 

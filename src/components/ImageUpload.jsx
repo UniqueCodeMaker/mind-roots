@@ -4,7 +4,9 @@ import ImageUploading from "react-images-uploading";
 
 import "../App.css";
 
-function ImageUpload() {
+function ImageUpload({removeImg}) {
+    // console.log(typeof(removeImg));
+    
   const [images, setImages] = React.useState([]);
   const [images2, setImages2] = React.useState([]);
   const maxNumber = 1;
@@ -25,7 +27,7 @@ const HideBtn = () =>
  localStorage.setItem("ImageUrl" , images2);
 
   return (
-    <div className="ImageUpload">
+    <div className="ImageUpload" >
       <ImageUploading
         multiple
         value={images}

@@ -112,14 +112,14 @@ const SignUp = () => {
 
 						localStorage.setItem('Login', Username);
 						
-						navigate("/AdminPanel")
+						navigate("/adminpanel")
 				
 					}
 					else if (Role == 2) {
 				
 						
 						localStorage.setItem('Login', Username);
-						navigate("/ClientPanel")
+						navigate("/clientpanel")
 				
 					}
 				}

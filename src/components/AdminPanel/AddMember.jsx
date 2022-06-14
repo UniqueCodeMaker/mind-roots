@@ -292,7 +292,7 @@ const AddMember = () => {
                     <br/>
                     <br/>
                     <br/>
-                    <Link to="/ViewMember" 
+                    <Link to="/viewmember" 
                     
                    
                     className=" font-weight-bold tn btn-outline-primary form-control text-center"

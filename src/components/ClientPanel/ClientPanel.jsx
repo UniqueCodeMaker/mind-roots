@@ -32,9 +32,9 @@ const ClientPanel =()=>{
        <div className="FormPanel2">
 
    
-   <Link to = "/ViewProfile"><button className="button-56 TopCornerRight" role="button">View Profile</button></Link>
+   <Link to = "/viewprofile"><button className="button-56 TopCornerRight" role="button">View Profile</button></Link>
   <button className={classBtn} role="button" onClick={HandleTime}>{PeriodLeft}</button>
-   <Link to = "/ViewEvents"> <button className="button-56 TopCornerRightmore2" role="button">View Events</button></Link>
+   <Link to = "/viewevents"> <button className="button-56 TopCornerRightmore2" role="button">View Events</button></Link>
   
  </div>
       </div>

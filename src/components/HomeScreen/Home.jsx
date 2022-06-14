@@ -36,7 +36,7 @@ const Home = (props) => {
         if (Role !== 0) {
             localStorage.setItem('Role', Role);
 
-            history("/SignUp")
+            history("/signin")
         }
     }, [Role])
 
@@ -73,7 +73,7 @@ const Home = (props) => {
 
                                 </span>
                             </span>
-                            <h4 className="Apply" > <Link to="/Applyform"> <span className="changeLcolor Feed">Apply</span> </Link></h4>
+                            <h4 className="Apply" > <Link to="/applyform"> <span className="changeLcolor Feed">Apply</span> </Link></h4>
                         </div>
                         <div className="  midPanel TextAbout ">
 

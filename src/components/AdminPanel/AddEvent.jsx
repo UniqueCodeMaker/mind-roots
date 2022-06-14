@@ -42,8 +42,8 @@ const AddEvent =()=> {
         },
         body: JSON.stringify(data),
         };
-        const res = await fetch('http://localhost:5000/eventlog', requestOptions)
-        const response = res.json();
+        await fetch('http://localhost:5000/eventlog', requestOptions)
+        
       
         notify();
         reset();

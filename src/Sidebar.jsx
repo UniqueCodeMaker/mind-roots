@@ -33,59 +33,59 @@ onSelect={(selected) => {
       <NavText>
           Members
       </NavText>
-      <NavItem eventKey="/Applyform">
+      <NavItem eventKey="/applyform">
           <NavText>
             Add Members
           </NavText>
       </NavItem>
-      <NavItem eventKey="/ViewMember">
+      <NavItem eventKey="/viewmember">
           <NavText>
               View Members
           </NavText>
       </NavItem>
   </NavItem>
-  <NavItem eventKey="Events">
+  <NavItem eventKey="editevents">
       <NavIcon>
       <i class="fa fa-snowflake-o" aria-hidden="true" style={{ fontSize: '1.75em' }}></i>
       </NavIcon>
       <NavText>
           Events
       </NavText>
-      <NavItem eventKey="/AddEvent">
+      <NavItem eventKey="/addevent">
           <NavText>
               Add Events
           </NavText>
       </NavItem>
-      <NavItem eventKey="/EventList">
+      <NavItem eventKey="/editevents">
           <NavText>
               Edit Events
           </NavText>
       </NavItem>
-      <NavItem eventKey="/ViewEvents">
+      <NavItem eventKey="/viewevents">
           <NavText>
               View Events
           </NavText>
       </NavItem>
   </NavItem>
 
-  <NavItem eventKey="Sign">
+  <NavItem eventKey="sign">
       <NavIcon>
   <i class="fa fa-sign-in" aria-hidden="true" style={{ fontSize: '1.75em' }}></i>
       </NavIcon>
       <NavText>
           Profiles
       </NavText>
-      <NavItem eventKey="/SignUp">
+      <NavItem eventKey="/signin">
           <NavText>
               Sign In
           </NavText>
       </NavItem>
-      <NavItem eventKey="/Home">
+      <NavItem eventKey="/home">
           <NavText>
               Logout
           </NavText>
       </NavItem>
-      <NavItem eventKey="/Applyform">
+      <NavItem eventKey="/applyform">
           <NavText>
               Apply
           </NavText>

@@ -35,7 +35,7 @@ const ViewMember = () => {
 
 
     localStorage.setItem("userSelect", i);
-    navigate("/AddMember");
+    navigate("/addmember");
 
   }
 const Login  =  localStorage.getItem("Login")

@@ -18,11 +18,11 @@ const AdminPanel =()=>{
 <div className="HomeLogin">
        <div className="FormPanel2">
    
-       <Link to="/ViewMember"><button className="button-56 TopCorner" role="button" >View Members</button></Link>
-       <Link to="/AddEvent"><button className="button-56 TopCornerRight" role="button">Add Events</button></Link>
-       <Link to="/ViewEvents"><button className="button-56 TopCornerRightmore" role="button">View Events</button></Link>
-       <Link to="/Events"><button className="button-56 TopCornerRightmore2" role="button">Edit Events</button></Link>
-       <Link to="/AddMember"><button className="button-56 BottomLeft" role="button">Add Member</button></Link>
+       <Link to="/viewmember"><button className="button-56 TopCorner" role="button" >View Members</button></Link>
+       <Link to="/addevent"><button className="button-56 TopCornerRight" role="button">Add Events</button></Link>
+       <Link to="/viewevents"><button className="button-56 TopCornerRightmore" role="button">View Events</button></Link>
+       <Link to="/events"><button className="button-56 TopCornerRightmore2" role="button">Edit Events</button></Link>
+       <Link to="/addmember"><button className="button-56 BottomLeft" role="button">Add Member</button></Link>
 
      
 

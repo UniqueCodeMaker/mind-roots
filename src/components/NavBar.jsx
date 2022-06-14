@@ -35,22 +35,22 @@ return (
         
        {  (Clogin==1)? 
         <NavDropdown  title={Title2} id="collasible-nav-dropdown" >
-          <Link to={"/ViewProfile"} ><center>View Profile</center></Link>
-          <Link to={"/ViewEvents"}><center>View Events</center></Link>
-          <Link to={ "/ClientPanel"}><center>Client Panel</center></Link>
+          <Link to={"/viewprofile"} ><center>View Profile</center></Link>
+          <Link to={"/viewevents"}><center>View Events</center></Link>
+          <Link to={ "/clientpanel"}><center>Client Panel</center></Link>
           
         </NavDropdown>
         :
        (Alogin==1)?
        <NavDropdown  title={Title} id="collasible-nav-dropdown" >
           {/* <NavDropdown.Item href={ (Alogin==0)? "":"AddMember"} >Edit Member</NavDropdown.Item> */}
-          <Link to={"/ViewProfile"} className="testDrop" ><center>View Profile</center></Link>
-          <Link to={ "/ViewMember"}><center>View Member</center></Link>
-          <Link to={ "/Applyform"}><center>Add Member</center></Link>
-          <Link to={ "/AddEvent"}><center>Add Event</center></Link>
-          <Link to={ "/ViewEvents"}><center>View Event</center></Link>
-          <Link to={ "/Events"}><center>Edit Events</center></Link>
-          <Link to={ "/AdminPanel"}><center>Admin Panel</center></Link>
+          <Link to={"/viewprofile"} className="testDrop" ><center>View Profile</center></Link>
+          <Link to={ "/viewmember"}><center>View Member</center></Link>
+          <Link to={ "/applyform"}><center>Add Member</center></Link>
+          <Link to={ "/editevent"}><center>Add Event</center></Link>
+          <Link to={ "/viewevents"}><center>View Event</center></Link>
+          <Link to={ "/editevents"}><center>Edit Events</center></Link>
+          <Link to={ "/adminpanel"}><center>Admin Panel</center></Link>
         </NavDropdown>
       :
       <></> 
@@ -60,8 +60,8 @@ return (
 
 
     <NavDropdown  title={Title3} id="collasible-nav-dropdown" >
-    <Link to="/About" ><span className=""><center>About</center></span></Link>
-    <Link to="/Home" ><span className=""><center>Logout</center></span></Link>
+    <Link to="/about" ><span className=""><center>About</center></span></Link>
+    <Link to="/home" ><span className=""><center>Logout</center></span></Link>
     </NavDropdown>
     </Nav>
     </Navbar.Collapse>

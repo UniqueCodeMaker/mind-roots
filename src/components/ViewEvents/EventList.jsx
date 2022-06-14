@@ -290,7 +290,7 @@ const AddMember = () => {
                         Edit
                     </button>
 
-                    <Link to="/Events"  className=" font-weight-bold btn  bg-transparent text-light w-10 p-3 border-2 border-light " > {`>`}</Link>
+                    <Link to="/editevents"  className=" font-weight-bold btn  bg-transparent text-light w-10 p-3 border-2 border-light " > {`>`}</Link>
                     </div>
                        
                         </div>

@@ -96,26 +96,27 @@ const Applyform = () => {
             body: JSON.stringify(data),
         };
         
-        // await fetch('http://localhost:5000/apply', requestOptions)
-        // console.log(data)
-        // notify();
+        await fetch('http://localhost:5000/apply', requestOptions)
+        notify();
 
-        // await fetch('http://localhost:5000/sendmail', requestOptions)
-        // .then(response => response.json())
-        // .then((text)=>{console.log(text)})
-        // .catch((error)=>{console.log(error)})
-        // .finally(() => {console.log('done')})
+        await fetch('http://localhost:5000/sendmail', requestOptions)
+        .then(response => response.json())
+        .then((text)=>{console.log(text)})
+        .catch((error)=>{console.log(error)})
+        .finally(() => {console.log('done')})
         reset();
-        setGenerate("")
-        // localStorage.setItem('Login' ,  Username)
-        // navigate(`/ClientPanel`);
+        setGenerate("Generate Transaction Id")
+        document.getElementsByClassName("ImageUpload")[0].getElementsByTagName('img')[1].src="https://icons.iconarchive.com/icons/dtafalonso/android-lollipop/128/Downloads-icon.png"    
+        localStorage.setItem('Login' ,  Username)
+        navigate(`/ClientPanel`);
     }
     
 
     const onError = (errors, e) => console.log(errors, e);
-
-
-
+    
+    
+    
+    
     return (
         <>
             <NavBar />
@@ -129,7 +130,7 @@ const Applyform = () => {
                         <div className="form-infor-profile">
                             <div className="info-account">
 
-                                <ImageUpload />
+                                <ImageUpload id="sample"/>
                                 <Col sm={12}>
                                     <label className="label text-light ">Name</label>
                                     <input
