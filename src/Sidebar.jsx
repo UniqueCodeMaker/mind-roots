@@ -56,7 +56,7 @@ onSelect={(selected) => {
               Add Events
           </NavText>
       </NavItem>
-      <NavItem eventKey="/editevents">
+      <NavItem eventKey="/editevent">
           <NavText>
               Edit Events
           </NavText>

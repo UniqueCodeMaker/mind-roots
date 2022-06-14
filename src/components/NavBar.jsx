@@ -49,7 +49,7 @@ return (
           <Link to={ "/applyform"}><center>Add Member</center></Link>
           <Link to={ "/editevent"}><center>Add Event</center></Link>
           <Link to={ "/viewevents"}><center>View Event</center></Link>
-          <Link to={ "/editevents"}><center>Edit Events</center></Link>
+          <Link to={ "/editevent"}><center>Edit Events</center></Link>
           <Link to={ "/adminpanel"}><center>Admin Panel</center></Link>
         </NavDropdown>
       :

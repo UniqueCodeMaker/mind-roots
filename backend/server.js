@@ -28,14 +28,14 @@ const pool = mysql.createPool({
 })
 
 
-app.get('/', (req, res) => {
-    
+app.get('/', async (req, res) => {
+        
     pool.getConnection((err, connection) => {
         
         if(err) throw err
         console.log(`connected as id ${connection.threadId}`)
-        console.log("Hello conn")
-        connection.query('SELECT * from UserProfiles', (err, rows) => {
+
+         connection.query('SELECT * from UserProfiles', (err, rows) => {
             connection.release() // return the connection to pool
             
             if(!err) {  
@@ -44,11 +44,12 @@ app.get('/', (req, res) => {
             } else {
                 console.log(err)
             }
-
+           
         })
+       
     })
     res.status(200)
-    
+
 })
 
 app.post('/', (req, res) => {
@@ -96,6 +97,26 @@ app.get('/testdata/:value', (req, res) => {
     
 })
 
+app.get('/test/:value', (req, res) => {
+    // console.log("Hello")
+    pool.getConnection((err, connection) => {
+        if(err) throw err
+        console.log(`connected as id ${connection.threadId}`)
+        const query1 = 'SELECT * from UserProfiles WHERE email = ?'
+        connection.query(query1 ,req.params.value , (err, rows) => {
+            connection.release() // return the connection to pool
+            console.log("Hello conn")   
+            if(!err) {  
+                res.send(rows)
+            } else {
+                console.log(err)
+            }
+
+        })
+    })
+    res.status(200)
+    
+})
 
 app.get('/testemail/:value', (req, res) => {
     // console.log("Hello")
@@ -286,9 +307,6 @@ app.get('/reject/:email', (req, res) => {
 })
 
 app.post("/sendmail", (req, res) => {
-    // console.log(req.body);
-   
-      
 
 
 var transporter = nodemailer.createTransport(smtpTransport({
@@ -309,8 +327,8 @@ var mailOptions = {
   text: 'That was easy!',
   html: `
   
-    <div style="padding:10px; border:1px ; border-style:solid ">
-        <center><h3>............................ User Details ............................</h3></center>
+    <div style="padding:10px; border:1px ; border-style:solid  ;   border-radius:110px ">
+        <center><h3>Applicant Details</h3></center>
         <hr/>
         <b><img src="cid:img" alt="Client_Dp" style="padding:10px ; margin-left:40px;"/></b>
         <ul style="list-style-type:square ; font-size:15px ;" >
@@ -488,16 +506,16 @@ app.get('/events/:event', (req, res) => {
     })
 })
 
-app.get('/SignCheck/:name/:password/:Role', (req, res) => {
+app.get('/SignCheck/:email/:password/:Role', (req, res) => {
 
     pool.getConnection((err, connection) => {
         if(err) throw err
         console.log(`connected as id ${connection.threadId}`)
             // console.log(req.params)
-            const name = req.params.name
+            const email = req.params.email
             const password =  req.params.password
             const Role = req.params.Role
-        connection.query('SELECT * from UserProfiles WHERE name = ? AND password = ? AND Role = ?', [name , password , Role]  , (err, rows) => {
+        connection.query('SELECT * from UserProfiles WHERE email = ? AND password = ? AND Role = ?', [email , password , Role]  , (err, rows) => {
            
             // SELECT name,password from UserProfiles
             
@@ -532,16 +550,27 @@ app.get('/SignCheck/:name/:password/:Role', (req, res) => {
 
 // Add a record / beer
 app.post('/apply', (req, res) => {
-    // console.log("a")
-    // console.log(req.body)
+    
     pool.getConnection((err, connection) => {
         if(err) throw err
         console.log(`connected as id ${connection.threadId}`)
         res.status(200)
         const params = req.body
         
-        connection.query('INSERT INTO UserProfiles SET ?' , params , (err, rows) => {
-            connection.release() // return the connection to pool
+       connection.query('select * from UserProfiles Where email = ? ' , req.body.email ,    (err, rows) => {
+           if(rows.length > 0)
+{
+    console.log("User already exists")
+        res.send({
+            "status" : "User already exists"
+        })        
+}
+else
+{
+    connection.query('INSERT INTO UserProfiles SET ?' , params , (err, rows) => {
+            
+        console.log("matched")
+         // return the connection to pool
 
             if(!err) {
                 res.send(rows)
@@ -550,9 +579,15 @@ app.post('/apply', (req, res) => {
             }
 
         })
+}
+connection.release()
 
-        // console.log(req.body)
     })
+       
+        // console.log(test)
+            // console.log(req.body)
+    })
+
 })
 
 app.get('/UserSelected/:id', (req, res) => {

@@ -86,7 +86,7 @@ root.render(<>
       <Route path="clientpanel" element={<ProtectedRoute isLoggedin={   { isUserLoggedInToken } }><ClientPanel /></ProtectedRoute>} />
       <Route path="adminpanel" element={<ProtectedRoute isLoggedin={   { isUserLoggedInToken } }><AdminPanel /></ProtectedRoute>} />
       <Route path="eventlist" element={<ProtectedRoute isLoggedin={  { isUserLoggedInToken } }><EventList/></ProtectedRoute>} />
-      <Route path="editevents" element={<ProtectedRoute isLoggedin={  { isUserLoggedInToken }}><Events/></ProtectedRoute>} />
+      <Route path="editevent" element={<ProtectedRoute isLoggedin={  { isUserLoggedInToken }}><Events/></ProtectedRoute>} />
 
    
    

@@ -30,19 +30,22 @@ const SignUp = () => {
 		{
 			transition: Zoom
 		});
-
+		const noti = () => toast("You cant login untill you get approved by admin",
+		{
+			transition: Zoom
+		});
 	const notifyx = () => toast("You are Signing with wrong account",
 		{
 			transition: Zoom
 		});
 
-	const [Username, setUsername] = useState("");
+	const [Useremail, setUseremail] = useState("");
 	const [Password, setPassword] = useState("");
 	const [Check, setCheck] = useState(false);
 
 
 	const handleChangeN = (e) => {
-		setUsername(e.target.value);
+		setUseremail(e.target.value);
 
 	}
 	const handleChangeP = (e) => {
@@ -71,19 +74,19 @@ const SignUp = () => {
 		test3();
 		
 		
-			localStorage.setItem('Login' ,  Username)
+			localStorage.setItem('Login' ,  Useremail)
 		// notify()
 	
 	
 	}
 
 	const test2 = async() =>{
-		await fetch(`http://localhost:5000/generateToken/${Username}/${Password}`, {
+		await fetch(`http://localhost:5000/generateToken/${Useremail}/${Password}`, {
 			crossDomain: true,
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
-				username: Username,
+				Useremail: Useremail,
 				password: Password,
 			})
 		})
@@ -98,41 +101,50 @@ const SignUp = () => {
 		
 		const test3 = async () => {
 			
-		await fetch(`http://localhost:5000/SignCheck/${Username}/${Password}/${Role}`)
+		await fetch(`http://localhost:5000/SignCheck/${Useremail}/${Password}/${Role}`)
 		.then((response) => response.json())
-			.then((actualData) => { 
-				setCheck(true)
-				if(actualData.length == 0 )
-				{
-					notifyx();	
+		.then((actualData) => { 
+			setCheck(true)
+			if(actualData.length == 0 )
+			{
+				notifyx();	
+			}
+			else
+			{
+				if (Role == 1) {
+
+					localStorage.setItem('Login', Useremail);
+					navigate("/adminpanel")
+			
 				}
-				else
-				{
-					if (Role == 1) {
+				else  {
+					if (Role == 2)
+				{	
+					console.log(actualData[0].status == "applied" ,  "abc")
+					if(actualData[0].status == "applied")	
+					{	
+						noti();
+					
+					}
+					else
+					{
+							localStorage.setItem('Login', Useremail);
+							navigate("/clientpanel")
+					
+					}
 
-						localStorage.setItem('Login', Username);
-						
-						navigate("/adminpanel")
-				
-					}
-					else if (Role == 2) {
-				
-						
-						localStorage.setItem('Login', Username);
-						navigate("/clientpanel")
-				
-					}
+							
 				}
-				
-			})
-
-
+				}
+			}
+			
+		})
 
 
 	}
 	const form = useRef();
 	const registerUser = yup.object().shape({
-		username: yup.string().min(2).required(),
+		Useremail: yup.string().min(2).required(),
 		password: yup.string().min(2).max(16).required(),
 
 	})
@@ -169,14 +181,14 @@ const SignUp = () => {
 									</span>
 								</div>
 								<input type="text" 
-								  id="username"
-								  {...register('username', { required: true })}
+								  id="Useremail"
+								  {...register('Useremail', { required: true })}
 								  onChange={handleChangeN}
-								  placeholder="Enter username"
-								  className={classnames('input  form-control Test', { 'is-invalid': errors && errors?.username })}
+								  placeholder="Enter Email"
+								  className={classnames('input  form-control Test', { 'is-invalid': errors && errors?.Useremail })}
 							  />
-							  {errors && errors?.username && <FormFeedback>
-								  <p className="Feed">Please type Valid Username</p></FormFeedback>}
+							  {errors && errors?.Useremail && <FormFeedback>
+								  <p className="Feed">Please type Valid Useremail</p></FormFeedback>}
 							</div>
 						</div>
 
