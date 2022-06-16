@@ -28,7 +28,7 @@ onSelect={(selected) => {
   </NavItem>
   <NavItem eventKey="Members">
       <NavIcon>
-      <i class="fa fa-user-secret" aria-hidden="true"  style={{ fontSize: '1.75em' }}></i>
+      <i className="fa fa-user-secret" aria-hidden="true"  style={{ fontSize: '1.75em' }}></i>
       </NavIcon>
       <NavText>
           Members
@@ -46,7 +46,7 @@ onSelect={(selected) => {
   </NavItem>
   <NavItem eventKey="editevents">
       <NavIcon>
-      <i class="fa fa-snowflake-o" aria-hidden="true" style={{ fontSize: '1.75em' }}></i>
+      <i className="fa fa-snowflake-o" aria-hidden="true" style={{ fontSize: '1.75em' }}></i>
       </NavIcon>
       <NavText>
           Events
@@ -70,7 +70,7 @@ onSelect={(selected) => {
 
   <NavItem eventKey="sign">
       <NavIcon>
-  <i class="fa fa-sign-in" aria-hidden="true" style={{ fontSize: '1.75em' }}></i>
+  <i className="fa fa-sign-in" aria-hidden="true" style={{ fontSize: '1.75em' }}></i>
       </NavIcon>
       <NavText>
           Profiles

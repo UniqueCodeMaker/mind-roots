@@ -471,13 +471,13 @@ app.post('/Editevent', (req, res) => {
 })
 
 
-app.get('/search/:searchvalue', (req, res) => {
+app.get('/search/:search', (req, res) => {
     // console.log("Hello")
     pool.getConnection((err, connection) => {
         if(err) throw err
         console.log(`connected as id ${connection.threadId}`)
 
-        connection.query('SELECT * FROM Addevent WHERE event LIKE  ?',  req.params.searchvalue , (err, rows) => {
+        connection.query(`SELECT * from Addevent where lead LIKE '${req.params.search}%' OR event LIKE '${req.params.search}%' OR edate LIKE '${req.params.search}%' OR location LIKE '${req.params.search}%' OR budget LIKE '${req.params.search}%' OR fees LIKE '${req.params.search}%'` , (err, rows) => {
             connection.release() // return the connection to pool
             console.log("Hello conn SEARCH")   
             if(!err) {  

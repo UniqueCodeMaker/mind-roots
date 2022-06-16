@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
 // import Background from "./images/HomeBack2.jpg"
-import Background from "./images/BackHome3.jpg"
+import Background from "./images/HomeF.jpg"
 import SideNavbar from "../../Sidebar";
 
 const Home = (props) => {

@@ -94,11 +94,11 @@ return (
 { (Alogin==1)?
 <div className="BreadCenter">
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><Link to="/ViewProfile">View Profile</Link></li> 
-    <li class="breadcrumb-item"><Link to="/ViewEvents">View Events</Link></li>
-    <li class="breadcrumb-item"><Link to="/AddEvent">Add Event</Link></li>
-    <li class="breadcrumb-item"><Link to="/ViewMember">View Members</Link></li>
+  <ol className="breadcrumb">
+    <li className="breadcrumb-item"><Link to="/ViewProfile">View Profile</Link></li> 
+    <li className="breadcrumb-item"><Link to="/ViewEvents">View Events</Link></li>
+    <li className="breadcrumb-item"><Link to="/AddEvent">Add Event</Link></li>
+    <li className="breadcrumb-item"><Link to="/ViewMember">View Members</Link></li>
    
   </ol>
 </nav>
@@ -107,9 +107,9 @@ return (
 :(Clogin==1)?
 <div className="BreadCenter">
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><Link to="/ViewProfile">View Profile</Link></li> 
-    <li class="breadcrumb-item"><Link to="/ViewEvents">View Events</Link></li>
+  <ol className="breadcrumb">
+    <li className="breadcrumb-item"><Link to="/ViewProfile">View Profile</Link></li> 
+    <li className="breadcrumb-item"><Link to="/ViewEvents">View Events</Link></li>
 
    
   </ol>

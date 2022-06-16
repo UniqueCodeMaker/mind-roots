@@ -66,18 +66,9 @@ const Login  =  localStorage.getItem("Login")
     let array = data.filter(curr=>{
       return curr.id==i
     })
-   
+    // console.log(i)
     sethiddens("DeletePop")
-   if(array[0].name!=Login) 
-   { 
-     setDoneD(i)
-    
-   }
-   else
-   {
-    setDoneD(0)
-   }
-    test();
+    setDoneD(i);  
 
   }
 
@@ -87,7 +78,7 @@ const Login  =  localStorage.getItem("Login")
 
   
   const DeletedUsers = () => {
-      // console.log(DoneD)
+      console.log(DoneD , "i")  
       if(DoneD!=0){
       fetch(`http://localhost:5000/Delete/${DoneD}`, { mode: 'cors' })
       .then((response) => {
@@ -154,33 +145,33 @@ else
      
       {
           name: "Id",
-          selector: "id",
-          sortable: true,
-          width: "4rem"    
+          selector: "",
+          sortable: false,
+          width: "4rem",
+          cell: (row, index) => index+1    
         },
         {
           name: "Email",
-          selector: "email",
+          selector: (row)=>row.email,
           sortable: true ,
           width: "14rem"    
           
         },
         {
           name: "Mobile",
-          selector: "mobile",
+          selector: (row)=>row.mobile,
           sortable: true
           ,width: "10rem"
         },
         {
           name: "DOB",
-          selector: "dob",
+          selector: (row)=>row.dob,
           sortable: true,
           width: "10rem",
-          format: (row) => moment(data.dob).format('YYYY-MM-DD'),
-        },
+          },
         {
           name: "Gender",
-          selector: "gender",
+          selector: (row)=>row.gender,
           sortable: true,
           width: "6rem"
         
@@ -188,24 +179,24 @@ else
    
         {
           name: "Transaction",
-          selector: "transaction",
+          selector: (row)=>row.transaction,
           sortable: true,
           width: "8rem"
         },
         {
           name: "Status",
-          selector: "status",
+          selector: (row)=>row.status,
           sortable: true
         },
       {
         name: "Action",
         sortable: false,
-        selector: "null",
+        selector: (row)=>{},
         width: "10rem",
-        cell: row => (
+        cell: (row , index) => (
           <div className="d-flex flex   justify-content-around w-100">
-            <Edit/>
-            <Trash/>
+            <Edit onClick={()=>HandleDelete(index)}/>
+            <Trash onClick={()=>HandleDelete(index)}/>
           </div>
         ),
         ignoreRowClick: true,
