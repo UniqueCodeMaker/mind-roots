@@ -239,6 +239,7 @@
   .signup-form,
   .coverBoth {
     width: 100% !important;
+    
     display: flex !important;
     justify-content: space-evenly !important;
     align-items: center !important;
@@ -412,7 +413,7 @@ center {
   color: black;
 }
 center:hover {
-  background-color: black;
+  background-color: #283046;
   color: white;
 }
 
@@ -585,7 +586,7 @@ center:hover {
   align-items: center;
   z-index: 2;
   height: max-content;
-  width: 26%;
+  width: max-content;
   padding: 10px;
   /* height:calc( 100vh - 64px); */
   box-shadow: 1px 1px 4px 1px rgb(0, 0, 0);
@@ -686,7 +687,7 @@ a:hover {
 /* CSS */
 .button-56 {
   align-items: center;
-  background-color: #000000;
+  background-color: #283046;
   border: 2px solid rgb(0, 0, 0);
   border-radius: 8px;
   box-sizing: border-box;
@@ -711,7 +712,7 @@ a:hover {
 }
 
 .button-56:after {
-  background-color: #111;
+  background-color: #283046;
   border-radius: 8px;
   content: "";
   display: block;
@@ -794,7 +795,9 @@ a:hover {
   color: black !important;
   width: max-content;
   height: calc(100vh - 64px);
-
+  border-left: 5px groove rgb(0, 0, 0);
+  border-right: 5px solid black;
+  
   font-weight: bold;
   padding: 20px;
   overflow-y: scroll;
@@ -807,6 +810,7 @@ a:hover {
   font-size: 25px;
   background-color: transparent !important;
   color: black;
+  
 }
 
 .CProfilePic {
@@ -1117,9 +1121,9 @@ input.largerCheckbox {
   right: 200px;
   z-index: 20;
   font-family: "Sofia";
-  color: rgb(166, 0, 255);
+  color: black;
   /* background-color:white; */
-  text-shadow: 10px 5px 5px rgb(83, 28, 113);
+  text-shadow: 10px 5px 5px #283046;
   border: none !important;
   box-shadow: none !important;
   /* background-color: white; */
@@ -1216,6 +1220,14 @@ hr {
 .SelectUser::placeholder {
   font-size: 20px;
 }
+.ImageClient2
+{
+  height:50px;
+  border-radius:50%;
+  position: absolute;
+  top:2px;
+  right:2px;
+}
 
 .SelectUser:active {
   background-color: transparent;
@@ -1226,13 +1238,15 @@ hr {
   background-color: transparent;
   color: black;
 }
-
+.HomeLogin5
+{
+  overflow: scroll!important;
+  height:92vh;
+}
 .EventPanelView {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  /*height:;
-  calc(100vh-64px)*/
   overflow: scroll;
   border-radius: 2px !important;
   -webkit-border-radius: 2px !important;
@@ -1352,13 +1366,9 @@ body {
 
 .rights {
   padding: 5px;
-  /* margin: 10px; */
   outline: none;
   background-color: transparent;
-  /* border:3px solid #ccc;   */
   color: white;
-  /* padding-left:10px; */
-  /* padding-right:10px; */
   font-weight: bold;
   display: inline;
   cursor: pointer;
@@ -1448,7 +1458,7 @@ body {
   /* border:2px solid black; */
   width: 100%;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   padding: 8px;
 }
 .MyDataTable2 {
@@ -1457,9 +1467,31 @@ body {
 .MydataEnter {
   display: flex;
   flex-direction: row;
-  padding: 8px;
+  justify-content:center;
+  align-items: center;
+  width: 30%;
+  
+  /* padding: 8px; */
+  /* border:2px solid white; */
+}
+.MydataEnter > .form-control:focus
+{
+  background-color:transparent !important;
+  color:#ffffff;
+  font-size: 15px;
+  outline: none !important;
+  border: none !important;
 }
 
+.MydataEnter > .form-control
+{
+  background-color:transparent !important;
+  color:#ffffff;
+  font-size: 15px;
+  
+  outline: none !important;
+  /* border: none !important; */
+}
 .Sidebar {
   width: 4%;
   position: absolute;
@@ -1468,15 +1500,15 @@ body {
   display: flex;
   /* top:-500px; */
   /* overflow:hidden; */
-  /* background-color:blue; */
+  background-color:transparent;
 }
 
 .ownDark {
-  background-color: black;
+  background-color: #283046;
 }
 
 .bg-dark {
-  background-color: black !important;
+  background-color: #283046 !important;
 }
 .HomeLogin3,
 .MyDataTable2,
@@ -1559,3 +1591,97 @@ h6 {
 }
 
 
+.AdminName
+{
+  position: absolute ;
+  top:12px;
+  right:60px;
+  color:white;
+}
+.AdminRole
+{
+  position: absolute ;
+  top:30px;
+  right:60px;
+  color:white;
+  font-size:13px;
+}
+
+.Custom-Pagination
+{
+  width:content-width;
+  display: flex;
+  flex-direction: row;
+  /* border:2px solid white ;  */
+  height:fit-content;
+  text-decoration: none;
+  list-style-type: none;
+  /* margin: 10px; */
+  padding: 10px;
+}
+
+
+.Pages-pagination
+{
+  border:2px solid white;
+  width:25px;
+  height:25px;
+  border-radius:50%;
+  display:flex;
+  margin-left:10px;
+  justify-content:center;
+  align-items:center;
+  font-size: 13px;
+  cursor:pointer;
+}
+
+
+.Pages-pagination:hover{
+  background-color:skyblue;
+  color:black;
+}
+.Pages-dots
+{
+  font-size: 20px;
+  margin-left:5px;
+  margin-top:0px;
+  display:flex;
+  max-height:fit-content;
+  /* border:1px solid white; */
+  position: relative;
+  bottom:8px;
+}
+
+.Pagination-text-right
+{
+  padding-left:10px;
+ 
+}
+
+.Pagination-text:hover{
+  color:rgb(15, 12, 12);
+}
+
+
+
+.rights2 {
+  padding: 8px;
+  font-size: 15px;
+  outline: none;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  display: inline;
+  cursor: pointer;
+  border:2px solid white;
+  margin:4px;
+  padding-left:15px;
+  padding-right:15px;
+}
+
+.rights2:hover {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  border:2px solid black;
+}

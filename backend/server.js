@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const bcrypt = require('bcrypt')
 const mysql = require('mysql')
 var smtpTransport = require('nodemailer-smtp-transport');
 var nodemailer = require('nodemailer');
@@ -7,6 +8,7 @@ var cors = require('cors')
 const moment = require('moment')
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
+// const moment = require('moment');
 const app = express()
 
 // import handlebars from "handlebars";
@@ -39,8 +41,15 @@ app.get('/', async (req, res) => {
             connection.release() // return the connection to pool
             
             if(!err) {  
-                res.send(rows)
                 
+                for(var i = 0 ; i < rows.length ; i++)
+                {
+                
+                        rows[i].dob = moment(rows[i].dob).format('YYYY-MM-DD')
+
+                }
+                    
+                    res.send(rows);
             } else {
                 console.log(err)
             }
@@ -48,7 +57,7 @@ app.get('/', async (req, res) => {
         })
        
     })
-    res.status(200)
+    // res.sendStatus(200)
 
 })
 
@@ -97,16 +106,17 @@ app.get('/testdata/:value', (req, res) => {
     
 })
 
-app.get('/test/:value', (req, res) => {
+app.get('/loggedin/:value', (req, res) => {
     // console.log("Hello")
     pool.getConnection((err, connection) => {
         if(err) throw err
         console.log(`connected as id ${connection.threadId}`)
         const query1 = 'SELECT * from UserProfiles WHERE email = ?'
-        connection.query(query1 ,req.params.value , (err, rows) => {
+        connection.query(query1 ,req.params.value , async(err, rows) => {
             connection.release() // return the connection to pool
             console.log("Hello conn")   
             if(!err) {  
+                
                 res.send(rows)
             } else {
                 console.log(err)
@@ -117,6 +127,24 @@ app.get('/test/:value', (req, res) => {
     res.status(200)
     
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.get('/testemail/:value', (req, res) => {
     // console.log("Hello")
@@ -515,14 +543,18 @@ app.get('/SignCheck/:email/:password/:Role', (req, res) => {
             const email = req.params.email
             const password =  req.params.password
             const Role = req.params.Role
-        connection.query('SELECT * from UserProfiles WHERE email = ? AND password = ? AND Role = ?', [email , password , Role]  , (err, rows) => {
-           
-            // SELECT name,password from UserProfiles
-            
-            connection.release() // return the connection to pool
+         
+            connection.query('SELECT password from UserProfiles WHERE email = ?', email , async(err, rows) =>{
+                // console.log(rows[0].password)
+                var string=JSON.stringify(rows);
+                var json =  JSON.parse(string);
+                var result = json[0].password ; 
+                const ismatch =  await bcrypt.compare(password,result)
+               
+         if(ismatch) { 
+                connection.query('SELECT * from UserProfiles WHERE email = ?  AND Role = ?', [email ,  Role]  , (err, rows) => {
                if(!err)
                {
-                //    console.log(rows)
                         res.send(rows)
                    
                }
@@ -533,8 +565,18 @@ app.get('/SignCheck/:email/:password/:Role', (req, res) => {
             } 
             
         })
+           }
+           else
+           {
+               res.send("Not matched")
+           }
+           
+            })
+            // connection.release() // return the connection to pool
+            
+     
     })
-    res.status(200)
+    // res.status(200).send("Hello")
     
 })
 
@@ -551,12 +593,15 @@ app.get('/SignCheck/:email/:password/:Role', (req, res) => {
 // Add a record / beer
 app.post('/apply', (req, res) => {
     
-    pool.getConnection((err, connection) => {
+    pool.getConnection(async(err, connection) => {
         if(err) throw err
         console.log(`connected as id ${connection.threadId}`)
         res.status(200)
         const params = req.body
-        
+        const salt = await bcrypt.genSalt(12)
+        const hashPassword = await bcrypt.hash(params.password , salt )
+        console.log(hashPassword)
+        params.password = hashPassword
        connection.query('select * from UserProfiles Where email = ? ' , req.body.email ,    (err, rows) => {
            if(rows.length > 0)
 {

@@ -1,28 +1,51 @@
 import react, { useState, useEffect , useLayoutEffect } from "react";
-import Table from 'react-bootstrap/Table';
-import axios from "axios"
+import { Trash , Edit } from "react-feather"
 import "../../App.css";
 import { useNavigate, Link } from "react-router-dom";
 import NavBar from "../NavBar"
 import { ToastContainer, toast } from 'react-toastify';
 import moment from 'moment'
 import 'react-toastify/dist/ReactToastify.css';
+import DataTable, { createTheme } from "react-data-table-component";
+import SortIcon from "@material-ui/icons/ArrowDownward";
+import "react-data-table-component-extensions/dist/index.css";
 
 import SideNavbar from "../../Sidebar"
 import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
+createTheme('solarized', {
+  text: {
+    primary: 'white',
+    secondary: 'white',
+  },
+
+  background: {
+    default: '#283046',
+   
+  },
+ 
+  divider: {
+    // default: 'white',
+  },
+  action: {
+    button: 'rgba(0,0,0,.54)',
+    hover: 'rgba(0,0,0,.08)',
+    disabled: 'rgba(0,0,0,.12)',
+  }
+  
+});
+
+
 const ViewMember = () => {
-  const [Members, setMembers] = useState([]);
   const [hiddens, sethiddens] = useState("hidden");
   const [DoneD, setDoneD] = useState("");
   const [Search , setSearch] = useState("");
-  const[ Limit , setLimit]= useState(5);
-  const[Startvalue , setStartvalue]= useState(0);
-  const[Endvalue , setEndvalue]= useState(5);
-  const[page , setPage]= useState(1);
-  const[ToggleName , setToggleName] = useState(0);
-  const[ToggleEmail , setToggleEmail] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0)
+
+  const handlePagination = page => setCurrentPage(page.selected)
+
+
   const navigate = useNavigate();
-  const TotalCount = Members.length;
+  // const TotalCount = Members.length;
   const notify = () => toast("User Deleted successfully",
     {
       transition: Zoom
@@ -40,7 +63,7 @@ const ViewMember = () => {
   }
 const Login  =  localStorage.getItem("Login")
   var HandleDelete = async function (i) {
-    let array = Members.filter(curr=>{
+    let array = data.filter(curr=>{
       return curr.id==i
     })
    
@@ -58,19 +81,8 @@ const Login  =  localStorage.getItem("Login")
 
   }
 
+// console.log(data);
 
-
- useLayoutEffect(() => {
-  fetch(`http://localhost:5000/testdata/${ToggleName}`)
-  .then((response) => response.json())
-  .then((actualData) => setMembers(actualData))
-}, [ToggleName]);
-
-useLayoutEffect(() => {
-  fetch(`http://localhost:5000/testemail/${ToggleEmail}`)
-  .then((response) => response.json())
-  .then((actualData) => setMembers(actualData)) 
-}, [ToggleEmail]);
 
 
   
@@ -80,7 +92,7 @@ useLayoutEffect(() => {
       fetch(`http://localhost:5000/Delete/${DoneD}`, { mode: 'cors' })
       .then((response) => {
     
-        let arr = Members.filter(curr=>{
+        let arr = data.filter(curr=>{
           return curr.id!==DoneD
         })
 
@@ -97,17 +109,15 @@ useLayoutEffect(() => {
     }
   }
 
-
- useLayoutEffect(() => {
-    test();
-
-  }, []);
-  const test = async () => {
-    await fetch(`http://localhost:5000/`)
-      .then((response) => response.json())
-      .then((actualData) => setMembers(actualData))
-  }
-
+  const userdata = async()=>{
+    await fetch('http://localhost:5000')
+    .then(response => response.json())
+    .then((text)=>{setMembers(text)
+      console.log(text)
+    })
+    .catch((error)=>{console.log(error)})
+    .finally(() => {console.log('done')})
+}
   const SearchVal = async() => {
 
     await fetch(`http://localhost:5000/SearchVal/${Search}`)
@@ -123,51 +133,98 @@ useLayoutEffect(() => {
 }
 else
 {
-  test();
+  userdata();
 }
 
   }, [Search])
 
 
- useLayoutEffect( () => {
-    setEndvalue(Limit)
-    
-  }, [Limit])
-
   let sample = 0;
+  const [data , setMembers] = useState([{
+  }]);
+  
+  useEffect(() => {
+     
+      userdata();
+      
 
- const IncrValue = () => {
-    setPage(page+1)
-    setStartvalue(Startvalue+Limit)
-    setEndvalue(Endvalue+5)
- }
-
- const Decrvalue = () => {
-  setPage(page-1)
-  setStartvalue(Startvalue-Limit)
-  setEndvalue(Endvalue-5)
-}
+    }, []);
+     const columns = [
+    
+     
+      {
+          name: "Id",
+          selector: "id",
+          sortable: true,
+          width: "4rem"    
+        },
+        {
+          name: "Email",
+          selector: "email",
+          sortable: true ,
+          width: "14rem"    
+          
+        },
+        {
+          name: "Mobile",
+          selector: "mobile",
+          sortable: true
+          ,width: "10rem"
+        },
+        {
+          name: "DOB",
+          selector: "dob",
+          sortable: true,
+          width: "10rem",
+          format: (row) => moment(data.dob).format('YYYY-MM-DD'),
+        },
+        {
+          name: "Gender",
+          selector: "gender",
+          sortable: true,
+          width: "6rem"
+        
+        },
+   
+        {
+          name: "Transaction",
+          selector: "transaction",
+          sortable: true,
+          width: "8rem"
+        },
+        {
+          name: "Status",
+          selector: "status",
+          sortable: true
+        },
+      {
+        name: "Action",
+        sortable: false,
+        selector: "null",
+        width: "10rem",
+        cell: row => (
+          <div className="d-flex flex   justify-content-around w-100">
+            <Edit/>
+            <Trash/>
+          </div>
+        ),
+        ignoreRowClick: true,
+        allowOverflow: true,
+        button: true,
+        
+        
+      
+      
+      }
+    ];
   return (
     <>
       <NavBar />
       <SideNavbar/>
       <form className="MyDataTable" > 
-   <div className="MydataEnter">
-    <label className="px-2 h5 ">Show</label> 
-    <select className="px-2 h5 " aria-label="Default select example" 
-    onChange={(e)=>setLimit(Number(e.target.value))}
-
-    >
-
-  <option value="5" selected>5</option>
-  <option value="10">10</option>
-  <option value="15">15</option>
-</select>
-<label className="px-2 h5 ">entries</label>
-</div>
-
+   
 <div className="MydataEnter">
-  <input  className="px-2 h4 form-control border-light"
+  <input  className="px-2  form-control border-light display-3"
   onChange={(e)=>setSearch(e.target.value)}
   placeholder="Search Members"
 
@@ -175,89 +232,20 @@ else
 </div>
     </form>
       <div className="HomeLogin3 ">
-   
-      <div className="table-responsive-sm Res-table">
-        {
-
-          Members?.length > 0 ? (
-            <Table  bordered className="table bg-dark text-light table-condensed table-responsive overflow-scroll" style={{ textAlign: "center" }}>
-              <thead >
-                <tr>
-                
-                  <th  className="col-sm-1 overflow-scroll h6 small"  >Id</th>
-                  <th className="col-sm-1 overflow-scroll h6 small" 
-                  style={{cursor: "pointer"}} 
-                  onClick={()=>setToggleName(!ToggleName)}
-                  >Name</th>
-                  <th className="col-sm-2 overflow-scroll h6 small" 
-                  style={{cursor: "pointer"}}
-                  onClick={()=>setToggleEmail(!ToggleEmail)}
-                  >Email</th>
-                  <th className="col-sm-2 overflow-scroll h6 small">Mobile</th>
-                  <th className="col-sm-1 overflow-scroll h6 small">DOB</th>
-                  <th className="col-sm-1  overflow-scroll h6 small">Gender</th>
-                  <th className="col-sm-2 overflow-scroll h6 small">TransactionId</th>
-                  <th className="overflow-scroll h6 small">Admin </th>
-                </tr>
-              </thead>
-              <tbody>
-
-                {Members.slice(Startvalue,Endvalue).map((Member, i) => (
-                  
-                  <tr>
-                    <td className=" overflow-scroll fst-italic h6 small">{Startvalue+i+1}</td>
-                    <td className=" overflow-scroll fst-italic h6 small">{Member.name}</td>
-                    <td className=" overflow-scroll fst-italic h6 small">{Member.email}</td>
-                    <td className=" overflow-scroll fst-italic h6 small">{Member.mobile}</td>
-                    <td className=" overflow-scroll fst-italic h6 small">{moment(Member.dob).format('YYYY-MM-DD')}</td>
-                    <td className=" overflow-scroll fst-italic h6 small">{Member.gender}</td>
-                    <td className=" overflow-scroll fst-italic h6 small">{Member.transaction}</td>
-                    <td className="overflow-scroll fst-italic h6 small TestFlex">
-
-                      <div onClick={HandleDelete.bind(this, Member.id)} key={Member.id+91} className="rights">Delete</div>
-                      <div onClick={HandleEdit.bind(this, Member.id)} key={Member.id+92} className="rights">Edit</div>
-                      <div className="hidden">{sample =Startvalue + i+1}</div>
-                        
-                    </td>
-                  
-                  </tr>
-                ))
-                }
-
-
-              </tbody>
-            </Table>
-
-          ) : (
-            <div className="empty">
-              <h2>No Members Exists</h2>
-            </div>
-          )
-
-        }
-
-</div>
-<div className="MyDataTable2" > 
-   <div className="MydataEnter">
-    <label className=" h5 small">Showing</label> 
-    <label className="px-1 h5 small">{Startvalue+1} to {sample} of {TotalCount}</label> 
-        
-<label className=" h5 small ">entries</label>
-</div>
-
-<nav aria-label="Page navigation example  " className="bg-transparent">
-  <ul className="pagination bg-transparent">
-  <li className="page-item"  
-  onClick={page==1?( ()=>{} ):()=>Decrvalue()}
-  ><Link className="page-link" to=""><span className="TextBold">{page-1}</span></Link></li>        
-    <li className="page-item" onClick={page==1?( ()=>{} ):()=>Decrvalue()}><Link className="page-link" to=""><span className="TextBold">{`<<`}</span></Link></li>
-    <li className="page-item"><Link className="page-link" to=""><span className="TextBold">{page}</span></Link></li>
-   
-    <li className="page-item"  onClick={sample>=TotalCount?( ()=>{} ):()=>IncrValue()}><Link className="page-link" to=""><span className="TextBold">{`>>`}</span></Link></li>
-    <li className="page-item" onClick={sample>=TotalCount?( ()=>{} ):()=>IncrValue()}><Link className="page-link" to=""><span className="TextBold">{page+1}</span></Link></li>
-    
-  </ul>
-</nav>
+      <div className="">
+        <DataTable
+          columns={columns}
+          data={data}
+          noHeader
+          defaultSortField="id"
+          sortIcon={<SortIcon />}
+          defaultSortAsc={true}
+          pagination
+          highlightOnHover
+          dense
+          theme="solarized" 
+        />
+     
     </div>
         {/* DeletePop */}
         <div className={hiddens}>

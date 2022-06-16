@@ -1,23 +1,27 @@
-body 
+html
 
 {
     /* background-color: white;     */
   
     
-    background-image: url("https://cdn.pixabay.com/photo/2021/03/10/06/24/wave-6083644_960_720.png");
+    /* background-image: url("https://cdn.pixabay.com/photo/2021/03/10/06/24/wave-6083644_960_720.png");
     background-repeat: no-repeat;
     object-fit: cover;
     background-size: cover;
-    /* background-attachment: fixed; */
     background-position: bottom;
-    /* background-image: linear-gradient(215deg, #63a4ff 20%, #83eaf1 54%); */
-  
-}
+    background-repeat: no-repeat;
+    overflow: hidden;
+     */
+     background-color:#181E31;
+
+
+    }
  canvas
  {
-     overflow: hidden;
+     overflow: scroll;
      /* background-color: transparent; */
-    background-image: url("https://cdn.pixabay.com/photo/2021/03/10/06/24/wave-6083644_960_720.png");
+    /* background-image: url("https://cdn.pixabay.com/photo/2021/03/10/06/24/wave-6083644_960_720.png"); */
+    background-color:#181E31;
     background-repeat: no-repeat;
     object-fit: cover;
     background-size: cover;

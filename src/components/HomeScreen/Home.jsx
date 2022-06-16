@@ -59,7 +59,7 @@ const Home = (props) => {
                     <div className="ControlUi">
                         <div className="midPanel signup-form">
 
-                            <h4 className="Row1  Feed">Login As</h4>
+                            <h4 className="Row1  Feed ">Login As</h4>
                             <hr />
                             <span className="Midrow">
                                 <span className="Row2">

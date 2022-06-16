@@ -33,7 +33,7 @@ const ViewProfile = () => {
                 }, []);
                     const test2 = async ()=>
                     {
-                await fetch(`http://localhost:5000/test/${TLogin}`)
+                await fetch(`http://localhost:5000/loggedin/${TLogin}`)
                     .then((response) => response.json())
                     .then((actualData) => setCheck(actualData))
                 }
@@ -100,15 +100,7 @@ const ViewProfile = () => {
                        {Check[0].gender? Check[0].gender :"abc"}
                        </div>
                        </div>
-                       <div className="CoverAll">
-                       <div className="IconsView">
-                       <MdOutlinePassword style={style}/>
-                       <span className="tooltiptext">Password</span>
-                       </div>
-                       <div className="DetailView">
-                       {(Check[0].password) ? Check[0].password : "abc"}
-                       </div>
-                       </div>
+                       
                        <div className="CoverAll">
                        <div className="IconsView">
                        <FaMoneyCheckAlt style={style}/>

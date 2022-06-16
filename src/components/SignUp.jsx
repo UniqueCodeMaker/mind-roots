@@ -170,7 +170,7 @@ const SignUp = () => {
 		{/* <img src="" /> */}
 				<div className="signup-form">
 					<form action="#" method="GET" className="SignupPanel" ref={form}  onSubmit={handleSubmit(onSubmit, onError)}>
-						<h2 className="CenterSi Feed">Sign In</h2>
+						<h2 className="CenterSi Feed ">Sign In</h2>
 
 						<hr />
 						<div className="form-group">
