@@ -29,6 +29,7 @@ const Home = (props) => {
     localStorage.setItem('Role', 0)
     localStorage.setItem('Clogin', 0)
     localStorage.setItem('Alogin', 0)
+    localStorage.setItem('Login', 0)
     localStorage.setItem('token', 0)
     localStorage.setItem('Login', 0)
 

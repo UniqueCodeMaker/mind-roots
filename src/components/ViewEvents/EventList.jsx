@@ -40,7 +40,7 @@ const AddMember = () => {
         test2();
         setChangeD("text")
         setChangeT("text")
-        const EventSelected  = localStorage.getItem("Event")
+        const EventSelected  = localStorage.getItem("event")
         
         fetch(`http://localhost:5000/EventSelected/${EventSelected}`)
         .then((response) => response.json())
@@ -163,7 +163,7 @@ const AddMember = () => {
 
                                     >
                                         <option value="Select Users" hidden selected>Select Users</option> 
-                                        {Check.map((checks) => <option value={checks.event}  >{checks.event}</option>)
+                                        {details.map((checks) => <option value={checks.event}  >{checks.event}</option>)
                                         }
                                     </select>
                                 </Col> */}
@@ -290,7 +290,7 @@ const AddMember = () => {
                         Edit
                     </button>
 
-                    <Link to="/editevents"  className=" font-weight-bold btn  bg-transparent text-light w-10 p-3 border-2 border-light " > {`>`}</Link>
+                    <Link to="/editevent"  className=" font-weight-bold btn  bg-transparent text-light w-10 p-3 border-2 border-light " > {`>`}</Link>
                     </div>
                        
                         </div>

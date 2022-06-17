@@ -56,8 +56,8 @@ const ViewEvent = () => {
   var HandleEdit = async function (i) {
 
 
-    localStorage.setItem("userSelect", i);
-    navigate("/addmember");
+    localStorage.setItem("event", i);
+    navigate("/eventlist");
 
   }
 const Login  =  localStorage.getItem("Login")
@@ -67,17 +67,9 @@ const Login  =  localStorage.getItem("Login")
     })
    
     sethiddens("DeletePop")
-   if(array[0].name!=Login) 
-   { 
+ 
      setDoneD(i)
-    
-   }
-   else
-   {
-    setDoneD(0)
-   }
-    test();
-
+ 
   }
 
 // console.log(data);
@@ -214,8 +206,8 @@ else
         width: "6rem",
         cell: row => (
           <div className="d-flex flex   justify-content-around w-100">
-            <Edit />
-            <Trash/>
+           <Edit onClick={()=>HandleEdit(row.id)}/>
+            <Trash onClick={()=>HandleDelete(row.id)}/>
           </div>
         ),
         ignoreRowClick: true,
@@ -260,7 +252,7 @@ else
     </div>
         {/* DeletePop */}
         <div className={hiddens}>
-          <p>Do you Really Want to Delete this User </p>
+          <p>Do you Really Want to Delete this event </p>
           <div className="DeletePopB">
 
             <button type="button" className="DeleteBtn" onClick={DeletedUsers}>Yes</button>

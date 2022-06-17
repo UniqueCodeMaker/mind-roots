@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import DataTable, { createTheme } from "react-data-table-component";
 import SortIcon from "@material-ui/icons/ArrowDownward";
 import "react-data-table-component-extensions/dist/index.css";
-
+import { Badge } from "reactstrap"
 import SideNavbar from "../../Sidebar"
 import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
 createTheme('solarized', {
@@ -35,7 +35,10 @@ createTheme('solarized', {
 });
 
 
+
 const ViewMember = () => {
+
+
   const [hiddens, sethiddens] = useState("hidden");
   const [DoneD, setDoneD] = useState("");
   const [Search , setSearch] = useState("");
@@ -58,7 +61,7 @@ const ViewMember = () => {
 
 
     localStorage.setItem("userSelect", i);
-    navigate("/addmember");
+    navigate("/editmember");
 
   }
 const Login  =  localStorage.getItem("Login")
@@ -130,7 +133,21 @@ else
   }, [Search])
 
 
-  let sample = 0;
+  
+const style2 = { 
+  color:"yellow",
+  fontSize:"14px",
+  padding:"10px",
+  margin:"3px",
+}
+
+const style3 = { 
+  color:"lime",
+  fontSize:"14px",
+  padding:"10px",
+  margin:"3px",
+}
+
   const [data , setMembers] = useState([{
   }]);
   
@@ -145,7 +162,7 @@ else
      
       {
           name: "Id",
-          selector: "",
+          
           sortable: false,
           width: "4rem",
           cell: (row, index) => index+1    
@@ -185,8 +202,15 @@ else
         },
         {
           name: "Status",
-          selector: (row)=>row.status,
-          sortable: true
+     
+          sortable: true,
+          cell: (row) => {
+            return (
+              <Badge style={row.status=="applied"?style2:style3} pill>
+                {row.status}
+              </Badge>
+            )
+          }
         },
       {
         name: "Action",
@@ -195,8 +219,8 @@ else
         width: "10rem",
         cell: (row , index) => (
           <div className="d-flex flex   justify-content-around w-100">
-            <Edit onClick={()=>HandleDelete(index)}/>
-            <Trash onClick={()=>HandleDelete(index)}/>
+            <Edit onClick={()=>HandleEdit(row.id)}/>
+            <Trash onClick={()=>HandleDelete(row.id)}/>
           </div>
         ),
         ignoreRowClick: true,
