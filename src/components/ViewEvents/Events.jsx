@@ -146,7 +146,7 @@ else
      
       {
           name: "Id",
-          selector: "null",
+          
           sortable: false,
           width: "4rem"  ,
           cell: (row, index) => index+1    

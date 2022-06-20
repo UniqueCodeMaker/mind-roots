@@ -181,6 +181,12 @@ app.get('/View', (req, res) => {
             connection.release() // return the connection to pool
             console.log("Hello conn")   
             if(!err) {  
+                for(var i = 0 ; i < rows.length ; i++)
+                {
+                
+                        rows[i].edate = moment(rows[i].edate).format('YYYY-MM-DD')
+                        rows[i].etime = moment(rows[i].etime ,  "HH:mm:ss").format("hh:mm A")
+                }
                 res.send(rows)
             } else {
                 console.log(err)
