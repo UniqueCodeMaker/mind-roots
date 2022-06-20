@@ -17,7 +17,7 @@ const EventPanel = (props) => {
        <img src={props.event.EImageUrl} alt ="event" className="FixImgLen"/>
         <div className="EventTimings">
        
-            <Table bordered   className="Eventtable table bg-dark text-light table-condensed table-responsive overflow-scroll " >
+            <Table bordered    className="Eventtable table bg-dark text-light table-condensed table-responsive overflow-scroll " >
             <thead>
               <tr >
                 <th className="col-sm-1 overflow-scroll h6 small">Lead </th>

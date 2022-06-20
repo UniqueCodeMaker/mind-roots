@@ -1261,7 +1261,7 @@ hr {
 .EventsPosts {
   display: flex;
   flex-direction: column;
-  /* cursor: grabbing; */
+  font-size: 20px;
   border-radius: 20px;
   flex: 1 0 40%;
   margin: 10px;
@@ -1300,8 +1300,7 @@ hr {
 }
 
 .Eventtable {
-  /*border: 3px solid black;
-  */
+
   border-collapse: collapse;
   color: black;
   /* font-size:25px; */
@@ -1310,10 +1309,11 @@ hr {
   overflow-x: auto;
   overflow-y: auto;
   border: none;
-  margin: 0 auto;
+  margin: 10px auto;
   padding: auto;
   outline: none;
   border-radius: 2px;
+  cursor:scroll;
 }
 
 table {
@@ -1322,32 +1322,38 @@ table {
   width: 50%;
   border-radius: 2px;
   overflow: scroll;
-}
-/* td {
-  background: #00fff2;
+  cursor:scroll;
+  }
+td {
   padding: 25px;
   overflow: scroll;
   white-space: nowrap;
-  width: 100px;
-  border: solid 1px black;
-  border-radius:1px;
-  -webkit-border-radius:1px;
-  -moz-border-radius:1px;
-  -ms-border-radius:1px;
-  -o-border-radius:1px;
+  width: max-content!important;
+  /* border: solid 1px green; */
+  border:1px solid black  !important;
+  border-radius:20px;
+  -webkit-border-radius:20px;
+  -moz-border-radius:20px;
+  -ms-border-radius:20px;
+  -o-border-radius:20px;
+  /* font-size: 15px!important; */
 }
 th {
-  background: #00f7ea;
+  /* background: #00f7ea; */
   padding: 25px;
-  width: 100px;
-  border: solid 1px #666;
+  width: content-width;
+  border: 1px solid  black!important;
   border-radius:1px;
   -webkit-border-radius:1px;
   -moz-border-radius:1px;
   -ms-border-radius:1px;
   -o-border-radius:1px;
   overflow: scroll;
-} */
+  white-space:pre-wrap;
+  /* background-color:black /!important; */
+  font-weight: bold !important;
+  font-family:"sans-serif";
+}
 
 .LogoUp {
   /* overflow: hidden; */

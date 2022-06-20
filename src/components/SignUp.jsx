@@ -120,8 +120,8 @@ const SignUp = () => {
 				else  {
 					if (Role == 2)
 				{	
-					console.log(actualData[0].status == "applied" ,  "abc")
-					if(actualData[0].status == "applied")	
+					console.log(actualData[0].status == "Applied" ,  "abc")
+					if(actualData[0].status == "Applied")	
 					{	
 						noti();
 					

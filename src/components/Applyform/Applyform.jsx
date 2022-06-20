@@ -102,19 +102,19 @@ const Applyform = () => {
         .catch((error)=>{console.log(error)})
         .finally(() => {console.log('done')})
        
-        // reset();
-        // setGenerate("Generate Transaction Id")
-        // document.getElementsByClassName("ImageUpload")[0].getElementsByTagName('img')[1].src="https://icons.iconarchive.com/icons/dtafalonso/android-lollipop/128/Downloads-icon.png"    
-        // localStorage.setItem('Login' ,  data.email) 
+        reset();
+        setGenerate("Generate Transaction Id")
+        document.getElementsByClassName("ImageUpload")[0].getElementsByTagName('img')[1].src="https://icons.iconarchive.com/icons/dtafalonso/android-lollipop/128/Downloads-icon.png"    
+        localStorage.setItem('Login' ,  data.email) 
        
-        // notify();
+        notify();
         
        
-        // await fetch('http://localhost:5000/sendmail', requestOptions)
-        // .then(response => response.json())
-        // .then((text)=>{console.log(text)})
-        // .catch((error)=>{console.log(error)})
-        // .finally(() => {console.log('done')})
+        await fetch('http://localhost:5000/sendmail', requestOptions)
+        .then(response => response.json())
+        .then((text)=>{console.log(text)})
+        .catch((error)=>{console.log(error)})
+        .finally(() => {console.log('done')})
       
     }
     

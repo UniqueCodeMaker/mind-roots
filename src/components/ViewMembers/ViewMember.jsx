@@ -136,11 +136,18 @@ else
   
 const style2 = { 
   color:"yellow",
+  fontSize:"15px",
+  padding:"10px",
+  margin:"3px",
+  
+}
+const style1 = { 
+  color:"aqua",
   fontSize:"14px",
   padding:"10px",
   margin:"3px",
+  
 }
-
 const style3 = { 
   color:"lime",
   fontSize:"14px",
@@ -206,8 +213,10 @@ const style3 = {
           sortable: true,
           cell: (row) => {
             return (
-              <Badge style={row.status=="applied"?style2:style3} pill>
-                {row.status}
+              <Badge 
+                bg="danger"
+              style={row.status=="Applied"?style2:row.status=="Admin"?style1:style3} pill>
+                {(row.status) }
               </Badge>
             )
           }
