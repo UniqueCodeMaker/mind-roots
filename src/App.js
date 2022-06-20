@@ -7,12 +7,8 @@ const App = ()=>
     {
         return(
            <div className="effects">
-            
           
-           
-            <SignUp/>
-           
-            </div>
+           </div>
         )
 }
 

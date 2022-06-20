@@ -1,10 +1,16 @@
-import React,{useState} from "react"
+import React,{ useState , useEffect }  from "react"
 import "../../App.css";
-
+import NavBar from "../NavBar"
 import DaysLeft from "./DaysLeft.jsx"
+import { useNavigate, Link } from "react-router-dom";
+import SideNavbar from "../../Sidebar";
+{/* <SideNavbar/> */}
 const ClientPanel =()=>{
+
+    localStorage.setItem("Clogin" , 1)
+    localStorage.setItem("Role" , 2)
     const [PeriodLeft,setPeriodLeft] = useState("Membership Period");
-    const [classBtn,setclassBtn] = useState("button-56");
+    const [classBtn,setclassBtn] = useState("button-56 TopCornerRightmore");
     const Timer = <DaysLeft/>
     function HandleTime()
     {
@@ -12,35 +18,29 @@ const ClientPanel =()=>{
 
                 Timer 
         )
-
-        setclassBtn("button-56 Times")
+   
+        setclassBtn("button-56 Times TopCornerRight")
     }
 
+
     return(
+   <>
+   <NavBar/>
+   <SideNavbar/>
    <div className="HomeLogin">
-       <div className="FormPanel2">
-       {/* <span className="Logo2">
-                    <img src={Logo} alt="Logo" />
-                </span> */}
    
-   <a href="ViewProfile"><button className="button-56" role="button">View Profile</button></a>
+       <div className="FormPanel2">
+
+   
+   <Link to = "/viewprofile"><button className="button-56 TopCornerRight" role="button">View Profile</button></Link>
   <button className={classBtn} role="button" onClick={HandleTime}>{PeriodLeft}</button>
-   <a href="AddEvent"> <button className="button-56" role="button">View Events</button></a>
-   <a href="ViewEvents"> <button className="button-56" role="button">Upcoming Events</button></a>
-
-
-
-       </div>
-        
-       
-    
-    
-    
-    
-    
-    
-    </div>
+   <Link to = "/viewevents"> <button className="button-56 TopCornerRightmore2" role="button">View Events</button></Link>
+  
+ </div>
+      </div>
+   </>
 )
+
 
 }
 

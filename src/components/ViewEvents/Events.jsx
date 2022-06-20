@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import DataTable, { createTheme } from "react-data-table-component";
 import SortIcon from "@material-ui/icons/ArrowDownward";
 import "react-data-table-component-extensions/dist/index.css";
-import { Badge } from "reactstrap"
+
 import SideNavbar from "../../Sidebar"
 import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
 createTheme('solarized', {
@@ -27,18 +27,14 @@ createTheme('solarized', {
     // default: 'white',
   },
   action: {
-    button: 'rgba(0,0,0,.54)',
-    hover: 'rgba(0,0,0,.08)',
-    disabled: 'rgba(0,0,0,.12)',
+    button: 'black',
+    hover: 'black',
+    disabled: 'black',
   }
   
 });
 
-
-
-const ViewMember = () => {
-
-
+const ViewEvent = () => {
   const [hiddens, sethiddens] = useState("hidden");
   const [DoneD, setDoneD] = useState("");
   const [Search , setSearch] = useState("");
@@ -60,8 +56,8 @@ const ViewMember = () => {
   var HandleEdit = async function (i) {
 
 
-    localStorage.setItem("userSelect", i);
-    navigate("/editmember");
+    localStorage.setItem("event", i);
+    navigate("/eventlist");
 
   }
 const Login  =  localStorage.getItem("Login")
@@ -69,10 +65,11 @@ const Login  =  localStorage.getItem("Login")
     let array = data.filter(curr=>{
       return curr.id==i
     })
-    // console.log(i)
+   
     sethiddens("DeletePop")
-    setDoneD(i);  
-
+ 
+     setDoneD(i)
+ 
   }
 
 // console.log(data);
@@ -81,9 +78,9 @@ const Login  =  localStorage.getItem("Login")
 
   
   const DeletedUsers = () => {
-      console.log(DoneD , "i")  
+      // console.log(DoneD)
       if(DoneD!=0){
-      fetch(`http://localhost:5000/Delete/${DoneD}`, { mode: 'cors' })
+      fetch(`http://localhost:5000/DeletEvents/${DoneD}`, { mode: 'cors' })
       .then((response) => {
     
         let arr = data.filter(curr=>{
@@ -104,7 +101,7 @@ const Login  =  localStorage.getItem("Login")
   }
 
   const userdata = async()=>{
-    await fetch('http://localhost:5000')
+    await fetch('http://localhost:5000/view')
     .then(response => response.json())
     .then((text)=>{setMembers(text)
       console.log(text)
@@ -114,7 +111,7 @@ const Login  =  localStorage.getItem("Login")
 }
   const SearchVal = async() => {
 
-    await fetch(`http://localhost:5000/SearchVal/${Search}`)
+    await fetch(`http://localhost:5000/search/${Search}`)
     .then((response) => response.json())
     .then((actualData) => setMembers(actualData)) 
     
@@ -123,7 +120,8 @@ const Login  =  localStorage.getItem("Login")
 
  useLayoutEffect( () => {
     if(Search!="")
-{    SearchVal();
+{   
+   SearchVal();
 }
 else
 {
@@ -133,28 +131,7 @@ else
   }, [Search])
 
 
-  
-const style2 = { 
-  color:"yellow",
-  fontSize:"15px",
-  padding:"10px",
-  margin:"3px",
-  
-}
-const style1 = { 
-  color:"aqua",
-  fontSize:"14px",
-  padding:"10px",
-  margin:"3px",
-  
-}
-const style3 = { 
-  color:"lime",
-  fontSize:"14px",
-  padding:"10px",
-  margin:"3px",
-}
-
+ 
   const [data , setMembers] = useState([{
   }]);
   
@@ -169,66 +146,67 @@ const style3 = {
      
       {
           name: "Id",
-          
+          selector: "null",
           sortable: false,
-          width: "4rem",
+          width: "4rem"  ,
           cell: (row, index) => index+1    
         },
         {
-          name: "Email",
-          selector: (row)=>row.email,
+          name: "Leader",
+          selector: "lead",
           sortable: true ,
-          width: "14rem"    
+          width: "6rem"    
           
         },
         {
-          name: "Mobile",
-          selector: (row)=>row.mobile,
+          name: "Name",
+          selector: "event",
           sortable: true
-          ,width: "10rem"
+          ,width: "6rem"
         },
         {
-          name: "DOB",
-          selector: (row)=>row.dob,
+          name: "Date",
+          selector: "edate",
           sortable: true,
-          width: "10rem",
-          },
+          width: "6rem",
+        },
         {
-          name: "Gender",
-          selector: (row)=>row.gender,
+          name: "Time",
+          selector: "etime",
           sortable: true,
           width: "6rem"
+        },
+        {
+          name: "Location",
+          selector: "location",
+          sortable: true,
+          width: "9rem"
         
         },
+        
    
         {
-          name: "Transaction",
-          selector: (row)=>row.transaction,
-          sortable: true,
-          width: "8rem"
+          name: "Budget",
+          selector: "budget",
+          sortable: true
         },
-        {
-          name: "Status",
-     
-          sortable: true,
-          cell: (row) => {
-            return (
-              <Badge 
-                bg="danger"
-              style={row.status=="Applied"?style2:row.status=="Admin"?style1:style3} pill>
-                {(row.status) }
-              </Badge>
-            )
-          }
-        },
+      {
+        name: "Fees",
+        selector: "fees",
+        sortable: true,
+        width: "10rem",
+       
+      
+      
+      }, 
       {
         name: "Action",
         sortable: false,
-        selector: (row)=>{},
-        width: "10rem",
-        cell: (row , index) => (
+        selector: "null",
+        width: "6rem",
+        cell: row => (
           <div className="d-flex flex   justify-content-around w-100">
-            <Edit onClick={()=>HandleEdit(row.id)}/>
+           <Edit onClick={()=>HandleEdit(row.id)}/>
             <Trash onClick={()=>HandleDelete(row.id)}/>
           </div>
         ),
@@ -240,9 +218,10 @@ const style3 = {
       
       
       }
+
     ];
-  return (
-    <>
+    return(
+        <>
       <NavBar />
       <SideNavbar/>
       <form className="MyDataTable" > 
@@ -250,7 +229,7 @@ const style3 = {
 <div className="MydataEnter">
   <input  className="px-2  form-control border-light display-3"
   onChange={(e)=>setSearch(e.target.value)}
-  placeholder="Search Members"
+  placeholder="Search Events"
 
   />
 </div>
@@ -273,7 +252,7 @@ const style3 = {
     </div>
         {/* DeletePop */}
         <div className={hiddens}>
-          <p>Do you Really Want to Delete this User </p>
+          <p>Do you Really Want to Delete this event </p>
           <div className="DeletePopB">
 
             <button type="button" className="DeleteBtn" onClick={DeletedUsers}>Yes</button>
@@ -286,11 +265,12 @@ const style3 = {
       
     </>
 
-
-  )
+      
+        
+    )
 
 
 }
 
 
-export default ViewMember;
+export default ViewEvent;

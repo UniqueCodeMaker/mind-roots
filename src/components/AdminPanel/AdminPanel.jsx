@@ -1,33 +1,42 @@
 import React,{useState} from "react"
 import "../../App.css";
-
+import NavBar from "../NavBar"
+import moment from "moment"
+import SideNavbar from "../../Sidebar"
+import {Link} from "react-router-dom"
 const AdminPanel =()=>{
-    // const [PeriodLeft,setPeriodLeft] = useState("View Members");
+
+    localStorage.setItem("Alogin" , 1)
+
+    
+
 
     return(
-   <div className="HomeLogin">
+<>
+<NavBar/>
+<SideNavbar/>
+<div className="HomeLogin">
        <div className="FormPanel2">
-       {/* <span className="Logo2">
-                    <img src={Logo} alt="Logo" />
-                </span> */}
    
-       <a href="AddMember"><button className="button-56" role="button">Add Member</button></a>
-       <a href="ViewMember"><button className="button-56 " role="button" >View Members</button></a>
-       <a href="AddEvent"><button className="button-56" role="button">Add Events</button></a>
-       <a href="ViewEvents"><button className="button-56" role="button">View Events</button></a>
+       <Link to="/viewmember"><button className="button-56 TopCorner" role="button" >View Members</button></Link>
+       <Link to="/addevent"><button className="button-56 TopCornerRight" role="button">Add Events</button></Link>
+       <Link to="/viewevents"><button className="button-56 TopCornerRightmore" role="button">View Events</button></Link>
+       <Link to="/events"><button className="button-56 TopCornerRightmore2" role="button">Edit Events</button></Link>
+       <Link to="/addmember"><button className="button-56 BottomLeft" role="button">Add Member</button></Link>
 
+     
 
 
        </div>
         
-       
-    
-    
-    
     
     
     
     </div>
+
+</>
+
+
 )
 
 }
