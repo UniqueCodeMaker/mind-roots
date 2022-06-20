@@ -20,3 +20,5 @@ CREATE TABLE `mind-roots-club`.`UserProfiles` ( `id` INT(50) NOT NULL ,  `name` 
 AddEvent
 
 CREATE TABLE `mind-roots-club`.`Addevent` ( `eventlead` VARCHAR(50) NOT NULL ,  `eventname` VARCHAR(50) NOT NULL ,  `eventdate` DATE NOT NULL ,  `eventlocation` VARCHAR(50) NOT NULL ,  `eventtiming` TIME(6) NOT NULL ,  `eventbudget` FLOAT(50) NOT NULL ,  `fessamount` FLOAT(50) NOT NULL ) ENGINE = InnoDB;
+
+ALTER TABLE `UserProfiles` ADD `id` INT(1) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`);
